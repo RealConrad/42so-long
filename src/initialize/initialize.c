@@ -6,36 +6,54 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/11 18:40:16 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/13 20:29:51 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_player(t_game *game_object);
+static void	init_player(t_game *game_object);
+static void update_game_state(t_game *game_object);
 
 void	init_game(t_game *game_object)
 {
 	game_object->mlx = mlx_init(WIDTH, HEIGHT, "Game", true);
 
-	init_player(game_object);
 	// init_map(); 
+	init_player(game_object);
 	if (!game_object->mlx || !game_object->player)
-		cleanup_and_exit();
-		
-	// mlx_image_to_window(game_object->mlx, game_object->player->img, 0, 0);
+		cleanup_and_exit(FAIL);
+	update_game_state(game_object);
 }
 
-void	init_player(t_game *game_object)
+static void update_game_state(t_game *game_object)
 {
-	char	*filename;
+	mlx_loop_hook(game_object->mlx, &loop_player_idle_animation, game_object);
+	mlx_key_hook(game_object->mlx, &handle_input, game_object);
+}
+
+static void	init_player(t_game *game_object)
+{
 	int		i;
+	char	*filename;
 
 	i = 0;
 	game_object->player = malloc(sizeof(t_player));
-	game_object->player->sprite = malloc(sizeof(mlx_texture_t *) * 9);
-	game_object->player->img = malloc(sizeof(mlx_image_t *) * 9);
-		
-	// game_object->player = mlx_load_png("./assets/player/HeroKnight_Idle_0.png");
-	// game_object->img = mlx_texture_to_image(game_object->mlx, game_object->player);
+	if (!game_object->player)
+		cleanup_and_exit(FAIL);
+
+	game_object->player->sprites = malloc(sizeof(mlx_texture_t *) * MAX_SPRITES);
+	if (!game_object->player->sprites)
+		cleanup_and_exit(FAIL);
+	while (i <= MAX_SPRITES)
+	{
+		filename = get_player_sprites(i);
+		game_object->player->sprites[i] = mlx_load_png(filename);
+		free(filename); // free memory allocated by get_player_sprites
+		i++;
+	}
+	game_object->player->curr_frame = 0;
+	game_object->player->img = mlx_texture_to_image(game_object->mlx, game_object->player->sprites[0]); // set initial image
+	mlx_image_to_window(game_object->mlx, game_object->player->img, 0, 0);
+
 }
