@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/11 15:58:54 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/13 19:48:48 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ INPUT_DIR			:= ./src/input/
 # Source files
 SRC_FILES			:= main.c
 ERROR_FILES			:= error.c
-INIT_FILES			:= initialize.c
+INIT_FILES			:= initialize.c initialize_utils.c
 INPUT_FILES			:= handle_input.c input_utils.c
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
