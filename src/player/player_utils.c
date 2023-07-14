@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_utils.c                                 :+:      :+:    :+:   */
+/*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 19:36:44 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/14 16:45:10 by cwenz            ###   ########.fr       */
+/*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
+/*   Updated: 2023/07/14 17:49:50 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	loop_player_idle_animation(void *param)
 	// to move the animated sprite around.
 	game_object->player->x = game_object->player->img->instances->x;
 	game_object->player->y = game_object->player->img->instances->y;
+	game_object->player->animation->instances[game_object->player->curr_frame].z = 1;
 	// Draw updated sprite to the window
 	mlx_image_to_window(game_object->mlx, game_object->player->animation, game_object->player->x, game_object->player->y);
 }
