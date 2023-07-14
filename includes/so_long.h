@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/14 16:45:18 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/14 17:58:33 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 /* Include libraries */
 # include "../libraries/42c-library/c_library.h" 
@@ -42,22 +43,27 @@ typedef struct s_player {
 	mlx_texture_t	*blank_sprite; // Used for animation to work
 	mlx_image_t		*animation; // The animation image
 	mlx_image_t		*img; // current image of the player
-	int32_t			x;
-	int32_t			y;
+	int32_t			x; // x position of player
+	int32_t			y; // y position of player
 	int				curr_frame; // index of the current frame
-} t_player;
+}	t_player;
 
 typedef struct s_game {
 	mlx_t			*mlx;
 	t_player		*player;
+	char			*map;
 }	t_game;
 
 /* Initialize */
-void	init_game(t_game *game_object);
-char	*get_player_sprites(int	sprite_index);
+void	init_game(t_game *game_object, char *map_name);
 
 /* Player */
+void	init_player(t_game *game_object);
+char	*get_player_sprites(int	sprite_index);
 void	loop_player_idle_animation(void *param);
+
+/* Map */
+void	init_map(t_game *game_object, char *map_name);
 
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
