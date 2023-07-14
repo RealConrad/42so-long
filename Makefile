@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/13 19:48:48 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/14 17:23:19 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,17 +41,23 @@ SRC_DIR				:= ./src/
 ERROR_DIR			:= ./src/error/
 INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
+MAP_DIR				:= ./src/map/
+PLAYER_DIR			:= ./src/player/
 
 # Source files
 SRC_FILES			:= main.c
 ERROR_FILES			:= error.c
-INIT_FILES			:= initialize.c initialize_utils.c
+INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
+MAP_FILES			:= map.c
+PLAYER_FILES		:= player.c player_utils.c
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 SRC 				+= $(addprefix $(ERROR_DIR), $(ERROR_FILES))
 SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
+SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))
+SRC					+= $(addprefix $(PLAYER_DIR), $(PLAYER_FILES))
 
 # Object files
 OBJ					:= $(SRC:.c=.o)
