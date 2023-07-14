@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/13 20:11:53 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/14 16:45:18 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/HeroKnight_Idle_"
-# define MAX_SPRITES 7
+# define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
+# define PLAYER_SPRITE_COUNT 8
 # define MOVE_SPEED 50
 
 # define FILENAME_SIZE 50
@@ -38,7 +39,11 @@ typedef enum e_exit_type {
 
 typedef struct s_player {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
-	mlx_image_t		*img; // current image
+	mlx_texture_t	*blank_sprite; // Used for animation to work
+	mlx_image_t		*animation; // The animation image
+	mlx_image_t		*img; // current image of the player
+	int32_t			x;
+	int32_t			y;
 	int				curr_frame; // index of the current frame
 } t_player;
 
