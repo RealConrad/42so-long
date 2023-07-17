@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/14 17:49:50 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/17 15:55:26 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_player_sprites(int	sprite_index)
 	
 	filename = malloc(sizeof(char) * FILENAME_SIZE);
 	if (!filename)
-		cleanup_and_exit(FAIL);
+		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprite file path.");
 	// convert sprite_index to a string
 	frame_number_str = ft_itoa(sprite_index);
 	
@@ -60,7 +60,7 @@ void	loop_player_idle_animation(void *param)
 	static bool	first_loop = true;
 	int			frame_skip_amount;
 
-	frame_skip_amount = 10;
+	frame_skip_amount = 8;
 	game_object = (t_game *)param;
 	
 	// If there's already a sprite, delete it to prevent displaying multiple hero sprites
@@ -85,7 +85,11 @@ void	loop_player_idle_animation(void *param)
 	// to move the animated sprite around.
 	game_object->player->x = game_object->player->img->instances->x;
 	game_object->player->y = game_object->player->img->instances->y;
-	game_object->player->animation->instances[game_object->player->curr_frame].z = 1;
+	
+	// TODO: CAUSES SEGFAULT!! 
+	// game_object->player->animation->instances[game_object->player->curr_frame].z = 1;
+	
 	// Draw updated sprite to the window
+	// ft_printf("PLAYER(%d, %d)\n", game_object->player->y, game_object->player->x);
 	mlx_image_to_window(game_object->mlx, game_object->player->animation, game_object->player->x, game_object->player->y);
 }
