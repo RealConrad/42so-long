@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/14 17:23:19 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/17 17:50:18 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ USER				:= cwenz
 BREW				:= homebrew
 
 # Compiler and flags
+#  -fsanitize=address -g
 CC					:= cc
 CFLAGS				:= -Wall -Werror -Wextra
 INCLUDES			:= -I./includes
@@ -49,7 +50,7 @@ SRC_FILES			:= main.c
 ERROR_FILES			:= error.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
-MAP_FILES			:= map.c
+MAP_FILES			:= map.c map_utils.c
 PLAYER_FILES		:= player.c player_utils.c
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))

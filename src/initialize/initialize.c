@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/14 17:55:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/17 17:46:32 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ static void update_game_state(t_game *game_object);
 void	init_game(t_game *game_object, char *map_name)
 {
 	game_object->mlx = mlx_init(WIDTH, HEIGHT, "Game", true);
-
+	if (!game_object->mlx)
+		cleanup_and_exit(EXIT_FAILURE, "Failed to initialize mlx.");
 	init_map(game_object, map_name);
-	init_player(game_object);
-	if (!game_object->mlx || !game_object->player)
-		cleanup_and_exit(FAIL);
-
 	update_game_state(game_object);
 }
 

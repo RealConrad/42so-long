@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:20 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/14 17:54:56 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/17 17:30:48 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
 	t_game *game_object;
 	if (argc != 2)
-		cleanup_and_exit(EXIT_FAILURE);
+		cleanup_and_exit(EXIT_FAILURE, "Should only have 2 command line arguments.");
 	
-	game_object = malloc(sizeof(t_game));
+	game_object = ft_calloc(sizeof(t_game), 1);
 	if (!game_object)
-		cleanup_and_exit(FAIL);
+		cleanup_and_exit(FAIL, "Failed to allocate memory for game object.");
 
 	init_game(game_object, argv[1]);
 	mlx_loop(game_object->mlx);
 
 	ft_printf("Shutting down now... 〈◕﹏◕〉");
-	return (SUCCESS);
+	return (EXIT_SUCCESS);
 }
