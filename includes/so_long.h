@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/14 17:58:33 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/17 17:58:25 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@
 # define PLAYER_SPRITE_PATH "./assets/player/HeroKnight_Idle_"
 # define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
 # define PLAYER_SPRITE_COUNT 8
-# define MOVE_SPEED 50
+# define MOVE_SPEED 64
 
 # define FILENAME_SIZE 50
+
+/* Map */
+# define WALL_PATH "./assets/world/wall.png"
+# define GROUND_PATH "./assets/world/ground.png"
+# define PIXELS 64
+# define MAX_LINES 500
 
 /* Game dimensions */
 # define WIDTH 1000
@@ -48,22 +54,29 @@ typedef struct s_player {
 	int				curr_frame; // index of the current frame
 }	t_player;
 
+typedef struct s_map {
+	char		**map_plan;
+	mlx_image_t	*map_img;
+}	t_map;
+
 typedef struct s_game {
 	mlx_t			*mlx;
 	t_player		*player;
-	char			*map;
+	t_map			*map;
 }	t_game;
 
 /* Initialize */
 void	init_game(t_game *game_object, char *map_name);
 
 /* Player */
-void	init_player(t_game *game_object);
+void	init_player(t_game *game_object, int y, int x);
 char	*get_player_sprites(int	sprite_index);
 void	loop_player_idle_animation(void *param);
 
 /* Map */
 void	init_map(t_game *game_object, char *map_name);
+void	draw_tile(t_game *game_object, int y, int x, char *path);
+void	print_map(t_game *game_object); // delete me
 
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
@@ -71,6 +84,6 @@ bool	is_movement(mlx_key_data_t keydata);
 void	count_moves();
 
 /* Handle errors */
-void	cleanup_and_exit();
+void	cleanup_and_exit(t_exit_type exit_type, char *error_msg);
 
 #endif /* SO_LONG_H */
