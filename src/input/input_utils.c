@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:55:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/11 15:20:38 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/18 14:03:04 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ bool	is_movement(mlx_key_data_t keydata)
 			|| keydata.key == MLX_KEY_D
 		)
 		return (true);
+	return (false);
+}
+
+bool	is_wall(t_game *game_object)
+{
+	// if (game_object)
+	(void)game_object;
 	return (false);
 }
 

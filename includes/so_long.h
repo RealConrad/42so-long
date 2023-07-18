@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/17 17:58:25 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/18 14:23:21 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@
 # include "../libraries/MLX42/include/MLX42/MLX42.h"
 
 /* Player */
-# define PLAYER_SPRITE_PATH "./assets/player/HeroKnight_Idle_"
+# define PLAYER_SPRITE_PATH "./assets/player/idle-down/down"
 # define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
-# define PLAYER_SPRITE_COUNT 8
-# define MOVE_SPEED 64
+# define PLAYER_SPRITE_COUNT 6
+# define MOVE_SPEED 16
 
 # define FILENAME_SIZE 50
 
 /* Map */
 # define WALL_PATH "./assets/world/wall.png"
-# define GROUND_PATH "./assets/world/ground.png"
-# define PIXELS 64
+# define GROUND_PATH "./assets/world/grass.png"
+# define PIXELS 16
 # define MAX_LINES 500
 
 /* Game dimensions */
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 250
+# define HEIGHT 250
 
 typedef enum e_exit_type {
 	SUCCESS,
@@ -82,6 +82,7 @@ void	print_map(t_game *game_object); // delete me
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
 void	count_moves();
+bool	is_wall(t_game *game_object);
 
 /* Handle errors */
 void	cleanup_and_exit(t_exit_type exit_type, char *error_msg);
