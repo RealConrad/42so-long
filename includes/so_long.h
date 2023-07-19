@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/18 16:41:59 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/18 17:27:26 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include "../libraries/MLX42/include/MLX42/MLX42.h"
 
 /* Player */
-# define PLAYER_SPRITE_PATH "./assets/player/idle/idle"
+# define PLAYER_SPRITE_PATH "./assets/player/witch/idle/idle"
 # define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
-# define PLAYER_SPRITE_COUNT 20
+# define PLAYER_SPRITE_COUNT 6
 # define MOVE_SPEED 16
 
 # define FILENAME_SIZE 50
@@ -36,8 +36,8 @@
 # define MAX_LINES 500
 
 /* Game dimensions */
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 500
+# define HEIGHT 500
 
 typedef enum e_exit_type {
 	SUCCESS,
