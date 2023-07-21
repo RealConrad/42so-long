@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/18 14:17:44 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:24:53 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ static void	draw_map(t_game *game_object, char *map)
 	while(map[i] != '\n')
 	{
 		if (map[i] == '1')
-			draw_tile(game_object, y * PIXELS, x * PIXELS, WALL_PATH);
+			draw_tile(game_object, y * TILE_PX, x * TILE_PX, WALL_PATH);
 		else if (map[i] == '0')
-			draw_tile(game_object, y * PIXELS, x * PIXELS, GROUND_PATH);
+			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
 		else if (map[i] == 'P')
 		{
 			// draw ground underneath player
-			draw_tile(game_object, y * PIXELS, x * PIXELS, GROUND_PATH);
-			init_player(game_object, y * PIXELS, x * PIXELS);
+			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
+			init_player(game_object, y * TILE_PX, x * TILE_PX);
 		}
 		x++;
 		i++;

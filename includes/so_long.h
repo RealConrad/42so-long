@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/18 17:27:26 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:28:45 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,24 @@
 # include "../libraries/42c-library/c_library.h" 
 # include "../libraries/MLX42/include/MLX42/MLX42.h"
 
-/* Player */
-# define PLAYER_SPRITE_PATH "./assets/player/witch/idle/idle"
-# define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
-# define PLAYER_SPRITE_COUNT 6
-# define MOVE_SPEED 16
+/* Game */
+# define WIDTH 800
+# define HEIGHT 800
+# define FILENAME_SIZE 69
 
-# define FILENAME_SIZE 50
+/* Player */
+# define PLAYER_SPRITE_PATH "./assets/player/idle"
+# define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
+# define PLAYER_SPRITE_COUNT 4
+# define MOVE_SPEED 70
+# define PLAYER_HEIGHT_PX 100
+# define PLAYER_WIDTH_PX 57
 
 /* Map */
 # define WALL_PATH "./assets/world/wall.png"
-# define GROUND_PATH "./assets/world/resize.png"
-# define PIXELS 64
+# define GROUND_PATH "./assets/world/floor1.png"
+# define TILE_PX 80
 # define MAX_LINES 500
-
-/* Game dimensions */
-# define WIDTH 500
-# define HEIGHT 500
 
 typedef enum e_exit_type {
 	SUCCESS,
@@ -46,8 +47,8 @@ typedef enum e_exit_type {
 
 typedef struct s_player {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
-	mlx_texture_t	*blank_sprite; // Used for animation to work
 	mlx_image_t		*animation; // The animation image
+	mlx_texture_t	*blank_sprite; // Used for animation to work
 	mlx_image_t		*img; // current image of the player
 	int32_t			x; // x position of player
 	int32_t			y; // y position of player
