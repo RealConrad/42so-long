@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/18 14:28:51 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:24:21 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,7 @@ void	loop_player_idle_animation(void *param)
 	game_object->player->x = game_object->player->img->instances->x;
 	game_object->player->y = game_object->player->img->instances->y;
 	
-	// TODO: CAUSES SEGFAULT!! 
-	// game_object->player->animation->instances[game_object->player->curr_frame].z = 1;
-	
 	// Draw updated sprite to the window
-	// ft_printf("PLAYER(%d, %d)\n", game_object->player->y, game_object->player->x);
+	mlx_resize_image(game_object->player->animation, PLAYER_WIDTH_PX, PLAYER_HEIGHT_PX);
 	mlx_image_to_window(game_object->mlx, game_object->player->animation, game_object->player->x, game_object->player->y);
 }
