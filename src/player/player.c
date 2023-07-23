@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   mob.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/18 14:20:54 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/23 17:37:39 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	init_player(t_game *game_object, int y, int x)
 	i = 0;
 	game_object->player = ft_calloc(sizeof(t_player), 1);
 	if (!game_object->player)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player.");
+		cleanup_and_exit(FAIL, "Failed to allocate memory for mob.");
 
 	game_object->player->sprites = ft_calloc(sizeof(mlx_texture_t *) * PLAYER_SPRITE_COUNT, 1);
 	if (!game_object->player->sprites)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprites");
+		cleanup_and_exit(FAIL, "Failed to allocate memory for mob sprites");
 	while (i < PLAYER_SPRITE_COUNT)
 	{
 		filename = get_player_sprites(i);
