@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/23 17:39:39 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/23 20:58:25 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 /* Map */
 # define WALL_PATH "./assets/world/wall.png"
 # define GROUND_PATH "./assets/world/floor1.png"
+# define COLLECTABLE_PATH "./assets/world/collectables/"
 # define TILE_PX 64
 # define MAX_LINES 500
 
@@ -44,27 +45,33 @@ typedef enum e_exit_type {
 	FAIL,
 }	t_exit_type;
 
-typedef struct s_mob_sprite_info {
-	char	*sprite_path;
-	int		num_sprites;
-	int		mob_height;
-	int		mob_width;
-}	t_mob_sprite_info;
+// typedef struct s_mob_sprite_info {
+// 	char	*sprite_path;
+// 	int		num_sprites;
+// 	int		mob_height;
+// 	int		mob_width;
+// }	t_mob_sprite_info;
 
 typedef struct s_player {
 	mlx_texture_t		**sprites; // Array of sprites, one for each frame
 	mlx_image_t			*animation; // The animation image
 	mlx_texture_t		*blank_sprite; // Used for animation to work
 	mlx_image_t			*img; // current image of the player
-	// s_mob_sprite_info	*sprite_info;
 	int32_t				x; // x index of player
 	int32_t				y; // y index of player
 	int					curr_frame; // index of the current frame
 }	t_player;
 
+typedef struct s_collectable {
+	mlx_texture_t	**sprites;
+	mlx_image_t		*animation;
+	int				num_collectables;
+}	t_collectable;
+
 typedef struct s_map {
-	char		**map_plan;
-	mlx_image_t	*map_img;
+	char			**map_plan;
+	mlx_image_t		*map_img;
+	t_collectable	*collectables;
 }	t_map;
 
 typedef struct s_game {
@@ -90,7 +97,6 @@ void	print_map(t_game *game_object); // delete me
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
 void	count_moves();
-bool	is_wall(t_game *game_object, mlx_key_data_t keydata);
 
 /* Handle errors */
 void	cleanup_and_exit(t_exit_type exit_type, char *error_msg);
