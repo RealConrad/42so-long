@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/23 17:38:02 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/23 21:41:19 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ RM					:= rm -f
 
 # Source file directories
 SRC_DIR				:= ./src/
+ANIMATION_DIR		:= ./src/animation/
 ERROR_DIR			:= ./src/error/
 INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
@@ -47,6 +48,7 @@ PLAYER_DIR			:= ./src/player/
 
 # Source files
 SRC_FILES			:= main.c
+ANIMATION_FILES		:= animation.c animation_utils.c
 ERROR_FILES			:= error.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
@@ -59,6 +61,7 @@ SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
 SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))
 SRC					+= $(addprefix $(PLAYER_DIR), $(PLAYER_FILES))
+SRC					+= $(addprefix $(ANIMATION_DIR), $(ANIMATION_FILES))
 
 # Object files
 OBJ					:= $(SRC:.c=.o)

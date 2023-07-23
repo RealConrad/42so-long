@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/23 20:58:25 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/23 22:34:25 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,24 @@ typedef enum e_exit_type {
 	FAIL,
 }	t_exit_type;
 
-// typedef struct s_mob_sprite_info {
-// 	char	*sprite_path;
-// 	int		num_sprites;
-// 	int		mob_height;
-// 	int		mob_width;
-// }	t_mob_sprite_info;
-
-typedef struct s_player {
-	mlx_texture_t		**sprites; // Array of sprites, one for each frame
-	mlx_image_t			*animation; // The animation image
-	mlx_texture_t		*blank_sprite; // Used for animation to work
-	mlx_image_t			*img; // current image of the player
-	int32_t				x; // x index of player
-	int32_t				y; // y index of player
-	int					curr_frame; // index of the current frame
-}	t_player;
+typedef struct s_animated_mob {
+	mlx_texture_t	**sprites; // Array of sprites, one for each frame
+	mlx_image_t		*animated_sprite; // The animation image
+	mlx_texture_t	*blank_sprite; // Used for animation to work
+	mlx_image_t		*img; // current image of the player
+	char			*sprite_path; // file path to sprites
+	int				frame_skip_amount; // Used for speed of animation
+	int				curr_frame; // index of the current frame
+	int				num_sprites;
+	int				height;
+	int				width;
+	int				x; // x index of sprite
+	int				y; // y index of sprite
+}	t_animated_mob;
 
 typedef struct s_collectable {
-	mlx_texture_t	**sprites;
-	mlx_image_t		*animation;
-	int				num_collectables;
+	t_animated_mob		*animation;
+	int					num_collectables;
 }	t_collectable;
 
 typedef struct s_map {
@@ -76,7 +73,7 @@ typedef struct s_map {
 
 typedef struct s_game {
 	mlx_t			*mlx;
-	t_player		*player;
+	t_animated_mob	*player;
 	t_map			*map;
 }	t_game;
 
@@ -85,8 +82,13 @@ void	init_game(t_game *game_object, char *map_name);
 
 /* Player */
 void	init_player(t_game *game_object, int y, int x);
-char	*get_player_sprites(int sprite_index);
-void	loop_player_idle_animation(void *param);
+// void	loop_player_idle_animation(void *param);
+void	assign_player_object(t_game *game_object);
+void	allocate_player_object(t_animated_mob *player);
+
+/* Animation */
+void	init_animation(void	*param);
+char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
 
 /* Map */
 void	init_map(t_game *game_object, char *map_name);
