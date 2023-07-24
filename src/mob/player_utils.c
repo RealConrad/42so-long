@@ -6,11 +6,22 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/23 22:35:07 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/24 17:13:25 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	allocate_player_object(t_animated_mob *player)
+{
+	player->sprite_path = ft_calloc(sizeof(char) * ft_strlen(PLAYER_SPRITE_PATH) + 1, 1);
+	if (!player->sprite_path)
+		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprite path.");
+
+	player->sprites = ft_calloc(sizeof(mlx_texture_t *) * PLAYER_SPRITE_COUNT, 1);
+	if (!player->sprites)
+		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprites.");
+}
 
 void	assign_player_object(t_game *game_object)
 {
@@ -24,25 +35,13 @@ void	assign_player_object(t_game *game_object)
 	game_object->player->height = PLAYER_HEIGHT_PX;
 	game_object->player->frame_skip_amount = 8;
 	game_object->player->curr_frame = 0;
-	game_object->player->blank_sprite = mlx_load_png(BLANK_PLAYER_IMAGE);
+	game_object->player->blank_sprite = mlx_load_png(BLANK_SPRITE);
 	game_object->player->img = mlx_texture_to_image(game_object->mlx, game_object->player->blank_sprite);
-
 	while (i < PLAYER_SPRITE_COUNT)
 	{
 		filename = get_sprites(i, game_object->player);
 		game_object->player->sprites[i] = mlx_load_png(filename);
-		free(filename); // free memory allocated by get_player_sprites
+		free(filename); // free memory allocated by get_sprites()
 		i++;
 	}
-}
-
-void	allocate_player_object(t_animated_mob *player)
-{
-	player->sprite_path = ft_calloc(sizeof(char) * ft_strlen(PLAYER_SPRITE_PATH) + 1, 1);
-	if (!player->sprite_path)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprite path.");
-
-	player->sprites = ft_calloc(sizeof(mlx_texture_t *) * PLAYER_SPRITE_COUNT, 1);
-	if (!player->sprites)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprites.");
 }

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/23 22:34:25 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/24 17:15:48 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/idle"
-# define BLANK_PLAYER_IMAGE "./assets/player/blank.png"
+# define BLANK_SPRITE "./assets/player/blank.png"
+// # define BLANK_SPRITE "./assets/world/collectables/coin0.png"
 # define PLAYER_SPRITE_COUNT 4
 # define PLAYER_HEIGHT_PX 64
 # define PLAYER_WIDTH_PX 36
@@ -36,9 +37,14 @@
 /* Map */
 # define WALL_PATH "./assets/world/wall.png"
 # define GROUND_PATH "./assets/world/floor1.png"
-# define COLLECTABLE_PATH "./assets/world/collectables/"
 # define TILE_PX 64
 # define MAX_LINES 500
+
+/* Collectables */
+# define COLLECTABLE_PATH "./assets/world/collectables/coin"
+# define COLLECTABLE_SPRITE_COUNT 4
+# define COLLECTABLE_HEIGHT_PX 64
+# define COLLECTABLE_WIDTH_PX 36
 
 typedef enum e_exit_type {
 	SUCCESS,
@@ -49,7 +55,7 @@ typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
 	mlx_image_t		*animated_sprite; // The animation image
 	mlx_texture_t	*blank_sprite; // Used for animation to work
-	mlx_image_t		*img; // current image of the player
+	mlx_image_t		*img;
 	char			*sprite_path; // file path to sprites
 	int				frame_skip_amount; // Used for speed of animation
 	int				curr_frame; // index of the current frame
@@ -82,13 +88,19 @@ void	init_game(t_game *game_object, char *map_name);
 
 /* Player */
 void	init_player(t_game *game_object, int y, int x);
-// void	loop_player_idle_animation(void *param);
 void	assign_player_object(t_game *game_object);
 void	allocate_player_object(t_animated_mob *player);
+
+/* Collectables */
+void	init_collectable(t_game *game_object, int y, int x);
+void	allocate_collectable_object(t_animated_mob **collectable);
+void	assign_collectable_object(t_game *game_object);
 
 /* Animation */
 void	init_animation(void	*param);
 char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
+void	animate_sprite(t_game *game_object, t_animated_mob *animation_config);
+void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_config);
 
 /* Map */
 void	init_map(t_game *game_object, char *map_name);

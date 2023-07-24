@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/23 21:41:19 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/24 15:11:36 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,28 +40,31 @@ RM					:= rm -f
 # Source file directories
 SRC_DIR				:= ./src/
 ANIMATION_DIR		:= ./src/animation/
+COLLECTABLE_DIR		:= ./src/collectable/
 ERROR_DIR			:= ./src/error/
 INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
 MAP_DIR				:= ./src/map/
-PLAYER_DIR			:= ./src/player/
+MOB_DIR				:= ./src/mob/
 
 # Source files
 SRC_FILES			:= main.c
 ANIMATION_FILES		:= animation.c animation_utils.c
+COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c
-PLAYER_FILES		:= player.c player_utils.c
+MOB_FILES			:= player.c player_utils.c
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
+SRC					+= $(addprefix $(ANIMATION_DIR), $(ANIMATION_FILES))
+SRC					+= $(addprefix $(COLLECTABLE_DIR), $(COLLECTABLE_FILES))
 SRC 				+= $(addprefix $(ERROR_DIR), $(ERROR_FILES))
 SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
 SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))
-SRC					+= $(addprefix $(PLAYER_DIR), $(PLAYER_FILES))
-SRC					+= $(addprefix $(ANIMATION_DIR), $(ANIMATION_FILES))
+SRC					+= $(addprefix $(MOB_DIR), $(MOB_FILES))
 
 # Object files
 OBJ					:= $(SRC:.c=.o)

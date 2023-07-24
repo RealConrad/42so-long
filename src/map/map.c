@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/23 21:19:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/24 17:13:00 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void	init_map(t_game *game_object, char *map_name)
 	y = 0;
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
-		cleanup_and_exit(EXIT_FAILURE, "Failed to open map file.");
+		cleanup_and_exit(FAIL, "Failed to open map file.");
 	
 	// Allocate memory for map
 	game_object->map = ft_calloc(sizeof(t_map), 1);
 	if (!game_object->map)
-		cleanup_and_exit(EXIT_FAILURE, "Failed to allocate for map.");
+		cleanup_and_exit(FAIL, "Failed to allocate for map.");
 	
 	// Allocate memory for map plan
 	game_object->map->map_plan = ft_calloc(MAX_LINES, sizeof(char *)); 
 	if (!game_object->map->map_plan)
-		cleanup_and_exit(EXIT_FAILURE, "Failed to allocate memory for map plan.");
+		cleanup_and_exit(FAIL, "Failed to allocate memory for map plan.");
 	while ((map_row_str = get_next_line(fd))) // Get the map line by line
 	{
 		game_object->map->map_plan[y] = ft_strdup(map_row_str); // Make copy of map
@@ -62,14 +62,13 @@ static void	draw_map(t_game *game_object, char *map)
 			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
 		else if (map[i] == 'P')
 		{
-			// draw ground underneath player
 			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
 			init_player(game_object, y * TILE_PX, x * TILE_PX);
 		}
 		else if (map[i] == 'C')
 		{
-			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
-			// draw_tile(game_object, y * TILE_PX, x * TILE_PX);
+			// draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
+			init_collectable(game_object, y * TILE_PX, x * TILE_PX);
 		}
 		x++;
 		i++;
