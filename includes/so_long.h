@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/24 17:15:48 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:32:48 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/idle"
 # define BLANK_SPRITE "./assets/player/blank.png"
-// # define BLANK_SPRITE "./assets/world/collectables/coin0.png"
 # define PLAYER_SPRITE_COUNT 4
 # define PLAYER_HEIGHT_PX 64
 # define PLAYER_WIDTH_PX 36
@@ -43,8 +42,8 @@
 /* Collectables */
 # define COLLECTABLE_PATH "./assets/world/collectables/coin"
 # define COLLECTABLE_SPRITE_COUNT 4
-# define COLLECTABLE_HEIGHT_PX 64
-# define COLLECTABLE_WIDTH_PX 36
+# define COLLECTABLE_HEIGHT_PX 24
+# define COLLECTABLE_WIDTH_PX 16
 
 typedef enum e_exit_type {
 	SUCCESS,
@@ -57,6 +56,7 @@ typedef struct s_animated_mob {
 	mlx_texture_t	*blank_sprite; // Used for animation to work
 	mlx_image_t		*img;
 	char			*sprite_path; // file path to sprites
+	int				frame_skip_counter;
 	int				frame_skip_amount; // Used for speed of animation
 	int				curr_frame; // index of the current frame
 	int				num_sprites;
@@ -66,15 +66,11 @@ typedef struct s_animated_mob {
 	int				y; // y index of sprite
 }	t_animated_mob;
 
-typedef struct s_collectable {
-	t_animated_mob		*animation;
-	int					num_collectables;
-}	t_collectable;
-
 typedef struct s_map {
 	char			**map_plan;
 	mlx_image_t		*map_img;
-	t_collectable	*collectables;
+	t_animated_mob	*collectables;
+	int				num_collectables;
 }	t_map;
 
 typedef struct s_game {
@@ -93,7 +89,7 @@ void	allocate_player_object(t_animated_mob *player);
 
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);
-void	allocate_collectable_object(t_animated_mob **collectable);
+void	allocate_collectable_object(t_animated_mob *collectable);
 void	assign_collectable_object(t_game *game_object);
 
 /* Animation */

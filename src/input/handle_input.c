@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/23 17:12:46 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:25:50 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ static void	handle_movement(t_game *game_object)
 	// Update the actual position of the player's sprite
 	game_object->player->img->instances[0].x = game_object->player->x * TILE_PX + (TILE_PX / 2) - (PLAYER_WIDTH_PX / 2);
 	game_object->player->img->instances[0].y = game_object->player->y * TILE_PX + (TILE_PX / 2) - (PLAYER_HEIGHT_PX / 2);
+	count_moves();
 }
