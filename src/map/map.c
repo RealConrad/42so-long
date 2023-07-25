@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/24 17:13:00 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 13:13:36 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static void	draw_map(t_game *game_object, char *map)
 		}
 		else if (map[i] == 'C')
 		{
-			// draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
+			game_object->map->num_collectables += 1;
+			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
 			init_collectable(game_object, y * TILE_PX, x * TILE_PX);
 		}
 		x++;
