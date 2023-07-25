@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 13:25:50 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:24:48 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ void	handle_input(mlx_key_data_t keydata, void *param)
 
 static void	handle_movement(t_game *game_object)
 {
-	int tile_x, tile_y;
-	int delta_x = 0, delta_y = 0;
+	int tile_x;
+	int	tile_y;
+	int delta_x = 0;
+	int	delta_y = 0;
 
 	if (mlx_is_key_down(game_object->mlx, MLX_KEY_W))
 		delta_y = -1;
@@ -47,6 +49,9 @@ static void	handle_movement(t_game *game_object)
 		game_object->player->x = tile_x;
 		game_object->player->y = tile_y;
 	}
+	if (game_object->map->map_plan[tile_y][tile_x] == 'C')
+		remove_collectable(game_object);
+
 	// Update the actual position of the player's sprite
 	game_object->player->img->instances[0].x = game_object->player->x * TILE_PX + (TILE_PX / 2) - (PLAYER_WIDTH_PX / 2);
 	game_object->player->img->instances[0].y = game_object->player->y * TILE_PX + (TILE_PX / 2) - (PLAYER_HEIGHT_PX / 2);

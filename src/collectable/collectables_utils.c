@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 14:49:00 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:26:33 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ void	assign_collectable_object(t_game *game_object, int collectable_index)
 		free(filename); // free memory allocated by get_sprites()
 		i++;
 	}
+}
+
+void	deallocate_collectable_object(t_game *game_object, int collectable_index)
+{
+	mlx_delete_image(game_object->mlx, game_object->map->collectables[collectable_index]->img);
+	mlx_delete_image(game_object->mlx, game_object->map->collectables[collectable_index]->animated_sprite);
+	free(game_object->map->collectables[collectable_index]);
 }

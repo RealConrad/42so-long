@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 14:43:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:19:10 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/idle"
-# define BLANK_SPRITE "./assets/player/blank.png"
+// # define BLANK_SPRITE "./assets/player/blank.png"
+# define BLANK_SPRITE "./assets/world/collectables/coin0.png"
 # define PLAYER_SPRITE_COUNT 4
 # define PLAYER_HEIGHT_PX 64
 # define PLAYER_WIDTH_PX 36
 
 /* Map */
 # define WALL_PATH "./assets/world/wall.png"
-# define GROUND_PATH "./assets/world/floor1.png"
+# define GROUND_PATH "./assets/world/floor.png"
 # define TILE_PX 64
 # define MAX_LINES 500
 
@@ -108,6 +109,8 @@ void	print_map(t_game *game_object); // delete me
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
+void	remove_collectable(t_game *game_object);
+void	deallocate_collectable_object(t_game *game_object, int collectable_index);
 void	count_moves();
 
 /* Handle errors */
