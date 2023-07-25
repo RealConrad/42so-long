@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 13:32:48 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 14:43:10 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ typedef struct s_animated_mob {
 typedef struct s_map {
 	char			**map_plan;
 	mlx_image_t		*map_img;
-	t_animated_mob	*collectables;
+	t_animated_mob	**collectables;
 	int				num_collectables;
+	int				num_lines;
 }	t_map;
 
 typedef struct s_game {
@@ -90,7 +91,7 @@ void	allocate_player_object(t_animated_mob *player);
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);
 void	allocate_collectable_object(t_animated_mob *collectable);
-void	assign_collectable_object(t_game *game_object);
+void	assign_collectable_object(t_game *game_object, int collectable_index);
 
 /* Animation */
 void	init_animation(void	*param);
@@ -101,6 +102,7 @@ void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_con
 /* Map */
 void	init_map(t_game *game_object, char *map_name);
 void	draw_tile(t_game *game_object, int y, int x, char *path);
+void	check_map(t_game *game_object, char *map_name);
 void	print_map(t_game *game_object); // delete me
 
 /* Handle Input */

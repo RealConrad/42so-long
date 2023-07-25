@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 13:13:36 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 14:53:02 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ void	init_map(t_game *game_object, char *map_name)
 	if (fd < 0)
 		cleanup_and_exit(FAIL, "Failed to open map file.");
 	
-	// Allocate memory for map
-	game_object->map = ft_calloc(sizeof(t_map), 1);
-	if (!game_object->map)
-		cleanup_and_exit(FAIL, "Failed to allocate for map.");
-	
 	// Allocate memory for map plan
 	game_object->map->map_plan = ft_calloc(MAX_LINES, sizeof(char *)); 
 	if (!game_object->map->map_plan)
 		cleanup_and_exit(FAIL, "Failed to allocate memory for map plan.");
+	
+	// Allocate memory for collectables
+	game_object->map->collectables = ft_calloc(game_object->map->num_collectables, sizeof(t_animated_mob *));
+	if (!game_object->map->collectables)
+		cleanup_and_exit(FAIL, "Failed to allocate memory for map collectables.");
+
 	while ((map_row_str = get_next_line(fd))) // Get the map line by line
 	{
 		game_object->map->map_plan[y] = ft_strdup(map_row_str); // Make copy of map
@@ -67,7 +68,6 @@ static void	draw_map(t_game *game_object, char *map)
 		}
 		else if (map[i] == 'C')
 		{
-			game_object->map->num_collectables += 1;
 			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
 			init_collectable(game_object, y * TILE_PX, x * TILE_PX);
 		}
