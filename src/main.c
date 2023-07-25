@@ -6,14 +6,14 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:20 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/22 10:54:47 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/25 14:33:10 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
 /*
-TODO: Get segfault when pressing 2 movement keys next to a wall (you glitch through the wall)
+TODO: Replace MAXLINES allocation with number of lines in file
 */
 
 int	main(int argc, char **argv)

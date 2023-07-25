@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/24 15:11:36 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/25 13:51:17 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
-MAP_FILES			:= map.c map_utils.c
+MAP_FILES			:= map.c map_utils.c check_map.c
 MOB_FILES			:= player.c player_utils.c
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
