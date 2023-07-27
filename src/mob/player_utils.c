@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/26 16:45:43 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/27 12:54:40 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	allocate_player_object(t_animated_mob *player)
 {
-	player->sprite_path = ft_calloc(sizeof(char) * ft_strlen(PLAYER_SPRITE_PATH) + 1, 1);
+	player->sprite_path = ft_calloc(1, sizeof(char) * ft_strlen(PLAYER_SPRITE_PATH) + 1);
 	if (!player->sprite_path)
 		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprite path.");
 
-	player->sprites = ft_calloc(sizeof(mlx_texture_t *) * PLAYER_SPRITE_COUNT, 1);
+	player->sprites = ft_calloc(PLAYER_SPRITE_COUNT, sizeof(mlx_texture_t *) * PLAYER_SPRITE_COUNT);
 	if (!player->sprites)
 		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprites.");
 }
