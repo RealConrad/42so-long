@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 15:54:46 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/26 16:35:05 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	animate_sprite(t_game *game_object, t_animated_mob *animation_config)
 		mlx_delete_image(game_object->mlx, animation_config->animated_sprite);
 
 	// Only update the animation every frame_skip_amount frames to make it appear slower
-	if (++animation_config->frame_skip_counter >= animation_config->frame_skip_amount)
+	if (++(animation_config->frame_skip_counter) >= animation_config->frame_skip_amount)
 	{
 		animation_config->frame_skip_counter = 0; // reset counter
 		// Cycle through player sprites
@@ -58,11 +58,11 @@ void	animate_sprite(t_game *game_object, t_animated_mob *animation_config)
 		// Set the player animation to the current sprite
 		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);
 	}
-	else
-		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);	
+	else {
+		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);
+	}
 	draw_animation_to_window(game_object, animation_config);
 }
-
 
 void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_config)
 {
