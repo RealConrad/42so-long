@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:19:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/26 17:00:05 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/idle"
-// # define BLANK_SPRITE "./assets/player/blank.png"
-# define BLANK_SPRITE "./assets/world/collectables/coin0.png"
+# define BLANK_SPRITE "./assets/player/blank.png"
 # define PLAYER_SPRITE_COUNT 4
 # define PLAYER_HEIGHT_PX 64
 # define PLAYER_WIDTH_PX 36
@@ -99,6 +98,8 @@ void	init_animation(void	*param);
 char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
 void	animate_sprite(t_game *game_object, t_animated_mob *animation_config);
 void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_config);
+void	animate_sprite2(t_game *game_object, t_animated_mob *animation_config);
+void	draw_animation_to_window2(t_game *game_object, t_animated_mob *animation_config);
 
 /* Map */
 void	init_map(t_game *game_object, char *map_name);

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:26:33 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/27 12:13:04 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	assign_collectable_object(t_game *game_object, int collectable_index)
 	game_object->map->collectables[collectable_index]->num_sprites = COLLECTABLE_SPRITE_COUNT;
 	game_object->map->collectables[collectable_index]->width = COLLECTABLE_WIDTH_PX;
 	game_object->map->collectables[collectable_index]->height = COLLECTABLE_HEIGHT_PX;
-	game_object->map->collectables[collectable_index]->frame_skip_amount = 10;
+	game_object->map->collectables[collectable_index]->frame_skip_amount = 2;
 	game_object->map->collectables[collectable_index]->curr_frame = 0;
 	game_object->map->collectables[collectable_index]->frame_skip_counter = 0;
 	game_object->map->collectables[collectable_index]->blank_sprite = mlx_load_png(BLANK_SPRITE);
@@ -43,6 +43,28 @@ void	assign_collectable_object(t_game *game_object, int collectable_index)
 		filename = get_sprites(i, game_object->map->collectables[collectable_index]);
 		game_object->map->collectables[collectable_index]->sprites[i] = mlx_load_png(filename);
 		free(filename); // free memory allocated by get_sprites()
+		i++;
+	}
+}
+
+void	remove_collectable(t_game *game_object)
+{
+	int	i;
+
+	i = 0;
+	while (i < game_object->map->num_collectables)
+	{
+		if (game_object->map->collectables[i]->x == game_object->player->x
+			&& game_object->map->collectables[i]->y == game_object->player->y)
+		{
+			game_object->map->collectables[i]->x = 50 * TILE_PX;
+			game_object->map->collectables[i]->y = 50 * TILE_PX;
+			game_object->player->frame_skip_amount++;
+			// mlx_delete_image(game_object->mlx, game_object->map->collectables[i]->img);
+			mlx_delete_image(game_object->mlx, game_object->map->collectables[i]->animated_sprite);
+			game_object->map->num_collectables--;
+			break ;
+		}
 		i++;
 	}
 }

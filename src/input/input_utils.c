@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:55:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:34:26 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/26 17:04:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,6 @@ bool	is_movement(mlx_key_data_t keydata)
 		)
 		return (true);
 	return (false);
-}
-
-void	remove_collectable(t_game *game_object)
-{
-	int	i;
-
-	i = 0;
-	while (i < game_object->map->num_collectables)
-	{
-		if (game_object->map->collectables[i]->x == game_object->player->x
-			&& game_object->map->collectables[i]->y == game_object->player->y)
-		{
-			deallocate_collectable_object(game_object, i);
-			ft_memmove(game_object->map->collectables[i],
-				game_object->map->collectables[i + 1],
-				(game_object->map->num_collectables - i - 1) * sizeof(t_animated_mob));
-			game_object->map->num_collectables--;
-			break ;
-		}
-		i++;
-	}
 }
 
 void	count_moves()
