@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/28 13:13:51 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/28 14:33:19 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 // can only draw 1 image per frame.
 void	init_animation(void	*param)
 {
-	// static int		frame = 0;
 	t_game			*game_object;
+	bool			first_iteration;
 	t_collectables	*temp;
 
 	game_object = (t_game *)param;
 	temp = game_object->map->collectables;
-	animate_sprite(game_object, game_object->player);
+	first_iteration = true;
 
-	while (temp != game_object->map->collectables)
+	animate_sprite(game_object, game_object->player);
+	while (first_iteration || temp != game_object->map->collectables)
 	{
+		first_iteration = false;
 		animate_sprite(game_object, temp->mob);
 		temp = temp->next;
 	}
 }
-
 
 // void	init_animation(void	*param)
 // {
