@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/27 13:37:22 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/28 12:57:36 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,38 @@ void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable)
 
 void	remove_collectable(t_game *game_object)
 {
-	int	i;
+	t_collectables	*curr_collectable;
+	t_collectables	*temp;
 
-	i = 0;
-	while (i < game_object->map->num_collectables)
+	curr_collectable = game_object->map->collectables;
+	while (curr_collectable->next)
 	{
-		//
-		i++;
+		if (curr_collectable->mob->x == game_object->player->x
+			&& curr_collectable->mob->y == game_object->player->y)
+		{
+			if (curr_collectable->next)
+				curr_collectable->next->prev = curr_collectable->prev;
+			if (curr_collectable->prev)
+				curr_collectable->next->next = curr_collectable->next;
+			if (game_object->map->collectables == curr_collectable)
+				game_object->map->collectables = curr_collectable->next;
+			
+			temp = curr_collectable;
+			curr_collectable = curr_collectable->next;
+			// deallocate_collectable_object(game_object, temp);
+			game_object->map->num_collectables--;
+		}
+		else
+			curr_collectable = curr_collectable->next;
 	}
+}
+
+void	deallocate_collectable_object(t_game *game_object, t_collectables *collectable)
+{
+	mlx_delete_image(game_object->mlx, collectable->mob->img);
+	mlx_delete_image(game_object->mlx, collectable->mob->animated_sprite);
+	free(collectable->mob->sprite_path);
+	free(collectable->mob->sprites);
+	free(collectable->mob);
+	free(collectable);
 }

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/27 12:54:40 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/28 13:26:16 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	assign_player_object(t_game *game_object)
 	game_object->player->num_sprites = PLAYER_SPRITE_COUNT;
 	game_object->player->width = PLAYER_WIDTH_PX;
 	game_object->player->height = PLAYER_HEIGHT_PX;
-	game_object->player->frame_skip_amount = 2;
+	game_object->player->frame_skip_amount = 8;
 	game_object->player->curr_frame = 0;
 	game_object->player->frame_skip_counter = 0;
 	game_object->player->blank_sprite = mlx_load_png(BLANK_SPRITE);

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/27 13:20:06 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/28 12:50:57 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_animated_mob {
 typedef struct s_collectables {
 	t_animated_mob			*mob;
 	struct s_collectables	*next;
+	struct s_collectables	*prev;
 }	t_collectables;
 
 typedef struct s_map {
@@ -103,8 +104,6 @@ void	init_animation(void	*param);
 char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
 void	animate_sprite(t_game *game_object, t_animated_mob *animation_config);
 void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_config);
-void	animate_sprite2(t_game *game_object, t_animated_mob *animation_config);
-void	draw_animation_to_window2(t_game *game_object, t_animated_mob *animation_config);
 
 /* Map */
 void	init_map(t_game *game_object, char *map_name);
@@ -116,7 +115,7 @@ void	print_map(t_game *game_object); // delete me
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
 void	remove_collectable(t_game *game_object);
-void	deallocate_collectable_object(t_game *game_object, int collectable_index);
+void	deallocate_collectable_object(t_game *game_object, t_collectables *collectable);
 void	count_moves();
 
 /* Handle errors */

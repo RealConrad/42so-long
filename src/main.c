@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:20 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 14:33:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/28 11:58:51 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /*
 TODO: Replace MAXLINES allocation with number of lines in file
+TODO: Fix makefile when installing library/mlx
+TODO: Install glfw properly etc...
 */
 
 int	main(int argc, char **argv)

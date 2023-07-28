@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/25 13:51:17 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/28 11:53:42 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME				:= so_long
 
 # Username and brew location
 USER				:= cwenz
-BREW				:= homebrew
+BREW				:= .brew
 
 # Compiler and flags
 #  -fsanitize=address -g
@@ -85,7 +85,7 @@ clone:
 		cd libraries && git clone $(LIBFT_REPO); \
 	fi
 
-pull_c_library:
+pull:
 	@if [ -d "libraries/42c-library" ]; then \
 		cd libraries/42c-library && git pull; \
 	else \

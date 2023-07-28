@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/26 16:35:05 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/28 13:24:00 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ void	animate_sprite(t_game *game_object, t_animated_mob *animation_config)
 		// Set the player animation to the current sprite
 		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);
 	}
-	else {
+	else
 		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);
-	}
 	draw_animation_to_window(game_object, animation_config);
 }
 
@@ -80,5 +79,6 @@ void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_con
 
 	// Draw updated sprite to the window
 	mlx_resize_image(animation_config->animated_sprite, animation_config->width, animation_config->height);
+	
 	mlx_image_to_window(game_object->mlx, animation_config->animated_sprite, sprite_center_x, sprite_center_y);
 }
