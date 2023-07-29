@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/28 14:33:19 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 17:29:30 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ void	init_animation(void	*param)
 	temp = game_object->map->collectables;
 	first_iteration = true;
 
-	animate_sprite(game_object, game_object->player);
+	animate_sprite(game_object->player);
 	while (first_iteration || temp != game_object->map->collectables)
 	{
+		// ft_printf("Animating collectable!\n");
+		animate_sprite(temp->mob);
 		first_iteration = false;
-		animate_sprite(game_object, temp->mob);
 		temp = temp->next;
 	}
 }

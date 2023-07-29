@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/28 12:50:57 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 17:31:27 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ typedef enum e_exit_type {
 
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
-	mlx_image_t		*animated_sprite; // The animation image
-	mlx_texture_t	*blank_sprite; // Used for animation to work
-	mlx_image_t		*img;
+	mlx_image_t		**animated_sprite; // The animation image
 	char			*sprite_path; // file path to sprites
 	int				frame_skip_counter;
 	int				frame_skip_amount; // Used for speed of animation
@@ -91,19 +89,19 @@ void	init_game(t_game *game_object, char *map_name);
 
 /* Player */
 void	init_player(t_game *game_object, int y, int x);
-void	assign_player_object(t_game *game_object);
+void	assign_player_object(t_game *game_object, int y, int x);
 void	allocate_player_object(t_animated_mob *player);
 
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);
 void	allocate_collectable_object(t_animated_mob *collectable);
-void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable);
+void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
 
 /* Animation */
 void	init_animation(void	*param);
 char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
-void	animate_sprite(t_game *game_object, t_animated_mob *animation_config);
-void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_config);
+void	animate_sprite(t_animated_mob *animation_config);
+void	update_sprite_position(t_animated_mob *animation_config);
 
 /* Map */
 void	init_map(t_game *game_object, char *map_name);
@@ -115,7 +113,6 @@ void	print_map(t_game *game_object); // delete me
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
 void	remove_collectable(t_game *game_object);
-void	deallocate_collectable_object(t_game *game_object, t_collectables *collectable);
 void	count_moves();
 
 /* Handle errors */
