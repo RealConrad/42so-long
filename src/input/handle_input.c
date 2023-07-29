@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 18:06:24 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 19:32:25 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ static void	handle_movement(t_game *game_object)
 		game_object->player->y = tile_y;
 		count_moves();
 	}
-	// if (game_object->map->map_plan[tile_y][tile_x] == 'C')
-	// 	remove_collectable(game_object);
+	if (game_object->map->map_plan[tile_y][tile_x] == 'C')
+		remove_collectable(game_object);
 }

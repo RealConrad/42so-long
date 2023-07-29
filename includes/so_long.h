@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 18:06:05 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 20:44:12 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 # define FILENAME_SIZE 69
+# define TIME_FOR_FRAME 0.1
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/idle"
@@ -65,7 +66,8 @@ typedef struct s_animated_mob {
 }	t_animated_mob;
 
 typedef struct s_collectables {
-	t_animated_mob			*mob;
+	t_animated_mob			*coin;
+	bool					is_collected;
 	struct s_collectables	*next;
 	struct s_collectables	*prev;
 }	t_collectables;
@@ -97,6 +99,7 @@ void	init_collectable(t_game *game_object, int y, int x);
 void	allocate_collectable_object(t_animated_mob *collectable);
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
 void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
+void	remove_collectable(t_game *game_object);
 
 /* Animation */
 void	init_animation(void	*param);
