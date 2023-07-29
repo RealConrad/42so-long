@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/28 11:06:34 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 18:06:24 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,8 @@ static void	handle_movement(t_game *game_object)
 	{
 		game_object->player->x = tile_x;
 		game_object->player->y = tile_y;
+		count_moves();
 	}
 	// if (game_object->map->map_plan[tile_y][tile_x] == 'C')
 	// 	remove_collectable(game_object);
-
-	// Update the actual position of the player's sprite
-	game_object->player->img->instances[0].x = game_object->player->x * TILE_PX + (TILE_PX / 2) - (PLAYER_WIDTH_PX / 2);
-	game_object->player->img->instances[0].y = game_object->player->y * TILE_PX + (TILE_PX / 2) - (PLAYER_HEIGHT_PX / 2);
-	count_moves();
 }

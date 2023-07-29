@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/28 11:53:42 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/29 17:41:45 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
 MAP_DIR				:= ./src/map/
 MOB_DIR				:= ./src/mob/
+UTILS_DIR			:= ./src/utils/
 
 # Source files
 SRC_FILES			:= main.c
@@ -56,6 +57,7 @@ INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c check_map.c
 MOB_FILES			:= player.c player_utils.c
+UTIL_FILES			:= utils.c		
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 SRC					+= $(addprefix $(ANIMATION_DIR), $(ANIMATION_FILES))
@@ -65,6 +67,7 @@ SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
 SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))
 SRC					+= $(addprefix $(MOB_DIR), $(MOB_FILES))
+SRC					+= $(addprefix $(UTILS_DIR), $(UTIL_FILES))
 
 # Object files
 OBJ					:= $(SRC:.c=.o)

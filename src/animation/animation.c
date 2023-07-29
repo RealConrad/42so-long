@@ -6,60 +6,37 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/28 13:13:51 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 18:04:24 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-// can only draw 1 image per frame.
+static void	animate_collectables(t_collectables *collectable);
+
 void	init_animation(void	*param)
 {
-	// static int		frame = 0;
 	t_game			*game_object;
-	t_collectables	*temp;
 
 	game_object = (t_game *)param;
-	temp = game_object->map->collectables;
-	animate_sprite(game_object, game_object->player);
+	// Animate player
+	animate_sprite(game_object->player);
+	// Animate collectables
+	animate_collectables(game_object->map->collectables);
+}
 
-	while (temp != game_object->map->collectables)
+static void	animate_collectables(t_collectables *collectable)
+{
+	bool			first_iteration;
+	t_collectables	*temp;
+
+	first_iteration = true;
+	temp = collectable;
+	// Loop through the entire linked list and animate each node
+	while (first_iteration || temp != collectable)
 	{
-		animate_sprite(game_object, temp->mob);
+		animate_sprite(temp->mob);
+		first_iteration = false;
 		temp = temp->next;
 	}
 }
-
-
-// void	init_animation(void	*param)
-// {
-// 	static int		frame = 0;
-// 	t_game			*game_object;
-// 	t_collectables	*curr_collectable;
-// 	int				total;
-// 	int				i;
-
-// 	game_object = (t_game *)param;
-// 	total = 1 + game_object->map->num_collectables;
-
-// 	// loop through player
-// 	if (frame == 0)
-// 		animate_sprite(game_object, game_object->player);
-// 	else
-// 	{
-// 		i = 1;
-// 		curr_collectable = game_object->map->collectables;
-// 		while (i < frame % total && curr_collectable)
-// 		{
-// 			curr_collectable = curr_collectable->next;
-// 			i++;
-// 		}
-// 		if (curr_collectable)
-// 			animate_sprite(game_object, curr_collectable->mob);
-// 	}
-// 	frame++;
-// 	if (frame >= total)
-// 		frame = 0;
-// 	if (game_object->map->num_collectables == 0)
-// 		ft_printf("Open door!");
-// }

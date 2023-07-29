@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/28 13:24:00 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 18:05:26 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*get_sprites(int sprite_index, t_animated_mob *animation_config)
 	frame_number_str = ft_itoa(sprite_index);
 	
 	// Copy the sprite path to filename, ensuring the uninitialized memory from malloc is overwritten
-	ft_strlcpy(filename, animation_config->sprite_path, FILENAME_SIZE);
 	// Append the frame number and file extension to filename
+	ft_strlcpy(filename, animation_config->sprite_path, FILENAME_SIZE);
 	ft_strlcat(filename, frame_number_str, FILENAME_SIZE);
 	ft_strlcat(filename, ".png", FILENAME_SIZE);
 	
@@ -43,42 +43,27 @@ char	*get_sprites(int sprite_index, t_animated_mob *animation_config)
 	return (filename);
 }
 
-void	animate_sprite(t_game *game_object, t_animated_mob *animation_config)
+void	animate_sprite(t_animated_mob *animation_config)
 {
-	// If there's already a sprite, delete it to prevent displaying multiple hero sprites
-	if (animation_config->animated_sprite)
-		mlx_delete_image(game_object->mlx, animation_config->animated_sprite);
-
-	// Only update the animation every frame_skip_amount frames to make it appear slower
+	animation_config->animated_sprite[animation_config->curr_frame]->enabled = false;
 	if (++(animation_config->frame_skip_counter) >= animation_config->frame_skip_amount)
 	{
 		animation_config->frame_skip_counter = 0; // reset counter
-		// Cycle through player sprites
 		animation_config->curr_frame = (animation_config->curr_frame + 1) % animation_config->num_sprites;
-		// Set the player animation to the current sprite
-		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);
 	}
-	else
-		animation_config->animated_sprite = mlx_texture_to_image(game_object->mlx, animation_config->sprites[animation_config->curr_frame]);
-	draw_animation_to_window(game_object, animation_config);
+	animation_config->animated_sprite[animation_config->curr_frame]->enabled = true;
+	update_sprite_position(animation_config);
 }
 
-void	draw_animation_to_window(t_game *game_object, t_animated_mob *animation_config)
+void	update_sprite_position(t_animated_mob *animation_config)
 {
 	int sprite_center_x;
 	int sprite_center_y;
-
-	// Update players position with the coordinates with the blank image we set earlier,
-	// to move the animated sprite around. Convert to index values, not pixel values.
-	animation_config->x = animation_config->img->instances[0].x / TILE_PX;
-	animation_config->y = animation_config->img->instances[0].y / TILE_PX;
 
 	// Calculate the pixel coordinates for the center of the sprite
 	sprite_center_x = animation_config->x * TILE_PX + (TILE_PX / 2) - (animation_config->width / 2);
 	sprite_center_y = animation_config->y * TILE_PX + (TILE_PX / 2) - (animation_config->height / 2);
 
-	// Draw updated sprite to the window
-	mlx_resize_image(animation_config->animated_sprite, animation_config->width, animation_config->height);
-	
-	mlx_image_to_window(game_object->mlx, animation_config->animated_sprite, sprite_center_x, sprite_center_y);
+	animation_config->animated_sprite[animation_config->curr_frame]->instances->x = sprite_center_x;
+	animation_config->animated_sprite[animation_config->curr_frame]->instances->y = sprite_center_y;
 }
