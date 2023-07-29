@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 17:31:27 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 17:49:51 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
 void	remove_collectable(t_game *game_object);
 void	count_moves();
+
+/* Utils */
+void	assign_sprite_textures(t_animated_mob *mob);
+void	assign_sprite_images(t_game *game_object, t_animated_mob *mob);
 
 /* Handle errors */
 void	cleanup_and_exit(t_exit_type exit_type, char *error_msg);
