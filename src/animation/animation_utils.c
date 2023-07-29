@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 17:29:36 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 18:05:26 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*get_sprites(int sprite_index, t_animated_mob *animation_config)
 	return (filename);
 }
 
-// Store all images, use bool to toggle image on and off.
 void	animate_sprite(t_animated_mob *animation_config)
 {
 	animation_config->animated_sprite[animation_config->curr_frame]->enabled = false;
@@ -67,6 +66,4 @@ void	update_sprite_position(t_animated_mob *animation_config)
 
 	animation_config->animated_sprite[animation_config->curr_frame]->instances->x = sprite_center_x;
 	animation_config->animated_sprite[animation_config->curr_frame]->instances->y = sprite_center_y;
-
-	// Draw updated sprite to the window
 }
