@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 17:22:19 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 17:51:52 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ void	allocate_player_object(t_animated_mob *player)
 
 void	assign_player_object(t_game *game_object, int y, int x)
 {
-	int 	i;
-	char 	*filename;
-
-	i = 0;
 	game_object->player->sprite_path = PLAYER_SPRITE_PATH;
 	game_object->player->num_sprites = PLAYER_SPRITE_COUNT;
 	game_object->player->width = PLAYER_WIDTH_PX;
@@ -41,22 +37,6 @@ void	assign_player_object(t_game *game_object, int y, int x)
 	game_object->player->frame_skip_counter = 0;
 	game_object->player->x = x / TILE_PX;
 	game_object->player->y = y / TILE_PX;
-	while (i < PLAYER_SPRITE_COUNT)
-	{
-		filename = get_sprites(i, game_object->player);
-		game_object->player->sprites[i] = mlx_load_png(filename);
-		free(filename); // free memory allocated by get_sprites()
-		i++;
-	}
-	game_object->player->sprites[i] = NULL;
-	i = 0;
-	while (i < PLAYER_SPRITE_COUNT)
-	{
-		game_object->player->animated_sprite[i] = mlx_texture_to_image(game_object->mlx, game_object->player->sprites[i]);
-		mlx_resize_image(game_object->player->animated_sprite[i], game_object->player->width, game_object->player->height);
-		game_object->player->animated_sprite[i]->enabled = false;
-		mlx_image_to_window(game_object->mlx, game_object->player->animated_sprite[i], x, y);
-		i++;
-	}
-	game_object->player->animated_sprite[i] = NULL;
+	assign_sprite_textures(game_object->player);
+	assign_sprite_images(game_object, game_object->player);
 }
