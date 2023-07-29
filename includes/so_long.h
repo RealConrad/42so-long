@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 17:59:05 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 18:06:05 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	print_map(t_game *game_object); // delete me
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
-void	remove_collectable(t_game *game_object);
 void	count_moves();
 
 /* Utils */
