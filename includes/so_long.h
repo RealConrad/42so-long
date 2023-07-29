@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 17:49:51 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 17:59:05 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	allocate_player_object(t_animated_mob *player);
 void	init_collectable(t_game *game_object, int y, int x);
 void	allocate_collectable_object(t_animated_mob *collectable);
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
+void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
 
 /* Animation */
 void	init_animation(void	*param);

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 17:49:14 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/29 17:58:26 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,31 @@ void	allocate_collectable_object(t_animated_mob *collectable)
 	collectable->animated_sprite = ft_calloc(COLLECTABLE_SPRITE_COUNT, sizeof(mlx_texture_t *) * COLLECTABLE_SPRITE_COUNT + 1);
 	if (!collectable->sprites)
 		cleanup_and_exit(FAIL, "Failed to allocate memory for collectable sprites.");
+}
+
+void	add_collectable_node(t_game *game_object, t_collectables *new_collectable)
+{
+	t_collectables	*curr_collectable;
+
+	new_collectable->next = NULL;
+	new_collectable->prev = NULL;
+	// If linked list has not been initialized yet
+	if (!game_object->map->collectables)
+	{
+		game_object->map->collectables = new_collectable;
+		new_collectable->next = new_collectable;
+		new_collectable->prev = new_collectable;
+	}
+	else
+	{
+		curr_collectable = game_object->map->collectables;
+		while (curr_collectable->next != game_object->map->collectables)
+			curr_collectable = curr_collectable->next;
+		curr_collectable->next = new_collectable;
+		new_collectable->prev = curr_collectable;
+		new_collectable->next = game_object->map->collectables;
+		game_object->map->collectables->prev = new_collectable;
+	}	
 }
 
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x)
