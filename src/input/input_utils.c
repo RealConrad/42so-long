@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:55:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/26 17:04:01 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:43:43 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	count_moves()
 {
 	static int	moves = 0;
 
-	ft_printf("%d\n", ++moves);
+	ft_printf("Total Moves: %d\n", ++moves);
 }
