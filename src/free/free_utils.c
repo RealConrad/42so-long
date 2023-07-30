@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 17:31:49 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 15:36:59 by cwenz            ###   ########.fr       */
+/*   Created: 2023/07/30 15:01:47 by cwenz             #+#    #+#             */
+/*   Updated: 2023/07/30 15:19:18 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_msg)
+void	free_textures(mlx_texture_t **sprite_textures)
 {
-	free_game_memory(game_object);
-	if (exit_type == FAIL)
-		ft_printf("Error:\n%s\n", error_msg);
-	exit(exit_type);
+	int	i;
+
+	i = 0;
+	while (sprite_textures[i])
+	{
+		mlx_delete_texture(sprite_textures[i]);
+		i++;
+	}
+	free(sprite_textures);
+}
+
+void	free_images(t_game *game_object, mlx_image_t **sprite_images)
+{
+	int	i;
+
+	i = 0;
+	while (sprite_images[i])
+	{
+		mlx_delete_image(game_object->mlx, sprite_images[i]);
+		i++;
+	}
+	free(sprite_images);
 }

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 14:24:37 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:35:14 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	init_map(t_game *game_object, char *map_name)
 	y = 0;
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
-		cleanup_and_exit(FAIL, "Failed to open map file.");
+		cleanup_and_exit(game_object, FAIL, "Failed to open map file.");
 	
 	// Allocate memory for map plan
 	game_object->map->map_plan = ft_calloc(MAX_LINES, sizeof(char *)); 
 	if (!game_object->map->map_plan)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for map plan.");
+		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for map plan.");
 	
 	while ((map_row_str = get_next_line(fd))) // Get the map line by line
 	{

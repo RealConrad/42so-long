@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:50:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/25 14:54:32 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:35:05 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_map(t_game *game_object, char *map_name)
 	i = 0;
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
-		cleanup_and_exit(FAIL, "Failed to open map file.");
+		cleanup_and_exit(game_object, FAIL, "Failed to open map file.");
 	
 	while ((map_row_str = get_next_line(fd)))
 	{

@@ -6,24 +6,27 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 20:44:31 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:22:28 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	allocate_collectable_object(t_animated_mob *collectable)
+bool	allocate_collectable_object(t_animated_mob *collectable)
 {
-	collectable->sprite_path = ft_calloc(1, sizeof(char) * ft_strlen(COLLECTABLE_PATH) + 1);
-	if (!collectable->sprite_path)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for collectable sprite path.");
+	// SOLVE: Don't need this....?
+	// collectable->sprite_path = ft_calloc(1, sizeof(char) * ft_strlen(COLLECTABLE_PATH) + 1);
+	// if (!collectable->sprite_path)
+	// 	return (FAIL);
 
 	collectable->sprites = ft_calloc(COLLECTABLE_SPRITE_COUNT, sizeof(mlx_texture_t *) * COLLECTABLE_SPRITE_COUNT + 1);
 	if (!collectable->sprites)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for collectable sprites.");
+		return (FAIL);
+
 	collectable->animated_sprite = ft_calloc(COLLECTABLE_SPRITE_COUNT, sizeof(mlx_texture_t *) * COLLECTABLE_SPRITE_COUNT + 1);
 	if (!collectable->sprites)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for collectable sprites.");
+		return (FAIL);
+	return (SUCCESS);
 }
 
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x)

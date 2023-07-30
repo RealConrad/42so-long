@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 14:21:44 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:06:38 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	init_game(t_game *game_object, char *map_name);
 /* Player */
 void	init_player(t_game *game_object, int y, int x);
 void	assign_player_object(t_game *game_object, int y, int x);
-void	allocate_player_object(t_animated_mob *player);
+bool	allocate_player_object(t_animated_mob *player);
 
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);
-void	allocate_collectable_object(t_animated_mob *collectable);
+bool	allocate_collectable_object(t_animated_mob *collectable);
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
 void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
 void	remove_collectable(t_game *game_object);
@@ -117,6 +117,7 @@ void	print_map(t_game *game_object); // delete me
 
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);
+void	finish_game(void *param);
 
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
@@ -128,6 +129,11 @@ void	assign_sprite_textures(t_animated_mob *mob);
 void	assign_sprite_images(t_game *game_object, t_animated_mob *mob);
 
 /* Handle errors */
-void	cleanup_and_exit(t_exit_type exit_type, char *error_msg);
+void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_msg);
+
+/* Free */
+void	free_game_memory(t_game *game_object);
+void	free_textures(mlx_texture_t **sprite_textures);
+void	free_images(t_game *game_object, mlx_image_t **sprite_images);
 
 #endif /* SO_LONG_H */
