@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/30 13:54:32 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/30 15:02:02 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ ANIMATION_DIR		:= ./src/animation/
 COLLECTABLE_DIR		:= ./src/collectable/
 ERROR_DIR			:= ./src/error/
 EXIT_DIR			:= ./src/exit/
+FREE_DIR			:= ./src/free/
 INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
 MAP_DIR				:= ./src/map/
@@ -55,6 +56,7 @@ ANIMATION_FILES		:= animation.c animation_utils.c
 COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 EXIT_FILES			:= exit.c
+FREE_FILES			:= free.c free_utils.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c check_map.c
@@ -66,6 +68,7 @@ SRC					+= $(addprefix $(ANIMATION_DIR), $(ANIMATION_FILES))
 SRC					+= $(addprefix $(COLLECTABLE_DIR), $(COLLECTABLE_FILES))
 SRC 				+= $(addprefix $(ERROR_DIR), $(ERROR_FILES))
 SRC 				+= $(addprefix $(EXIT_DIR), $(EXIT_FILES))
+SRC 				+= $(addprefix $(FREE_DIR), $(FREE_FILES))
 SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
 SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))
