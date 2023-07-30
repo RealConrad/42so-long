@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 19:32:25 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:29:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handle_input(mlx_key_data_t keydata, void *param)
 	if (is_movement(keydata))
 		handle_movement(game_object);
 	else if (mlx_is_key_down(game_object->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game_object->mlx);
+		cleanup_and_exit(game_object, SUCCESS, "");
 }
 
 static void	handle_movement(t_game *game_object)

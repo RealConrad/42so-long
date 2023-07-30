@@ -6,24 +6,27 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:15:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 20:44:09 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:22:17 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	allocate_player_object(t_animated_mob *player)
+bool	allocate_player_object(t_animated_mob *player)
 {
-	player->sprite_path = ft_calloc(1, sizeof(char) * ft_strlen(PLAYER_SPRITE_PATH) + 1);
-	if (!player->sprite_path)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprite path.");
+	// SOLVE: Dont need this....?
+	// player->sprite_path = ft_calloc(1, sizeof(char) * ft_strlen(PLAYER_SPRITE_PATH) + 1);
+	// if (!player->sprite_path)
+	// 	return (FAIL);
 
 	player->sprites = ft_calloc(PLAYER_SPRITE_COUNT, sizeof(mlx_texture_t *) * PLAYER_SPRITE_COUNT + 1);
 	if (!player->sprites)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player sprites.");
+		return (FAIL);
+		
 	player->animated_sprite = ft_calloc(PLAYER_SPRITE_COUNT, sizeof(mlx_image_t *) * PLAYER_SPRITE_COUNT + 1);
 	if (!player->animated_sprite)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for player images.");
+		return (FAIL);
+	return (SUCCESS);
 }
 
 void	assign_player_object(t_game *game_object, int y, int x)

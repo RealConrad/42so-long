@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 17:37:05 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 13:56:18 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 15:21:49 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_sprites(int sprite_index, t_animated_mob *animation_config)
 	
 	filename = ft_calloc(sizeof(char) * FILENAME_SIZE, 1);
 	if (!filename)
-		cleanup_and_exit(FAIL, "Failed to allocate memory for sprite file path.");
+		return (NULL);
 	// convert sprite_index to a string
 	frame_number_str = ft_itoa(sprite_index);
 	
@@ -53,7 +53,8 @@ void	assign_sprite_textures(t_animated_mob *mob)
 	{
 		filename = get_sprites(i, mob);
 		mob->sprites[i] = mlx_load_png(filename);
-		free(filename); // free memory allocated by get_sprites()
+		if (filename)
+			free(filename); // free memory allocated by get_sprites()
 		i++;
 	}
 	mob->sprites[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:24:17 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 14:26:02 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:35:07 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_tile(t_game *game_object, int y, int x, char *path)
 
 	texture = mlx_load_png(path);
 	if (!texture)
-		cleanup_and_exit(FAIL, "Failed to load map texture.");
+		cleanup_and_exit(game_object, FAIL, "Failed to load map texture.");
 	game_object->map->map_img = mlx_texture_to_image(game_object->mlx, texture);
 	mlx_delete_texture(texture);
 	mlx_resize_image(game_object->map->map_img, TILE_PX, TILE_PX);
