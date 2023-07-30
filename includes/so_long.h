@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/29 20:44:12 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 14:21:44 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@
 # define PLAYER_WIDTH_PX 36
 
 /* Map */
-# define WALL_PATH "./assets/world/wall.png"
-# define GROUND_PATH "./assets/world/floor.png"
+# define WALL_PATH "./assets/world/map/wall.png"
+# define GROUND_PATH "./assets/world/map/floor.png"
+# define EXIT_PATH "./assets/world/exit/exit.png"
 # define TILE_PX 64
 # define MAX_LINES 500
 
@@ -61,8 +62,8 @@ typedef struct s_animated_mob {
 	int				num_sprites;
 	int				height;
 	int				width;
-	int				x; // x index of sprite
-	int				y; // y index of sprite
+	int				x;
+	int				y;
 }	t_animated_mob;
 
 typedef struct s_collectables {
@@ -74,6 +75,7 @@ typedef struct s_collectables {
 
 typedef struct s_map {
 	char			**map_plan;
+	mlx_image_t		*exit;
 	mlx_image_t		*map_img;
 	t_collectables	*collectables;
 	int				num_collectables;
@@ -112,6 +114,9 @@ void	init_map(t_game *game_object, char *map_name);
 void	draw_tile(t_game *game_object, int y, int x, char *path);
 void	check_map(t_game *game_object, char *map_name);
 void	print_map(t_game *game_object); // delete me
+
+/* Exit */
+void	init_exit(t_game *game_object, int y, int x);
 
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
