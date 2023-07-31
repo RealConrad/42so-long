@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/30 15:02:02 by cwenz            ###   ########.fr        #
+#    Updated: 2023/07/31 12:29:40 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
 MAP_DIR				:= ./src/map/
 MOB_DIR				:= ./src/mob/
+TRAP_DIR			:= ./src/trap/
 UTILS_DIR			:= ./src/utils/
 
 # Source files
@@ -59,8 +60,9 @@ EXIT_FILES			:= exit.c
 FREE_FILES			:= free.c free_utils.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
-MAP_FILES			:= map.c map_utils.c check_map.c
+MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c
 MOB_FILES			:= player.c player_utils.c
+TRAP_FILES			:= trap.c trap_utils.c
 UTIL_FILES			:= utils.c		
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -73,6 +75,7 @@ SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
 SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))
 SRC					+= $(addprefix $(MOB_DIR), $(MOB_FILES))
+SRC					+= $(addprefix $(TRAP_DIR), $(TRAP_FILES))
 SRC					+= $(addprefix $(UTILS_DIR), $(UTIL_FILES))
 
 # Object files

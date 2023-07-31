@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:24:17 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 14:35:07 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 17:27:57 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	draw_tile(t_game *game_object, int y, int x, char *path)
 	mlx_delete_texture(texture);
 	mlx_resize_image(game_object->map->map_img, TILE_PX, TILE_PX);
 	mlx_image_to_window(game_object->mlx, game_object->map->map_img, x, y);
-	mlx_set_instance_depth(game_object->map->map_img->instances, 0);
+	// game_object->map->map_img->instances[0].z = 0;
+	mlx_set_instance_depth(game_object->map->map_img->instances, 1);
 }
 
 void	print_map(t_game *game_object)

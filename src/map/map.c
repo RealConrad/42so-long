@@ -6,70 +6,45 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 14:35:14 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/31 12:27:37 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	draw_map(t_game *game_object, char *map);
+static void	draw_map(t_game *game_object, char map_tile, int y, int x);
 
-void	init_map(t_game *game_object, char *map_name)
+void	init_map(t_game *game_object)
 {
-	int		fd;
+	int		x;
 	int		y;
-	char	*map_row_str;
 	
 	y = 0;
-	fd = open(map_name, O_RDONLY);
-	if (fd < 0)
-		cleanup_and_exit(game_object, FAIL, "Failed to open map file.");
-	
-	// Allocate memory for map plan
-	game_object->map->map_plan = ft_calloc(MAX_LINES, sizeof(char *)); 
-	if (!game_object->map->map_plan)
-		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for map plan.");
-	
-	while ((map_row_str = get_next_line(fd))) // Get the map line by line
+	ft_printf("Map Height: %d :::: Width: %d\n", game_object->map->height, game_object->map->width);
+	while (y < game_object->map->height)
 	{
-		game_object->map->map_plan[y] = ft_strdup(map_row_str); // Make copy of map
-		draw_map(game_object, map_row_str); // draw the map
-		free(map_row_str); // free allocated memory from get_next_line()
+		x = 0;
+		while (x < game_object->map->width)
+		{
+			draw_map(game_object, game_object->map->map_plan[y][x], y, x);
+			x++;
+		}
 		y++;
 	}
-	// Null terminate the 2D array
-	game_object->map->map_plan[y] = NULL;
-	close(fd);
 }
 
-static void	draw_map(t_game *game_object, char *map)
+static void	draw_map(t_game *game_object, char map_tile, int y, int x)
 {
-	int	i;
-	int	x;
-	static int y = 0;
-
-	i = 0;
-	x = 0;
-	while(map[i] != '\n')
-	{
-		if (map[i] == '1')
-			draw_tile(game_object, y * TILE_PX, x * TILE_PX, WALL_PATH);
-		else if (map[i] == '0')
-			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
-		else if (map[i] == 'P')
-		{
-			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
-			init_player(game_object, y * TILE_PX, x * TILE_PX);
-		}
-		else if (map[i] == 'C')
-		{
-			draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
-			init_collectable(game_object, y * TILE_PX, x * TILE_PX);
-		}
-		else if (map[i] == 'E')
-			init_exit(game_object, y * TILE_PX, x * TILE_PX);
-		x++;
-		i++;
-	}
-	y++;
+	if (map_tile == '1')
+		draw_tile(game_object, y * TILE_PX, x * TILE_PX, WALL_PATH);
+	else if (map_tile != '1' && map_tile != 'E' && map_tile != 'T')
+		draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
+	if (map_tile == 'P')
+		init_player(game_object, y * TILE_PX, x * TILE_PX);
+	else if (map_tile == 'C')
+		init_collectable(game_object, y * TILE_PX, x * TILE_PX);
+	else if (map_tile == 'E')
+		init_exit(game_object, y * TILE_PX, x * TILE_PX);
+	else if (map_tile == 'T')
+		init_trap(game_object, y * TILE_PX, x * TILE_PX);
 }

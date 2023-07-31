@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 15:06:38 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/31 12:31:17 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define GROUND_PATH "./assets/world/map/floor.png"
 # define EXIT_PATH "./assets/world/exit/exit.png"
 # define TILE_PX 64
-# define MAX_LINES 500
+# define MAX_LINES 250
 
 /* Collectables */
 # define COLLECTABLE_PATH "./assets/world/collectables/coin"
@@ -79,7 +79,11 @@ typedef struct s_map {
 	mlx_image_t		*map_img;
 	t_collectables	*collectables;
 	int				num_collectables;
-	int				num_lines;
+	int				num_exits;
+	int				num_players;
+	int				num_enemies;
+	int				height;
+	int				width;
 }	t_map;
 
 typedef struct s_game {
@@ -110,10 +114,17 @@ void	animate_sprite(t_animated_mob *animation_config);
 void	update_sprite_position(t_animated_mob *animation_config);
 
 /* Map */
-void	init_map(t_game *game_object, char *map_name);
+void	init_map(t_game *game_object);
 void	draw_tile(t_game *game_object, int y, int x, char *path);
 void	check_map(t_game *game_object, char *map_name);
+void	check_map_name(t_game *game_object, char *map_name);
+void	check_map_width(t_game *game_object);
+void	count_map_row_items(t_map *map, int y);
+void	validate_map_items(t_game *game_object);
 void	print_map(t_game *game_object); // delete me
+
+/* Trap */
+void	init_trap(t_game *game_object, int y, int x);
 
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);
@@ -127,6 +138,7 @@ void	count_moves();
 /* Utils */
 void	assign_sprite_textures(t_animated_mob *mob);
 void	assign_sprite_images(t_game *game_object, t_animated_mob *mob);
+void	assign_z_index(t_animated_mob *mob, int z_index);
 
 /* Handle errors */
 void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_msg);

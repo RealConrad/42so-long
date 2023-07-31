@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 17:37:05 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 15:21:49 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 17:24:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ void	assign_sprite_images(t_game *game_object, t_animated_mob *mob)
 		i++;
 	}
 	mob->animated_sprite[i] = NULL;
+}
+
+void	assign_z_index(t_animated_mob *mob, int z_index)
+{
+	int	i;
+	
+	i = 0;
+	while (mob->animated_sprite[i])
+	{
+		mlx_set_instance_depth(mob->animated_sprite[i]->instances, z_index);
+		i++;
+	}
 }
