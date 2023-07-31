@@ -6,16 +6,16 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:20 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 15:30:34 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/30 18:01:45 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
 /*
-TODO: Replace MAXLINES allocation with number of lines in file
 TODO: Fix makefile when installing library/mlx
 TODO: Install glfw properly etc...
+TODO: FREE MAP PLAN
 */
 
 int	main(int argc, char **argv)
