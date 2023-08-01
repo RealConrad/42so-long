@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:43:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:34:39 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:47:46 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	count_map_row_items(t_map *map, int y)
 			map->num_collectables++;
 		else if (map->map_plan[y][x] == PLAYER)
 			map->num_players++;
-		else if (map->map_plan[y][x] == ENEMY)
+		else if (map->map_plan[y][x] == EXIT)
 			map->num_exits++;
 		else if (map->map_plan[y][x] == TRAP)
 			map->num_traps++;
@@ -60,7 +60,7 @@ void	validate_map_items(t_game *game_object)
 		cleanup_and_exit(game_object, FAIL, "The map must contain 1 exit.");
 	else if (game_object->map->num_collectables < 1)
 		cleanup_and_exit(game_object, FAIL, "The map must contain at least 1 collectable.");
-	else if (game_object->map->num_enemies < 1)
+	else if (game_object->map->num_enemies > 1)
 		cleanup_and_exit(game_object, FAIL, "The game can only have 1 enemy.");
 }
 

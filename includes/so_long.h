@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:33:20 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:45:43 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,6 @@
 # define EXIT_PATH "./assets/world/exit/exit.png"
 # define TILE_PX 64
 # define MAX_LINES 250
-# define ENEMY 'D'
-# define PLAYER 'P'
-# define MIMIC 'M'
-# define COLLECTABLE 'C'
-# define EXIT 'E'
-# define TRAP 'T'
-# define WALL '1'
-# define GROUND '0'
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/player_idle"
@@ -73,15 +65,21 @@
 # define TRAP_HEIGHT_PX 64
 # define TRAP_WIDTH_PX 64
 
+typedef enum e_tile_type {
+	WALL = '1',
+	GROUND = '0',
+	ENEMY = 'D',
+	PLAYER = 'P',
+	MIMIC = 'M',
+	COLLECTABLE = 'C',
+	EXIT = 'E',
+	TRAP = 'T'
+}	t_tile_type;
+
 typedef enum e_exit_type {
 	SUCCESS,
 	FAIL,
 }	t_exit_type;
-
-typedef enum e_tile_type {
-	WALL,
-	GROUND,
-}	t_tile_type;
 
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
