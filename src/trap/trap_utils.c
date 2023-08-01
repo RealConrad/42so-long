@@ -6,28 +6,15 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:52:36 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 16:47:24 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 14:32:08 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-bool	allocate_trap_object(t_animated_mob *spike)
-{
-	spike->sprites = ft_calloc(TRAP_SPRITE_COUNT, sizeof(mlx_texture_t *) * TRAP_SPRITE_COUNT + 1);
-	if (!spike->sprites)
-		return (FAIL);
-	
-	spike->animated_sprite = ft_calloc(TRAP_SPRITE_COUNT, sizeof(mlx_image_t *) * TRAP_SPRITE_COUNT + 1);
-	if (!spike->animated_sprite)
-		return (FAIL);
-	return (SUCCESS);
-}
-
 void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x)
 {
 	spike->sprite_path = TRAP_PATH;
-	spike->num_sprites = TRAP_SPRITE_COUNT;
 	spike->width = TRAP_WIDTH_PX;
 	spike->height = TRAP_HEIGHT_PX;
 	spike->frame_skip_amount = 0;

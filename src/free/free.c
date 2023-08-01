@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:28:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 15:37:29 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:47:29 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	free_collectables(t_game *game_object);
 static void	free_player(t_game *game_object);
+static void free_map(t_game *game_object);
 
 void	free_game_memory(t_game *game_object)
 {
@@ -21,6 +22,8 @@ void	free_game_memory(t_game *game_object)
 	{
 		if (game_object->map && game_object->map->collectables)
 			free_collectables(game_object);
+		if (game_object->map)
+			free_map(game_object);
 		if (game_object->player)
 			free_player(game_object);
 		if (game_object->mlx)
@@ -55,4 +58,21 @@ static void	free_player(t_game *game_object)
 	free_textures(game_object->player->sprites);
 	free_images(game_object, game_object->player->animated_sprite);
 	free(game_object->player);
+}
+
+static void free_map(t_game *game_object)
+{
+	int	y;
+
+	y = 0;
+	if (game_object->map->map_plan)
+	{
+		while(game_object->map->map_plan[y])
+		{
+			free(game_object->map->map_plan[y]);
+			y++;
+		}
+		free(game_object->map->map_plan);
+	}
+	free(game_object->map);
 }

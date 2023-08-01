@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:40:44 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 15:04:08 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/idle"
-# define BLANK_SPRITE "./assets/player/blank.png"
 # define PLAYER_SPRITE_COUNT 4
 # define PLAYER_HEIGHT_PX 64
 # define PLAYER_WIDTH_PX 36
 
+/* Mimic */
+# define MIMIC_SPRITE_PATH "./assets/enemy/mimic/idle"
+# define MIMIC_SPRITE_COUNT 3
+# define MIMIC_HEIGHT_PX 50
+# define MIMIC_WIDTH_PX 36
+
 /* Map */
 # define WALL_PATH "./assets/world/map/wall.png"
 # define GROUND_PATH "./assets/world/map/floor.png"
+# define GROUND_PATH_2 "./assets/world/map/floor2.png"
 # define EXIT_PATH "./assets/world/exit/exit.png"
 # define TILE_PX 64
 # define MAX_LINES 250
@@ -57,6 +63,11 @@ typedef enum e_exit_type {
 	SUCCESS,
 	FAIL,
 }	t_exit_type;
+
+typedef enum e_tile_type {
+	WALL,
+	GROUND,
+}	t_tile_type;
 
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
@@ -87,17 +98,25 @@ typedef struct s_trap {
 	struct s_trap	*prev;
 }	t_trap;
 
+typedef struct s_mimic {
+	t_animated_mob	*chest;
+	struct s_mimic	*next;
+	struct s_mimic	*prev;
+}	t_mimic;
+
 typedef struct s_map {
 	char			**map_plan;
 	mlx_image_t		*exit;
 	mlx_image_t		*map_img;
 	t_collectables	*collectables;
+	t_mimic			*mimics;
 	t_trap			*traps;
 	int				num_collectables;
 	int				num_exits;
 	int				num_players;
 	int				num_enemies;
 	int				num_traps;
+	int				num_mimics;
 	int				height;
 	int				width;
 }	t_map;
@@ -148,6 +167,9 @@ bool	allocate_trap_object(t_animated_mob *spike);
 void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x);
 void	add_spike_node(t_game *game_object, t_trap *trap);
 
+/* Mimic */
+void	init_mimic(t_game *game_object, int y, int x);
+
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);
 void	finish_game(void *param);
@@ -161,6 +183,7 @@ void	count_moves();
 void	assign_sprite_textures(t_animated_mob *mob);
 void	assign_sprite_images(t_game *game_object, t_animated_mob *mob);
 void	assign_z_index(t_animated_mob *mob, int z_index);
+bool	allocate_mob_object(t_animated_mob *mob);
 
 /* Handle errors */
 void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_msg);

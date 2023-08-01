@@ -3,6 +3,7 @@
 		"mlx42.h": "c",
 		"unistd.h": "c",
 		"so_long.h": "c",
-		"bitset": "c"
+		"bitset": "c",
+		"stdlib.h": "c"
 	}
 }
