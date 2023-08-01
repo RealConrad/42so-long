@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 15:04:08 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 15:42:12 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@
 # define FILENAME_SIZE 69
 # define TIME_FOR_FRAME 0.1
 
-/* Player */
-# define PLAYER_SPRITE_PATH "./assets/player/idle"
-# define PLAYER_SPRITE_COUNT 4
-# define PLAYER_HEIGHT_PX 64
-# define PLAYER_WIDTH_PX 36
-
-/* Mimic */
-# define MIMIC_SPRITE_PATH "./assets/enemy/mimic/idle"
-# define MIMIC_SPRITE_COUNT 3
-# define MIMIC_HEIGHT_PX 50
-# define MIMIC_WIDTH_PX 36
-
 /* Map */
 # define WALL_PATH "./assets/world/map/wall.png"
 # define GROUND_PATH "./assets/world/map/floor.png"
@@ -46,6 +34,24 @@
 # define EXIT_PATH "./assets/world/exit/exit.png"
 # define TILE_PX 64
 # define MAX_LINES 250
+
+/* Player */
+# define PLAYER_SPRITE_PATH "./assets/player/player_idle"
+# define PLAYER_SPRITE_COUNT 4
+# define PLAYER_HEIGHT_PX 64
+# define PLAYER_WIDTH_PX 36
+
+/* Mimic */
+# define MIMIC_SPRITE_PATH "./assets/enemy/mimic/mimic_idle"
+# define MIMIC_SPRITE_COUNT 3
+# define MIMIC_HEIGHT_PX 50
+# define MIMIC_WIDTH_PX 36
+
+/* Enemy (Imp) */
+# define ENEMY_SPRITE_PATH "./assets/enemy/imp/imp_idle"
+# define ENEMY_SPRITE_COUNT 4
+# define ENEMY_HEIGHT_PX 64
+# define ENEMY_WIDTH_PX 36
 
 /* Collectables */
 # define COLLECTABLE_PATH "./assets/world/collectables/coin"
@@ -71,16 +77,16 @@ typedef enum e_tile_type {
 
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
-	mlx_image_t		**animated_sprite; // The animation image
+	mlx_image_t		**animated_sprite; // The animation image rendered to the window
 	char			*sprite_path; // file path to sprites
 	int				frame_skip_counter;
-	int				frame_skip_amount; // Used for speed of animation
+	int				frame_skip_amount; // Used to control speed of animation
 	int				curr_frame; // index of the current frame
-	int				num_sprites;
-	int				height;
-	int				width;
-	int				x;
-	int				y;
+	int				num_sprites; // Number of sprites
+	int				height; // Height of mob (in PX)
+	int				width; // Width of mob (in PX)
+	int				x; // The x-index position of the map on the map plan
+	int				y; // The y-index position of the map on the map plan
 }	t_animated_mob;
 
 typedef struct s_collectables {
@@ -105,9 +111,9 @@ typedef struct s_mimic {
 }	t_mimic;
 
 typedef struct s_map {
-	char			**map_plan;
+	char			**map_plan; // Contains the map provided by command line
 	mlx_image_t		*exit;
-	mlx_image_t		*map_img;
+	mlx_image_t		*map_img; // Used to draw each tile to the window
 	t_collectables	*collectables;
 	t_mimic			*mimics;
 	t_trap			*traps;
@@ -117,8 +123,8 @@ typedef struct s_map {
 	int				num_enemies;
 	int				num_traps;
 	int				num_mimics;
-	int				height;
-	int				width;
+	int				height; // Height of the map in PX
+	int				width; // Width of the map in PX
 }	t_map;
 
 typedef struct s_game {
