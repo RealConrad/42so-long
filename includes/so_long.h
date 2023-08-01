@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 15:42:12 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:33:20 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@
 # define EXIT_PATH "./assets/world/exit/exit.png"
 # define TILE_PX 64
 # define MAX_LINES 250
+# define ENEMY 'D'
+# define PLAYER 'P'
+# define MIMIC 'M'
+# define COLLECTABLE 'C'
+# define EXIT 'E'
+# define TRAP 'T'
+# define WALL '1'
+# define GROUND '0'
 
 /* Player */
 # define PLAYER_SPRITE_PATH "./assets/player/player_idle"
@@ -47,8 +55,8 @@
 # define MIMIC_HEIGHT_PX 50
 # define MIMIC_WIDTH_PX 36
 
-/* Enemy (Imp) */
-# define ENEMY_SPRITE_PATH "./assets/enemy/imp/imp_idle"
+/* Enemy */
+# define ENEMY_SPRITE_PATH "./assets/enemy/demon/demon_idle"
 # define ENEMY_SPRITE_COUNT 4
 # define ENEMY_HEIGHT_PX 64
 # define ENEMY_WIDTH_PX 36
@@ -77,7 +85,7 @@ typedef enum e_tile_type {
 
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
-	mlx_image_t		**animated_sprite; // The animation image rendered to the window
+	mlx_image_t		**animated_sprite; // The animation images rendered to the window
 	char			*sprite_path; // file path to sprites
 	int				frame_skip_counter;
 	int				frame_skip_amount; // Used to control speed of animation
@@ -130,33 +138,12 @@ typedef struct s_map {
 typedef struct s_game {
 	mlx_t			*mlx;
 	t_animated_mob	*player;
+	t_animated_mob	*enemy;
 	t_map			*map;
 }	t_game;
 
 /* Initialize */
 void	init_game(t_game *game_object, char *map_name);
-
-/* Player */
-void	init_player(t_game *game_object, int y, int x);
-void	assign_player_object(t_game *game_object, int y, int x);
-bool	allocate_player_object(t_animated_mob *player);
-void	check_if_player_should_die(void *param);
-
-/* Collectables */
-void	init_collectable(t_game *game_object, int y, int x);
-bool	allocate_collectable_object(t_animated_mob *collectable);
-void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
-void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
-void	check_if_pickup_collectable(void *param);
-void	remove_collectable(t_game *game_object);
-
-/* Animation */
-void	init_animation(void	*param);
-char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
-void	animate_sprite(t_animated_mob *animation_config);
-void	update_sprite_position(t_animated_mob *animation_config);
-void	animate_trap_idle(t_trap *trap, int idle_time);
-void	animate_trap_active(t_trap *trap, int active_time);
 
 /* Map */
 void	init_map(t_game *game_object);
@@ -167,9 +154,30 @@ void	check_map_width(t_game *game_object);
 void	count_map_row_items(t_map *map, int y);
 void	validate_map_items(t_game *game_object);
 
+/* Animation */
+void	init_animation(void	*param);
+char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
+void	animate_sprite(t_animated_mob *animation_config);
+void	update_sprite_position(t_animated_mob *animation_config);
+void	animate_trap_idle(t_trap *trap, int idle_time);
+void	animate_trap_active(t_trap *trap, int active_time);
+
+/* Player */
+void	init_player(t_game *game_object, int y, int x);
+void	check_if_player_should_die(void *param);
+
+/* Enemy */
+void	init_enemy(t_game *game_object, int y, int x);
+
+/* Collectables */
+void	init_collectable(t_game *game_object, int y, int x);
+void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
+void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
+void	check_if_pickup_collectable(void *param);
+void	remove_collectable(t_game *game_object);
+
 /* Trap */
 void	init_trap(t_game *game_object, int y, int x);
-bool	allocate_trap_object(t_animated_mob *spike);
 void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x);
 void	add_spike_node(t_game *game_object, t_trap *trap);
 
