@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 16:45:02 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:28:56 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	draw_map(t_game *game_object, char map_tile, int y, int x)
 		draw_tile(game_object, y * TILE_PX, x * TILE_PX, WALL_PATH);
 	else if (map_tile != '1' && map_tile != 'E' && map_tile != 'T')
 		draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
+
 	if (map_tile == 'P')
 		init_player(game_object, y * TILE_PX, x * TILE_PX);
 	else if (map_tile == 'C')
