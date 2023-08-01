@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:52:36 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 14:32:08 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:51:17 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x
 	spike->frame_skip_amount = 0;
 	spike->frame_skip_counter = 0;
 	spike->curr_frame = 0;
+	spike->offset_image_px = 0;
 	spike->x = x / TILE_PX;
 	spike->y = y / TILE_PX;
 	assign_sprite_textures(spike);

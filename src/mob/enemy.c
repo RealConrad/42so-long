@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:44:28 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:48:48 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:53:22 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	assign_enemy_object(t_game *game_object, int y, int x)
 	game_object->enemy->height = ENEMY_HEIGHT_PX;
 	game_object->enemy->frame_skip_amount = 0;
 	game_object->enemy->frame_skip_counter = 0;
+	game_object->enemy->offset_image_px = 15;
 	game_object->enemy->curr_frame = 0;
 	game_object->enemy->x = x / TILE_PX;
 	game_object->enemy->y = y / TILE_PX;

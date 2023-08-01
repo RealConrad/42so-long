@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:37:53 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:52:53 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	update_sprite_position(t_animated_mob *animation_config)
 
 	// Calculate the pixel coordinates for the center of the sprite
 	sprite_center_x = animation_config->x * TILE_PX + (TILE_PX / 2) - (animation_config->width / 2);
-	sprite_center_y = animation_config->y * TILE_PX + (TILE_PX / 2) - (animation_config->height / 2);
+	sprite_center_y = animation_config->y * TILE_PX + (TILE_PX / 2) - ((animation_config->height + animation_config->offset_image_px) / 2);
 
 	animation_config->animated_sprite[animation_config->curr_frame]->instances->x = sprite_center_x;
 	animation_config->animated_sprite[animation_config->curr_frame]->instances->y = sprite_center_y;

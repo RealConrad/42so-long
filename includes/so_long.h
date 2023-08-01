@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:45:43 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:55:55 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_animated_mob {
 	char			*sprite_path; // file path to sprites
 	int				frame_skip_counter;
 	int				frame_skip_amount; // Used to control speed of animation
+	int				offset_image_px; // Used to offset the image by x pixels
 	int				curr_frame; // index of the current frame
 	int				num_sprites; // Number of sprites
 	int				height; // Height of mob (in PX)
@@ -204,5 +205,6 @@ void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_ms
 void	free_game_memory(t_game *game_object);
 void	free_textures(mlx_texture_t **sprite_textures);
 void	free_images(t_game *game_object, mlx_image_t **sprite_images);
+void	free_enemy(t_game *game_object);
 
 #endif /* SO_LONG_H */

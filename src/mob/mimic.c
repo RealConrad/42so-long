@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:00:53 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 15:04:38 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:51:29 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	assign_mimic_object(t_game *game_object, t_animated_mob *mimic, int 
 	mimic->height = MIMIC_HEIGHT_PX;
 	mimic->frame_skip_amount = 6;
 	mimic->frame_skip_counter = 0;
+	mimic->offset_image_px = 0;
 	mimic->curr_frame = 0;
 	mimic->x = x / TILE_PX;
 	mimic->y = y / TILE_PX;

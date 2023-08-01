@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:24:38 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:50:54 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	assign_player_object(t_game *game_object, int y, int x)
 	game_object->player->height = PLAYER_HEIGHT_PX;
 	game_object->player->frame_skip_amount = 0;
 	game_object->player->frame_skip_counter = 0;
+	game_object->player->offset_image_px = 20;
 	game_object->player->curr_frame = 0;
 	game_object->player->x = x / TILE_PX;
 	game_object->player->y = y / TILE_PX;
