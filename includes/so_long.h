@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 12:31:17 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:06:40 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@
 # define COLLECTABLE_HEIGHT_PX 24
 # define COLLECTABLE_WIDTH_PX 16
 
+/* Traps */
+# define TRAP_PATH "./assets/world/trap/trap"
+# define TRAP_SPRITE_COUNT 4
+# define TRAP_HEIGHT_PX 64
+# define TRAP_WIDTH_PX 64
+
 typedef enum e_exit_type {
 	SUCCESS,
 	FAIL,
@@ -73,15 +79,25 @@ typedef struct s_collectables {
 	struct s_collectables	*prev;
 }	t_collectables;
 
+typedef struct s_trap {
+	t_animated_mob	*spike;
+	bool			is_active;
+	bool			forward;
+	struct s_trap	*next;
+	struct s_trap	*prev;
+}	t_trap;
+
 typedef struct s_map {
 	char			**map_plan;
 	mlx_image_t		*exit;
 	mlx_image_t		*map_img;
 	t_collectables	*collectables;
+	t_trap			*traps;
 	int				num_collectables;
 	int				num_exits;
 	int				num_players;
 	int				num_enemies;
+	int				num_traps;
 	int				height;
 	int				width;
 }	t_map;
@@ -99,12 +115,14 @@ void	init_game(t_game *game_object, char *map_name);
 void	init_player(t_game *game_object, int y, int x);
 void	assign_player_object(t_game *game_object, int y, int x);
 bool	allocate_player_object(t_animated_mob *player);
+void	check_if_player_should_die(void *param);
 
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);
 bool	allocate_collectable_object(t_animated_mob *collectable);
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
 void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
+void	check_if_pickup_collectable(void *param);
 void	remove_collectable(t_game *game_object);
 
 /* Animation */
@@ -125,6 +143,9 @@ void	print_map(t_game *game_object); // delete me
 
 /* Trap */
 void	init_trap(t_game *game_object, int y, int x);
+bool	allocate_trap_object(t_animated_mob *spike);
+void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x);
+void	add_spike_node(t_game *game_object, t_trap *trap);
 
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);
