@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:06:40 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:40:44 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	init_animation(void	*param);
 char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
 void	animate_sprite(t_animated_mob *animation_config);
 void	update_sprite_position(t_animated_mob *animation_config);
+void	animate_trap_idle(t_trap *trap, int idle_time);
+void	animate_trap_active(t_trap *trap, int active_time);
 
 /* Map */
 void	init_map(t_game *game_object);
@@ -139,7 +141,6 @@ void	check_map_name(t_game *game_object, char *map_name);
 void	check_map_width(t_game *game_object);
 void	count_map_row_items(t_map *map, int y);
 void	validate_map_items(t_game *game_object);
-void	print_map(t_game *game_object); // delete me
 
 /* Trap */
 void	init_trap(t_game *game_object, int y, int x);

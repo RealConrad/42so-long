@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/07/31 14:46:10 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/01 11:36:02 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ UTILS_DIR			:= ./src/utils/
 
 # Source files
 SRC_FILES			:= main.c
-ANIMATION_FILES		:= animation.c animation_utils.c
+ANIMATION_FILES		:= animation.c animation_utils.c trap_animation_utils.c
 COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 EXIT_FILES			:= exit.c
