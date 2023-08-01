@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:20:38 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:37:00 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,40 +64,9 @@ static void	animate_traps(t_game *game_object)
 	{
 		temp->spike->animated_sprite[temp->spike->curr_frame]->enabled = false;
 		if (temp->spike->curr_frame == 0)
-		{
-			temp->is_active = false;
-			if (++(temp->spike->frame_skip_counter) >= idle_time)
-			{
-				temp->spike->frame_skip_counter = 0;
-				temp->spike->curr_frame++;
-				temp->forward = true;
-			}
-		}
+			animate_trap_idle(temp, idle_time);
 		else
-		{
-			if (++(temp->spike->frame_skip_counter) >= active_time)
-			{
-				temp->is_active = true;
-				temp->spike->frame_skip_counter = 0;
-				if (temp->forward)
-				{
-					if (temp->spike->curr_frame >= 3)
-					{
-						temp->spike->curr_frame--;
-						temp->forward = false;
-					}
-					else
-						temp->spike->curr_frame++;
-				}
-				else
-				{
-					if (temp->spike->curr_frame <= 1)
-						temp->spike->curr_frame--;
-					else
-						temp->spike->curr_frame--;
-				}
-			}
-		}
+			animate_trap_active(temp, active_time);
 		temp->spike->animated_sprite[temp->spike->curr_frame]->enabled = true;
 		first_iteration = false;
 		temp = temp->next;
