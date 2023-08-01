@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:55:55 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 17:04:03 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,7 @@ void	free_game_memory(t_game *game_object);
 void	free_textures(mlx_texture_t **sprite_textures);
 void	free_images(t_game *game_object, mlx_image_t **sprite_images);
 void	free_enemy(t_game *game_object);
+void	free_mimics(t_game *game_object);
+void	free_traps(t_game *game_object);
 
 #endif /* SO_LONG_H */

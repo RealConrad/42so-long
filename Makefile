@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/01 15:47:24 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/01 16:58:41 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ ANIMATION_FILES		:= animation.c animation_utils.c trap_animation_utils.c
 COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 EXIT_FILES			:= exit.c
-FREE_FILES			:= free.c free_utils.c
+FREE_FILES			:= free.c free_utils.c free_enemy.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c

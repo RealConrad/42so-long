@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:28:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:47:29 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 17:06:18 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,23 @@ void	free_game_memory(t_game *game_object)
 	{
 		if (game_object->map && game_object->map->collectables)
 			free_collectables(game_object);
+		if (game_object->map && game_object->map->mimics)
+			free_mimics(game_object);
+		if (game_object->map && game_object->map->traps)
+			free_traps(game_object);
 		if (game_object->map)
 			free_map(game_object);
 		if (game_object->player)
 			free_player(game_object);
+		if (game_object->enemy)
+			free_enemy(game_object);
 		if (game_object->mlx)
 		{
 			mlx_terminate(game_object->mlx);
 			mlx_close_window(game_object->mlx);
 		}
+		free(game_object);
 	}
-	free(game_object);
 }
 
 static void	free_collectables(t_game *game_object)
