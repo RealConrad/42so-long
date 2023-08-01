@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:18:58 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 13:18:21 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	init_game(t_game *game_object, char *map_name)
 }
 
 /**
- * @brief Sets up all the necessary hooks for mlx to run every frame,
- * 		  while the game is open.
+ * @brief Sets up all the necessary hooks for mlx that get called every frame
  * @param game_object The game_object which holds mlx and all game related data.
  */
 static void init_hooks(t_game *game_object)
