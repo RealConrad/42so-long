@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:20 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:43:19 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:06:38 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 /*
 TODO: Fix makefile when installing library/mlx
 TODO: Install glfw properly etc...
-TODO: FREE MAP PLAN
+TODO: FREE MIMIC
+TODO: FREE ENEMY
+TODO: Check map for invalid tile (e.g. X)
 */
 
 int	main(int argc, char **argv)

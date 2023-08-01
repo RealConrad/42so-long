@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 14:32:38 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:22:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x)
 {
 	collectable->sprite_path = COLLECTABLE_PATH;
-	collectable->num_sprites = COLLECTABLE_SPRITE_COUNT;
 	collectable->width = COLLECTABLE_WIDTH_PX;
 	collectable->height = COLLECTABLE_HEIGHT_PX;
 	collectable->frame_skip_amount = 1;

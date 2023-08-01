@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:45:09 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 15:27:16 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:35:31 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	check_if_player_should_die(void *param)
 
 	game_object = (t_game *)param;
 	current_player_tile = game_object->map->map_plan[game_object->player->y][game_object->player->x];
-	if (current_player_tile == 'T')
+	if (current_player_tile == TRAP)
 		is_standing_on_trap(game_object);
-	else if (current_player_tile == 'M')
+	else if (current_player_tile == MIMIC)
 		is_standing_on_mimic(game_object);
 }
 

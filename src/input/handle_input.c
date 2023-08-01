@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:11:02 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:36:02 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	handle_movement(t_game *game_object)
 	tile_x = game_object->player->x + delta_x;
 	tile_y = game_object->player->y + delta_y;
 	
-	if (game_object->map->map_plan[tile_y][tile_x] != '1')
+	if (game_object->map->map_plan[tile_y][tile_x] != WALL)
 	{
 		game_object->player->x = tile_x;
 		game_object->player->y = tile_y;

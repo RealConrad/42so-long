@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:43:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 15:00:06 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:34:39 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ void	count_map_row_items(t_map *map, int y)
 	x = 0;
 	while(map->map_plan[y][x] && map->map_plan[y][x] != '\n')
 	{
-		if (map->map_plan[y][x] == 'C')
+		if (map->map_plan[y][x] == COLLECTABLE)
 			map->num_collectables++;
-		else if (map->map_plan[y][x] == 'P')
+		else if (map->map_plan[y][x] == PLAYER)
 			map->num_players++;
-		else if (map->map_plan[y][x] == 'E')
+		else if (map->map_plan[y][x] == ENEMY)
 			map->num_exits++;
-		else if (map->map_plan[y][x] == 'P')
-			map->num_enemies++;
-		else if (map->map_plan[y][x] == 'T')
+		else if (map->map_plan[y][x] == TRAP)
 			map->num_traps++;
-		else if (map->map_plan[y][x] == 'M')
+		else if (map->map_plan[y][x] == MIMIC)
 			map->num_mimics++;
+		else if (map->map_plan[y][x] == ENEMY)
+			map->num_enemies++;
 		x++;
 	}
 }
@@ -60,6 +60,8 @@ void	validate_map_items(t_game *game_object)
 		cleanup_and_exit(game_object, FAIL, "The map must contain 1 exit.");
 	else if (game_object->map->num_collectables < 1)
 		cleanup_and_exit(game_object, FAIL, "The map must contain at least 1 collectable.");
+	else if (game_object->map->num_enemies < 1)
+		cleanup_and_exit(game_object, FAIL, "The game can only have 1 enemy.");
 }
 
 void	check_map_width(t_game *game_object)

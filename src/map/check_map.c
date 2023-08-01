@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:50:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 10:29:58 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:36:09 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	check_map_surrounded_by_walls(t_game *game_object)
 	// Check bottom and top rows
 	while(i < game_object->map->width)
 	{
-		if (game_object->map->map_plan[0][i] != '1' || game_object->map->map_plan[game_object->map->height - 1][i] != '1')
+		if (game_object->map->map_plan[0][i] != WALL || game_object->map->map_plan[game_object->map->height - 1][i] != WALL)
 			cleanup_and_exit(game_object, FAIL, "The map is not surrounded by walls on the bottom/top.");
 		i++;
 	}
@@ -104,7 +104,7 @@ static void	check_map_surrounded_by_walls(t_game *game_object)
 	// Check the first and last columns
 	while (i < game_object->map->height)
 	{
-		if (game_object->map->map_plan[i][0] != '1' || game_object->map->map_plan[i][game_object->map->width - 1] != '1')
+		if (game_object->map->map_plan[i][0] != WALL || game_object->map->map_plan[i][game_object->map->width - 1] != WALL)
 			cleanup_and_exit(game_object, FAIL, "The map is not surrounded by walls on the left/right.");
 		i++;
 	}

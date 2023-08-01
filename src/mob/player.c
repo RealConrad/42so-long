@@ -6,11 +6,13 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 15:07:22 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:24:38 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	assign_player_object(t_game *game_object, int y, int x);
 
 void	init_player(t_game *game_object, int y, int x)
 {
@@ -19,10 +21,24 @@ void	init_player(t_game *game_object, int y, int x)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for player.");
 
 	game_object->player->num_sprites = PLAYER_SPRITE_COUNT;
-	// Allocate memory for player struct
+	// Allocate memory for player
 	if (allocate_mob_object(game_object->player) == FAIL)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for player object.");
 	// Assign data to player struct
 	assign_player_object(game_object, y, x);
+}
+
+static void	assign_player_object(t_game *game_object, int y, int x)
+{
+	game_object->player->sprite_path = PLAYER_SPRITE_PATH;
+	game_object->player->width = PLAYER_WIDTH_PX;
+	game_object->player->height = PLAYER_HEIGHT_PX;
+	game_object->player->frame_skip_amount = 0;
+	game_object->player->frame_skip_counter = 0;
+	game_object->player->curr_frame = 0;
+	game_object->player->x = x / TILE_PX;
+	game_object->player->y = y / TILE_PX;
+	assign_sprite_textures(game_object->player);
+	assign_sprite_images(game_object, game_object->player);
 	assign_z_index(game_object->player, 3);
 }
