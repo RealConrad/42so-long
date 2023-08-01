@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:08:25 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 14:40:34 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:10:00 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,13 @@ void	init_collectable(t_game *game_object, int y, int x)
 	assign_collectable_object(game_object, new_collectable->coin, y, x);
 	// Add the collectable to linked list
 	add_collectable_node(game_object, new_collectable);
+}
+
+void	check_if_pickup_collectable(void *param)
+{
+	t_game *game_object;
+
+	game_object = (t_game *)param;
+	if (game_object->map->map_plan[game_object->player->y][game_object->player->x] == 'C')
+		remove_collectable(game_object);
 }

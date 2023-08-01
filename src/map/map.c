@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 12:27:37 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/07/31 16:45:02 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_map(t_game *game_object)
 	int		y;
 	
 	y = 0;
-	ft_printf("Map Height: %d :::: Width: %d\n", game_object->map->height, game_object->map->width);
 	while (y < game_object->map->height)
 	{
 		x = 0;

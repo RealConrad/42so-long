@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:43:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 10:16:36 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:02:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	count_map_row_items(t_map *map, int y)
 			map->num_exits++;
 		else if (map->map_plan[y][x] == 'P')
 			map->num_enemies++;
+		else if (map->map_plan[y][x] == 'T')
+			map->num_traps++;
 		x++;
 	}
 }

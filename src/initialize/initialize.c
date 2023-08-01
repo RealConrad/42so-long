@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 10:20:36 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:09:03 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	init_game(t_game *game_object, char *map_name)
 static void init_hooks(t_game *game_object)
 {
 	mlx_loop_hook(game_object->mlx, &init_animation, game_object);
-	mlx_loop_hook(game_object->mlx, &finish_game, game_object);
 	mlx_key_hook(game_object->mlx, &handle_input, game_object);
+	mlx_loop_hook(game_object->mlx, &check_if_player_should_die, game_object);
+	mlx_loop_hook(game_object->mlx, &check_if_pickup_collectable, game_object);
+	mlx_loop_hook(game_object->mlx, &finish_game, game_object);
 }
 
