@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 14:51:08 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 16:34:10 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ P = Player
 C = Collectable
 E = Exit
 T = Trap
-M = Mimic --- TODO
-I = Imp --- TODO
+M = Mimic
+D = Demon
 */
 static void	draw_map(t_game *game_object, char map_tile, int y, int x);
 
@@ -43,18 +43,21 @@ void	init_map(t_game *game_object)
 
 static void	draw_map(t_game *game_object, char map_tile, int y, int x)
 {
-	if (map_tile == '1')
+	if (map_tile == WALL)
 		draw_tile(game_object, y * TILE_PX, x * TILE_PX, WALL_PATH);
-	else if (map_tile != '1' && map_tile != 'E' && map_tile != 'T')
+	else if (map_tile != WALL && map_tile != EXIT && map_tile != TRAP)
 		draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
-	if (map_tile == 'P')
+
+	if (map_tile == PLAYER)
 		init_player(game_object, y * TILE_PX, x * TILE_PX);
-	else if (map_tile == 'C')
+	else if (map_tile == COLLECTABLE)
 		init_collectable(game_object, y * TILE_PX, x * TILE_PX);
-	else if (map_tile == 'E')
+	else if (map_tile == EXIT)
 		init_exit(game_object, y * TILE_PX, x * TILE_PX);
-	else if (map_tile == 'T')
+	else if (map_tile == TRAP)
 		init_trap(game_object, y * TILE_PX, x * TILE_PX);
-	else if (map_tile == 'M')
+	else if (map_tile == MIMIC)
 		init_mimic(game_object, y * TILE_PX, x * TILE_PX);
+	else if (map_tile == ENEMY)
+		init_enemy(game_object, y * TILE_PX, x * TILE_PX);
 }
