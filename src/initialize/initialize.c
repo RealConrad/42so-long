@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:09:03 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:18:58 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 static void init_hooks(t_game *game_object);
 
+/**
+ * @brief Initializes the game and mlx. The function also checks 
+ * 		  if the map provided is valid. It also initializes mlx hooks.
+ * @param game_object A pointer that holds the entire games data that will
+ * 					  be initialized/set.
+ * @param map_name The file path to the map provided.
+ */
 void	init_game(t_game *game_object, char *map_name)
 {
 	// Allocate memory for map
@@ -33,6 +40,11 @@ void	init_game(t_game *game_object, char *map_name)
 	init_hooks(game_object);
 }
 
+/**
+ * @brief Sets up all the necessary hooks for mlx to run every frame,
+ * 		  while the game is open.
+ * @param game_object The game_object which holds mlx and all game related data.
+ */
 static void init_hooks(t_game *game_object)
 {
 	mlx_loop_hook(game_object->mlx, &init_animation, game_object);
