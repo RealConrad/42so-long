@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 10:55:13 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 11:20:38 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	init_animation(void	*param)
 	time = TIME_FOR_FRAME;
 	animate_sprite(game_object->player);
 	animate_collectables(game_object->map->collectables);
-	animate_traps(game_object);
+	if (game_object->map->num_traps >= 1)
+		animate_traps(game_object);
 }
 
 static void	animate_collectables(t_collectables *collectable)
