@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:40:29 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/31 16:44:56 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 14:32:11 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	init_trap(t_game *game_object, int y, int x)
 	if (!trap->spike)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for trap spike.");
 
-	if (allocate_trap_object(trap->spike) == FAIL)
+	trap->spike->num_sprites = TRAP_SPRITE_COUNT;
+	if (allocate_mob_object(trap->spike) == FAIL)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for spike object");
 
 	assign_trap_object(game_object, trap->spike, y, x);

@@ -6,28 +6,11 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:10:52 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/01 14:32:38 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-bool	allocate_collectable_object(t_animated_mob *collectable)
-{
-	// SOLVE: Don't need this....?
-	// collectable->sprite_path = ft_calloc(1, sizeof(char) * ft_strlen(COLLECTABLE_PATH) + 1);
-	// if (!collectable->sprite_path)
-	// 	return (FAIL);
-
-	collectable->sprites = ft_calloc(COLLECTABLE_SPRITE_COUNT, sizeof(mlx_texture_t *) * COLLECTABLE_SPRITE_COUNT + 1);
-	if (!collectable->sprites)
-		return (FAIL);
-
-	collectable->animated_sprite = ft_calloc(COLLECTABLE_SPRITE_COUNT, sizeof(mlx_texture_t *) * COLLECTABLE_SPRITE_COUNT + 1);
-	if (!collectable->sprites)
-		return (FAIL);
-	return (SUCCESS);
-}
 
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x)
 {
