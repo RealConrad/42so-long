@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/01 11:36:02 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/01 14:28:38 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,9 @@ FREE_FILES			:= free.c free_utils.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c
-MOB_FILES			:= player.c player_utils.c player_death.c
+MOB_FILES			:= player.c player_utils.c player_death.c mimic.c
 TRAP_FILES			:= trap.c trap_utils.c
-UTIL_FILES			:= utils.c
+UTIL_FILES			:= utils.c utils2.c
 
 SRC 				+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 SRC					+= $(addprefix $(ANIMATION_DIR), $(ANIMATION_FILES))
