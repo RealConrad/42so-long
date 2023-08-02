@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:45:09 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 12:38:04 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 15:55:37 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	is_standing_on_trap(t_game *game_object);
 static void	is_standing_on_mimic(t_game *game_object);
-static void	is_player_touching_enemy(t_game *game_object);
 
 void	check_if_player_should_die(void *param)
 {
@@ -22,6 +21,8 @@ void	check_if_player_should_die(void *param)
 	char	current_player_tile;
 
 	game_object = (t_game *)param;
+	if (game_object->hud->is_game_paused)
+		return ;
 	current_player_tile = game_object->map->map_plan[game_object->player->y][game_object->player->x];
 	if (current_player_tile == TRAP)
 		is_standing_on_trap(game_object);
@@ -30,7 +31,10 @@ void	check_if_player_should_die(void *param)
 	else if (game_object->enemy
 		&& game_object->player->x == game_object->enemy->x
 		&& game_object->player->y == game_object->enemy->y)
-		is_player_touching_enemy(game_object);
+		{
+			game_object->hud->is_player_dead = true;
+			end_game(game_object, DIED);
+		}
 }
 
 static void	is_standing_on_trap(t_game *game_object)
@@ -45,8 +49,8 @@ static void	is_standing_on_trap(t_game *game_object)
 		first_iteration = false;
 		if (temp->spike->x == game_object->player->x && temp->spike->y == game_object->player->y && temp->is_active)
 		{
-			ft_printf("You died!\n");
 			game_object->hud->is_player_dead = true;
+			end_game(game_object, DIED);
 		}
 		temp = temp->next;
 	}
@@ -64,16 +68,9 @@ static void	is_standing_on_mimic(t_game *game_object)
 		first_iteration = false;
 		if (temp->chest->x == game_object->player->x && temp->chest->y == game_object->player->y)
 		{
-			ft_printf("You died!\n");
 			game_object->hud->is_player_dead = true;
+			end_game(game_object, DIED);
 		}
 		temp = temp->next;
 	}
-}
-
-static void	is_player_touching_enemy(t_game *game_object)
-{
-	(void)game_object;
-	ft_printf("You died!\n");
-	game_object->hud->is_player_dead = true;
 }

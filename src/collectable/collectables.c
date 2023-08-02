@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:08:25 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:35:05 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 14:15:03 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	check_if_pickup_collectable(void *param)
 	t_game *game_object;
 
 	game_object = (t_game *)param;
+	if (game_object->hud->is_game_paused)
+		return ;
 	if (game_object->map->map_plan[game_object->player->y][game_object->player->x] == COLLECTABLE)
 		remove_collectable(game_object);
 }

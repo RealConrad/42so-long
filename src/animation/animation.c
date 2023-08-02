@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 10:02:44 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 14:19:41 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	init_animation(void	*param)
 	if (time > 0)
 		return;
 	time = TIME_FOR_FRAME;
+	if (game_object->hud->is_game_paused)
+	{
+		update_sprite_position(game_object->player);
+		return ;
+	}
 	animate_sprite(game_object->player);
 	animate_collectables(game_object->map->collectables);
 	if (game_object->map->num_mimics >= 1)
