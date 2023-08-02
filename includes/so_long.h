@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 17:04:03 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 12:58:10 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,19 @@ typedef struct s_map {
 	int				width; // Width of the map in PX
 }	t_map;
 
+typedef struct s_hud {
+	mlx_image_t		*player_moves_img;
+	int				num_player_moves;
+	bool			is_player_dead;
+	bool			has_player_moved;
+}	t_hud;
+
 typedef struct s_game {
 	mlx_t			*mlx;
 	t_animated_mob	*player;
 	t_animated_mob	*enemy;
 	t_map			*map;
+	t_hud			*hud;
 }	t_game;
 
 /* Initialize */
@@ -190,7 +198,10 @@ void	finish_game(void *param);
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
-void	count_moves();
+
+/* Hud */
+void	init_hud(void *param);
+void	display_game_over(t_game *game_object);
 
 /* Utils */
 void	assign_sprite_textures(t_animated_mob *mob);
@@ -208,5 +219,6 @@ void	free_images(t_game *game_object, mlx_image_t **sprite_images);
 void	free_enemy(t_game *game_object);
 void	free_mimics(t_game *game_object);
 void	free_traps(t_game *game_object);
+void	free_hud(t_game *game_object);
 
 #endif /* SO_LONG_H */

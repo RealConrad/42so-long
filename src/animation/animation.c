@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:25:57 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 10:02:44 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	animate_collectables(t_collectables *collectable)
 
 	first_iteration = true;
 	temp = collectable;
-	// Loop through the entire linked list and animate each node
 	while (first_iteration || temp != collectable)
 	{
 		// Only animate coins that haven't been collected yet
@@ -61,7 +60,6 @@ static void	animate_mimics(t_mimic *mimic)
 
 	first_iteration = true;
 	temp = mimic;
-	// Loop through the entire linked list and animate each node
 	while (first_iteration || temp != mimic)
 	{
 		animate_sprite(temp->chest);
@@ -77,7 +75,7 @@ static void	animate_traps(t_game *game_object)
 	int		idle_time;
 	int		active_time;
 	
-	idle_time = 20;
+	idle_time = 10;
 	active_time = 4;
 	temp = game_object->map->traps;
 	first_iteration = true;

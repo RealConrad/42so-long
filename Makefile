@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/01 16:58:41 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/02 11:25:22 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ COLLECTABLE_DIR		:= ./src/collectable/
 ERROR_DIR			:= ./src/error/
 EXIT_DIR			:= ./src/exit/
 FREE_DIR			:= ./src/free/
+HUD_DIR				:= ./src/hud/
 INIT_DIR			:= ./src/initialize/
 INPUT_DIR			:= ./src/input/
 MAP_DIR				:= ./src/map/
@@ -58,6 +59,7 @@ COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 EXIT_FILES			:= exit.c
 FREE_FILES			:= free.c free_utils.c free_enemy.c
+HUD_FILES			:= hud.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c
@@ -71,6 +73,7 @@ SRC					+= $(addprefix $(COLLECTABLE_DIR), $(COLLECTABLE_FILES))
 SRC 				+= $(addprefix $(ERROR_DIR), $(ERROR_FILES))
 SRC 				+= $(addprefix $(EXIT_DIR), $(EXIT_FILES))
 SRC 				+= $(addprefix $(FREE_DIR), $(FREE_FILES))
+SRC 				+= $(addprefix $(HUD_DIR), $(HUD_FILES))
 SRC					+= $(addprefix $(INIT_DIR), $(INIT_FILES))
 SRC					+= $(addprefix $(INPUT_DIR), $(INPUT_FILES))
 SRC					+= $(addprefix $(MAP_DIR), $(MAP_FILES))

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:53:18 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 11:27:15 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 10:32:57 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,9 @@ void	finish_game(void *param)
 		ft_printf("You Won!\nShutting down now... 〈◕﹏◕〉\n");
 		cleanup_and_exit(game_object, SUCCESS, "");
 	}
+}
+
+void	display_game_over_screen(t_game *game_object)
+{
+	(void)game_object;
 }

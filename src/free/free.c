@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:28:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 17:06:18 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 12:23:37 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	free_game_memory(t_game *game_object)
 			free_mimics(game_object);
 		if (game_object->map && game_object->map->traps)
 			free_traps(game_object);
+		if (game_object->hud)
+			free_hud(game_object);
 		if (game_object->map)
 			free_map(game_object);
 		if (game_object->player)
