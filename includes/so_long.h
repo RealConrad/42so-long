@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 12:58:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 14:12:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ typedef enum e_exit_type {
 	SUCCESS,
 	FAIL,
 }	t_exit_type;
+
+typedef enum s_game_over_type {
+	COMPLETED,
+	DIED
+}	t_game_over_type;
 
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
