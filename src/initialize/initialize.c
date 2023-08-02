@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 14:38:57 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:32:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ static void init_hooks(t_game *game_object)
 	mlx_loop_hook(game_object->mlx, &check_if_pickup_collectable, game_object);
 	mlx_loop_hook(game_object->mlx, &display_player_move_count, game_object);
 	mlx_loop_hook(game_object->mlx, &check_win_condition, game_object);
+	if (game_object->enemy)
+		mlx_loop_hook(game_object->mlx, &move_enemy, game_object);
 }
 

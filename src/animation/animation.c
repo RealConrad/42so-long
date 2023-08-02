@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 14:19:41 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:46:46 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	init_animation(void	*param)
 	time = TIME_FOR_FRAME;
 	if (game_object->hud->is_game_paused)
 	{
+		if (game_object->enemy)
+			update_sprite_position(game_object->enemy);
 		update_sprite_position(game_object->player);
 		return ;
 	}

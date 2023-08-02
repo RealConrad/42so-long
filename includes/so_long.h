@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 15:55:43 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:20:25 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # define HEIGHT 1000
 # define FILENAME_SIZE 69
 # define TIME_FOR_FRAME 0.1
+# define LEFT -1
+# define RIGHT 1
+# define UP -1
+# define DOWN 1
 
 /* Map */
 # define WALL_PATH "./assets/world/map/wall.png"
@@ -183,6 +187,7 @@ void	check_if_player_should_die(void *param);
 
 /* Enemy */
 void	init_enemy(t_game *game_object, int y, int x);
+void	move_enemy(void *param);
 
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);

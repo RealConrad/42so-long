@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 14:14:26 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:48:15 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,24 @@ void	handle_input(mlx_key_data_t keydata, void *param)
 
 static void	handle_movement(t_game *game_object)
 {
-	int tile_x;
-	int	tile_y;
-	int delta_x = 0;
-	int	delta_y = 0;
+	int delta_x;
+	int	delta_y;
 
+	delta_x = 0;
+	delta_y = 0;
 	if (mlx_is_key_down(game_object->mlx, MLX_KEY_W))
-		delta_y = -1;
+		delta_y = UP;
 	else if (mlx_is_key_down(game_object->mlx, MLX_KEY_S))
-		delta_y = 1;
+		delta_y = DOWN;
 	else if (mlx_is_key_down(game_object->mlx, MLX_KEY_A))
-		delta_x = -1;
+		delta_x = LEFT;
 	else if (mlx_is_key_down(game_object->mlx, MLX_KEY_D))
-		delta_x = 1;
+		delta_x = RIGHT;
 
-	tile_x = game_object->player->x + delta_x;
-	tile_y = game_object->player->y + delta_y;
-
-	if (game_object->map->map_plan[tile_y][tile_x] != WALL)
+	if (game_object->map->map_plan[game_object->player->y + delta_y][game_object->player->x + delta_x] != WALL)
 	{
-		game_object->player->x = tile_x;
-		game_object->player->y = tile_y;
+		game_object->player->x += delta_x;
+		game_object->player->y += delta_y;
 		game_object->hud->has_player_moved = true;
 		game_object->hud->num_player_moves++;
 	}

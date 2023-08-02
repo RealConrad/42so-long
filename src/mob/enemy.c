@@ -6,13 +6,14 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:44:28 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:53:22 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 17:53:14 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static void	assign_enemy_object(t_game *game_object, int y, int x);
+static void	update_enemy_pos(t_game *game_object, int direction);
 
 void	init_enemy(t_game *game_object, int y, int x)
 {
@@ -25,6 +26,34 @@ void	init_enemy(t_game *game_object, int y, int x)
 	if (allocate_mob_object(game_object->enemy) == FAIL)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for enemy object.");
 	assign_enemy_object(game_object, y, x);
+}
+
+void	move_enemy(void *param)
+{
+	t_game 		*game_object;
+	int			rand_num;
+	static int	frame_counter = 0;
+	int			frame_skip_amount;
+
+	frame_skip_amount = 50;
+	game_object = (t_game *)param;
+	if (game_object->hud->is_game_paused)
+		return ;
+
+	rand_num = (rand() % 4) + 1;
+	if (++frame_counter >= frame_skip_amount)
+	{
+		frame_counter = 0;
+		if (rand_num == 1)
+			update_enemy_pos(game_object, 1);
+		else if (rand_num == 2)
+			update_enemy_pos(game_object, 2);
+		else if (rand_num == 3)
+			update_enemy_pos(game_object, 3);
+		else if (rand_num == 4)
+			update_enemy_pos(game_object, 4);
+	}
+
 }
 
 static void	assign_enemy_object(t_game *game_object, int y, int x)
@@ -41,4 +70,31 @@ static void	assign_enemy_object(t_game *game_object, int y, int x)
 	assign_sprite_textures(game_object->enemy);
 	assign_sprite_images(game_object, game_object->enemy);
 	assign_z_index(game_object->enemy, 4);
+}
+
+static void	update_enemy_pos(t_game *game_object, int direction)
+{
+	int	delta_x;
+	int	delta_y;
+	int	tile_x;
+	int	tile_y;
+
+	delta_x = 0;
+	delta_y = 0;
+	if (direction == 1)
+		delta_y = UP;
+	else if (direction == 2)
+		delta_y = DOWN;
+	else if (direction == 3)
+		delta_x = RIGHT;
+	else if (direction == 4)
+		delta_x = LEFT;
+
+	tile_x = game_object->enemy->x + delta_x;
+	tile_y = game_object->enemy->y + delta_y;
+	if (game_object->map->map_plan[tile_y][tile_x] == GROUND)
+	{
+		game_object->enemy->x += delta_x;
+		game_object->enemy->y += delta_y;
+	}
 }
