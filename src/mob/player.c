@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:50:54 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 12:37:58 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	assign_player_object(t_game *game_object, int y, int x)
 	game_object->player->curr_frame = 0;
 	game_object->player->x = x / TILE_PX;
 	game_object->player->y = y / TILE_PX;
+	game_object->hud->is_player_dead = false;
 	assign_sprite_textures(game_object->player);
 	assign_sprite_images(game_object, game_object->player);
 	assign_z_index(game_object->player, 3);

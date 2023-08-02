@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:45:09 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 17:32:07 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 12:38:04 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	is_standing_on_trap(t_game *game_object)
 		if (temp->spike->x == game_object->player->x && temp->spike->y == game_object->player->y && temp->is_active)
 		{
 			ft_printf("You died!\n");
-			// cleanup_and_exit(game_object, SUCCESS, "");
+			game_object->hud->is_player_dead = true;
 		}
 		temp = temp->next;
 	}
@@ -65,7 +65,7 @@ static void	is_standing_on_mimic(t_game *game_object)
 		if (temp->chest->x == game_object->player->x && temp->chest->y == game_object->player->y)
 		{
 			ft_printf("You died!\n");
-			// cleanup_and_exit(game_object, SUCCESS, "");
+			game_object->hud->is_player_dead = true;
 		}
 		temp = temp->next;
 	}
@@ -75,4 +75,5 @@ static void	is_player_touching_enemy(t_game *game_object)
 {
 	(void)game_object;
 	ft_printf("You died!\n");
+	game_object->hud->is_player_dead = true;
 }

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:55:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/07/30 15:43:43 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 13:23:03 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,4 @@ bool	is_movement(mlx_key_data_t keydata)
 		)
 		return (true);
 	return (false);
-}
-
-void	count_moves()
-{
-	static int	moves = 0;
-
-	ft_printf("Total Moves: %d\n", ++moves);
 }
