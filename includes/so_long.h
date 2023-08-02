@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 12:58:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 15:55:43 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ typedef enum e_exit_type {
 	FAIL,
 }	t_exit_type;
 
+typedef enum s_game_over_type {
+	COMPLETED,
+	DIED
+}	t_game_over_type;
+
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
 	mlx_image_t		**animated_sprite; // The animation images rendered to the window
@@ -136,9 +141,12 @@ typedef struct s_map {
 
 typedef struct s_hud {
 	mlx_image_t		*player_moves_img;
+	mlx_image_t		*hud_bg_image;
+	mlx_image_t		*game_over_text_img;
 	int				num_player_moves;
 	bool			is_player_dead;
 	bool			has_player_moved;
+	bool			is_game_paused;
 }	t_hud;
 
 typedef struct s_game {
@@ -193,15 +201,17 @@ void	init_mimic(t_game *game_object, int y, int x);
 
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);
-void	finish_game(void *param);
+void	check_win_condition(void *param);
 
 /* Handle Input */
 void	handle_input(mlx_key_data_t keydata, void *param);
 bool	is_movement(mlx_key_data_t keydata);
 
 /* Hud */
-void	init_hud(void *param);
-void	display_game_over(t_game *game_object);
+void	init_hud(t_game *game_object);
+void	display_player_move_count(void *param);
+void	end_game(t_game *game_object, t_game_over_type game_over_type);
+void	render_game_over_screen(t_game *game_object, char *str);
 
 /* Utils */
 void	assign_sprite_textures(t_animated_mob *mob);

@@ -6,33 +6,26 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:24:15 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 12:58:58 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 16:03:53 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	display_player_move_count(t_game *game_object);
-
-void	init_hud(void *param)
+void	init_hud(t_game *game_object)
 {
-	t_game *game_object;
-
-	game_object = (t_game *)param;
-	
-	display_player_move_count(game_object);
-
-	if (game_object->hud->is_player_dead)
-	{
-		ft_printf("Player has died!\n");
-	}
+	game_object->hud->is_game_paused = false;
 }
 
-static void	display_player_move_count(t_game *game_object)
+void	display_player_move_count(void *param)
 {
+	t_game	*game_object;
 	char	*str;
 	char	*moves;
 	
+	game_object = (t_game *)param;
+	if (game_object->hud->is_game_paused)
+		return ;
 	moves = ft_itoa(game_object->hud->num_player_moves);
 	str = ft_strjoin("Moves: ", moves);
 	if (game_object->hud->player_moves_img)
@@ -49,8 +42,11 @@ static void	display_player_move_count(t_game *game_object)
 	free(moves);
 }
 
-void	display_game_over(t_game *game_object)
+void	end_game(t_game *game_object, t_game_over_type game_over_type)
 {
-	(void)game_object;
-	cleanup_and_exit(game_object, SUCCESS, "");
+	game_object->hud->is_game_paused = true;
+	if (game_over_type == DIED)
+		render_game_over_screen(game_object, "You Died! Game Over!");
+	else if (game_over_type == COMPLETED)
+		render_game_over_screen(game_object, "For the Queen, we have claimed victory!");
 }
