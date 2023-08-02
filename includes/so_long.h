@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 14:12:01 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 14:12:29 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef struct s_hud {
 	int				num_player_moves;
 	bool			is_player_dead;
 	bool			has_player_moved;
+	bool			is_game_paused;
 }	t_hud;
 
 typedef struct s_game {
