@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:44:28 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 17:53:14 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 18:00:17 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_enemy(t_game *game_object, int y, int x)
 	if (allocate_mob_object(game_object->enemy) == FAIL)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for enemy object.");
 	assign_enemy_object(game_object, y, x);
+	assign_z_index(game_object->enemy, 4);
 }
 
 void	move_enemy(void *param)
@@ -92,7 +93,8 @@ static void	update_enemy_pos(t_game *game_object, int direction)
 
 	tile_x = game_object->enemy->x + delta_x;
 	tile_y = game_object->enemy->y + delta_y;
-	if (game_object->map->map_plan[tile_y][tile_x] == GROUND)
+	if (game_object->map->map_plan[tile_y][tile_x] == GROUND
+		|| game_object->map->map_plan[tile_y][tile_x] == COLLECTABLE)
 	{
 		game_object->enemy->x += delta_x;
 		game_object->enemy->y += delta_y;

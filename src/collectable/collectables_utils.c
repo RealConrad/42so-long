@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:22:01 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 18:02:01 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable,
 	collectable->y = y / TILE_PX;
 	assign_sprite_textures(collectable);
 	assign_sprite_images(game_object, collectable);
+	assign_z_index(collectable, 2);
 }
 
 void	add_collectable_node(t_game *game_object, t_collectables *new_collectable)
