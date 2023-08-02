@@ -6,12 +6,19 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:52:36 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:51:17 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/02 10:10:48 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
+/**
+ * @brief Assigns data for a trap object.
+ * @param game_object The game object used to initialize the images of the trap
+ * @param spike The trap
+ * @param y The y-axis position of the trap represented in PX
+ * @param x The x-axis position of the trap represented in PX
+ */
 void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x)
 {
 	spike->sprite_path = TRAP_PATH;
@@ -28,6 +35,11 @@ void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x
 	assign_z_index(spike, 1);
 }
 
+/**
+ * @brief Adds a given trap to the end of the linked list
+ * @param game_object The game object that holds the linked list
+ * @param new_spike The new trap that will be added to the linked list
+ */
 void	add_spike_node(t_game *game_object, t_trap *new_spike)
 {
 	t_trap	*curr_spike;
