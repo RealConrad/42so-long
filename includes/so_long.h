@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:30:40 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/03 16:37:33 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 
 /* Mimic */
 # define MIMIC_SPRITE_PATH "./assets/enemy/mimic/mimic_idle"
-# define MIMIC_SPRITE_COUNT 3
+# define MIMIC_SPRITE_COUNT 2
 # define MIMIC_HEIGHT_PX 50
 # define MIMIC_WIDTH_PX 36
 
@@ -210,6 +210,7 @@ void	add_spike_node(t_game *game_object, t_trap *trap);
 
 /* Mimic */
 void	init_mimic(t_game *game_object, int y, int x);
+void	update_mimic_sprite(t_game *game_object);
 
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);

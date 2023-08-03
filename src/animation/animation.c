@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 15:39:05 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/03 16:38:04 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	animate_collectables(t_collectables *collectable);
 static void	animate_traps(t_game *game_object);
-static void	animate_mimics(t_mimic *mimic);
 
 void	init_animation(void	*param)
 {
@@ -30,13 +29,13 @@ void	init_animation(void	*param)
 	{
 		if (game_object->enemy)
 			update_sprite_position(game_object->enemy);
+		if (game_object->map->num_mimics >= 1)
+			update_mimic_sprite(game_object);
 		update_sprite_position(game_object->player);
 		return ;
 	}
 	animate_sprite(game_object->player);
 	animate_collectables(game_object->map->collectables);
-	if (game_object->map->num_mimics >= 1)
-		animate_mimics(game_object->map->mimics);
 	if (game_object->map->num_traps >= 1)
 		animate_traps(game_object);
 	if (game_object->enemy)
@@ -55,21 +54,6 @@ static void	animate_collectables(t_collectables *collectable)
 		// Only animate coins that haven't been collected yet
 		if (!temp->is_collected)
 			animate_sprite(temp->coin);
-		first_iteration = false;
-		temp = temp->next;
-	}
-}
-
-static void	animate_mimics(t_mimic *mimic)
-{
-	bool			first_iteration;
-	t_mimic			*temp;
-
-	first_iteration = true;
-	temp = mimic;
-	while (first_iteration || temp != mimic)
-	{
-		animate_sprite(temp->chest);
 		first_iteration = false;
 		temp = temp->next;
 	}
