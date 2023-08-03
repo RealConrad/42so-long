@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/02 14:26:56 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/03 16:30:34 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ COLLECTABLE_FILES	:= collectables.c collectables_utils.c
 ERROR_FILES			:= error.c
 EXIT_FILES			:= exit.c
 FREE_FILES			:= free.c free_utils.c free_enemy.c
-HUD_FILES			:= hud.c hud_utils.c
+HUD_FILES			:= hud.c hud_utils.c player_dialogue.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
 MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c

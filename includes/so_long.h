@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 17:20:25 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/03 16:37:33 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define UP -1
 # define DOWN 1
 
+/* Dialogue */
+# define DIALOGUE_PATH "./assets/dialogue/dialogue"
+# define DIALOGUE_SPRITE_COUNT 5
+# define EXIT_DIALOGUE "./assets/dialogue/dialogue4.png"
+
 /* Map */
 # define WALL_PATH "./assets/world/map/wall.png"
 # define GROUND_PATH "./assets/world/map/floor.png"
@@ -47,7 +52,7 @@
 
 /* Mimic */
 # define MIMIC_SPRITE_PATH "./assets/enemy/mimic/mimic_idle"
-# define MIMIC_SPRITE_COUNT 3
+# define MIMIC_SPRITE_COUNT 2
 # define MIMIC_HEIGHT_PX 50
 # define MIMIC_WIDTH_PX 36
 
@@ -147,10 +152,12 @@ typedef struct s_hud {
 	mlx_image_t		*player_moves_img;
 	mlx_image_t		*hud_bg_image;
 	mlx_image_t		*game_over_text_img;
+	t_animated_mob	*dialogue_img;
 	int				num_player_moves;
 	bool			is_player_dead;
 	bool			has_player_moved;
 	bool			is_game_paused;
+	bool			is_dialogue_displayed;
 }	t_hud;
 
 typedef struct s_game {
@@ -203,6 +210,7 @@ void	add_spike_node(t_game *game_object, t_trap *trap);
 
 /* Mimic */
 void	init_mimic(t_game *game_object, int y, int x);
+void	update_mimic_sprite(t_game *game_object);
 
 /* Exit */
 void	init_exit(t_game *game_object, int y, int x);
@@ -217,6 +225,7 @@ void	init_hud(t_game *game_object);
 void	display_player_move_count(void *param);
 void	end_game(t_game *game_object, t_game_over_type game_over_type);
 void	render_game_over_screen(t_game *game_object, char *str);
+void	display_player_dialogue(void *param);
 
 /* Utils */
 void	assign_sprite_textures(t_animated_mob *mob);
