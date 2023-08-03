@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 17:58:26 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/03 16:04:10 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	init_game(t_game *game_object, char *map_name)
 	if (!game_object->mlx)
 		cleanup_and_exit(game_object, FAIL, "Failed to initialize mlx.");
 	
-	init_hud(game_object);
 	init_map(game_object);
+	init_hud(game_object);
+	display_player_dialogue(game_object);
 	init_hooks(game_object);
 }
 
@@ -48,6 +49,7 @@ void	init_game(t_game *game_object, char *map_name)
  */
 static void init_hooks(t_game *game_object)
 {
+	mlx_loop_hook(game_object->mlx, &display_player_dialogue, game_object);
 	mlx_loop_hook(game_object->mlx, &init_animation, game_object);
 	mlx_key_hook(game_object->mlx, &handle_input, game_object);
 	mlx_loop_hook(game_object->mlx, &check_if_player_should_die, game_object);

@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:24:15 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 16:03:53 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/03 16:28:37 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 void	init_hud(t_game *game_object)
 {
 	game_object->hud->is_game_paused = false;
+	game_object->hud->dialogue_img = ft_calloc(1, sizeof(t_animated_mob));
+	
+	game_object->hud->dialogue_img->num_sprites = DIALOGUE_SPRITE_COUNT;
+	if (allocate_mob_object(game_object->hud->dialogue_img) == FAIL)
+		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for dialogue image.");
+
+	game_object->hud->is_dialogue_displayed = false;
+	game_object->hud->dialogue_img->frame_skip_counter = 0;
+	game_object->hud->dialogue_img->frame_skip_amount = 500;
+	game_object->hud->dialogue_img->sprite_path = DIALOGUE_PATH;
+	game_object->hud->dialogue_img->width = 128;
+	game_object->hud->dialogue_img->height = 64;
+	game_object->hud->dialogue_img->x = (game_object->player->x * TILE_PX) + 20;
+	game_object->hud->dialogue_img->y = (game_object->player->y * TILE_PX) - 50;
+	assign_sprite_textures(game_object->hud->dialogue_img);
+	assign_sprite_images(game_object, game_object->hud->dialogue_img);
+	assign_z_index(game_object->hud->dialogue_img, 5);
 }
 
 void	display_player_move_count(void *param)
