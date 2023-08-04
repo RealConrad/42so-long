@@ -6,16 +6,16 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:40:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:52:53 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 15:04:14 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief Animates a given sprite by looping through images every `animation_config->frame_skip_counter`.
+ * @brief Animates a given mob by looping through images every `animation_config->frame_skip_counter`.
  * 		  Also updates the sprites position.
- * @param animation_config The sprite to animate.
+ * @param animation_config The mob to animate.
  */
 void	animate_sprite(t_animated_mob *animation_config)
 {
@@ -30,8 +30,8 @@ void	animate_sprite(t_animated_mob *animation_config)
 }
 
 /**
- * @brief Updates the sprits position and ensures its centered on the map tile.
- * @param animation_config The sprites whose position is updated.
+ * @brief Updates a mob's position and ensures its centered on the map tile.
+ * @param animation_config The mob whose position is updated.
  */
 void	update_sprite_position(t_animated_mob *animation_config)
 {
