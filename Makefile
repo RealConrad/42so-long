@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/03 16:30:34 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/04 14:23:00 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ FREE_FILES			:= free.c free_utils.c free_enemy.c
 HUD_FILES			:= hud.c hud_utils.c player_dialogue.c
 INIT_FILES			:= initialize.c
 INPUT_FILES			:= handle_input.c input_utils.c
-MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c
+MAP_FILES			:= map.c map_utils.c check_map.c check_map_utils.c check_map_utils2.c is_map_solvable.c
 MOB_FILES			:= player.c player_death.c mimic.c enemy.c
 TRAP_FILES			:= trap.c trap_utils.c
 UTIL_FILES			:= utils.c utils2.c

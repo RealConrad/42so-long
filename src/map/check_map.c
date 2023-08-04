@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:50:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:36:09 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 14:27:58 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	read_map(t_game *game_object, int fd);
 static void	check_map_surrounded_by_walls(t_game *game_object);
 
 /**
- * @brief Checks to see if the given map is valid. If not it will clean up any 
+ * @brief Checks to see if the given map is valid. If not, it will clean up any 
  * 		  memory and exit out the program.
  * @param game_object
- * @param map_name The map file path.
+ * @param map_name The map file path to be checked
  * @note The program will break if the map is taller than 250 lines.
  * 		 This is due memory allocation as I've hard-coded it.
  */
@@ -32,18 +32,20 @@ void	check_map(t_game *game_object, char *map_name)
 	if (fd < 0)
 		cleanup_and_exit(game_object, FAIL, "Failed to open map file, most likely invalid path.");
 	check_map_name(game_object, map_name);
-
-	// Allocate memory for map plan
 	game_object->map->map_plan = ft_calloc(MAX_LINES, sizeof(char *)); 
 	if (!game_object->map->map_plan)
 		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for map plan.");
-
+	// Read the map from the opened file
 	read_map(game_object, fd);
-	// Null terminate the 2D array
+	// Null terminate the 2D array for the map plan
 	game_object->map->map_plan[game_object->map->height + 1] = NULL;
+	if (game_object->map->height <= 2)
+		cleanup_and_exit(game_object, FAIL, "Invlid map height.");
 	validate_map_items(game_object);
 	check_map_width(game_object);
 	check_map_surrounded_by_walls(game_object);
+	// Check if the map is solvable, as the final step of validation
+	check_map_solvable(game_object);
 	close(fd);
 }
 
@@ -59,6 +61,7 @@ static void	read_map(t_game *game_object, int fd)
 		game_object->map->map_plan[y] = ft_strdup(map_row_str);
 		if (y == 0)
 			get_map_width(game_object->map, 0);
+		check_map_chars(game_object, y);
 		count_map_row_items(game_object->map, y);
 		free(map_row_str); // free allocated memory from get_next_line()
 		if (game_object->map->map_plan[y][0] == '\n')
@@ -97,7 +100,7 @@ static void	check_map_surrounded_by_walls(t_game *game_object)
 	while(i < game_object->map->width)
 	{
 		if (game_object->map->map_plan[0][i] != WALL || game_object->map->map_plan[game_object->map->height - 1][i] != WALL)
-			cleanup_and_exit(game_object, FAIL, "The map is not surrounded by walls on the bottom/top.");
+			cleanup_and_exit(game_object, FAIL, "The map is not surrounded by walls.");
 		i++;
 	}
 	i = 0;
@@ -105,7 +108,7 @@ static void	check_map_surrounded_by_walls(t_game *game_object)
 	while (i < game_object->map->height)
 	{
 		if (game_object->map->map_plan[i][0] != WALL || game_object->map->map_plan[i][game_object->map->width - 1] != WALL)
-			cleanup_and_exit(game_object, FAIL, "The map is not surrounded by walls on the left/right.");
+			cleanup_and_exit(game_object, FAIL, "The map is not surrounded by walls.");
 		i++;
 	}
 }

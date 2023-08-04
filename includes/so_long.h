@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:37:33 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 14:22:50 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,11 @@ typedef enum s_game_over_type {
 	DIED
 }	t_game_over_type;
 
+typedef struct s_map_position {
+	int	y;
+	int	x;
+}	t_map_position;
+
 typedef struct s_animated_mob {
 	mlx_texture_t	**sprites; // Array of sprites, one for each frame
 	mlx_image_t		**animated_sprite; // The animation images rendered to the window
@@ -179,6 +184,8 @@ void	check_map_name(t_game *game_object, char *map_name);
 void	check_map_width(t_game *game_object);
 void	count_map_row_items(t_map *map, int y);
 void	validate_map_items(t_game *game_object);
+void	check_map_chars(t_game *game_object, int y);
+void	check_map_solvable(t_game *game_object);
 
 /* Animation */
 void	init_animation(void	*param);
