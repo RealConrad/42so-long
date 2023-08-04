@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:56:56 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:04:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 11:45:53 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	init_game(t_game *game_object, char *map_name)
 	
 	init_map(game_object);
 	init_hud(game_object);
-	display_player_dialogue(game_object);
 	init_hooks(game_object);
 }
 

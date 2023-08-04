@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:00:53 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:41:21 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 11:48:51 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	add_mimic_node(t_game *game_object, t_mimic *mimic)
 	mimic->chest->animated_sprite[0]->enabled = true;
 	mimic->chest->animated_sprite[0]->instances->x = mimic->chest->x * TILE_PX + (TILE_PX / 2) - (mimic->chest->width / 2);
 	mimic->chest->animated_sprite[0]->instances->y = mimic->chest->y * TILE_PX + (TILE_PX / 2) - (mimic->chest->height / 2);
+	mimic->chest->animated_sprite[0]->instances->z = 3;
 	// If linked list has not been initialized yet
 	if (!game_object->map->mimics)
 	{
