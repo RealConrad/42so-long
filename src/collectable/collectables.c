@@ -6,12 +6,18 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:08:25 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 14:15:03 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 15:33:38 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
+/**
+ * @brief Initializes a new collectable at the given x and y coordinates
+ * @param game_object The game object which will holds all game related data
+ * @param y The y position (in PX) of the new collectable to be added
+ * @param x The x position (in PX) of the new collectable to be added
+ */
 void	init_collectable(t_game *game_object, int y, int x)
 {
 	t_collectables	*new_collectable;

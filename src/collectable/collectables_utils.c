@@ -6,12 +6,19 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 18:02:01 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 15:32:29 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Assigns data to a collectable node.
+ * @param game_object The game object that holds all game related data.
+ * @param collectable The collectable to assign the data to.
+ * @param y The y-position (in PX) of the collectable.
+ * @param x The x-position (in PX) of the collectable.
+ */
 void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x)
 {
 	collectable->sprite_path = COLLECTABLE_PATH;
@@ -27,6 +34,12 @@ void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable,
 	assign_z_index(collectable, 2);
 }
 
+/**
+ * @brief Adds a given collectable to the end of the linked list.
+ * @param game_object The game object that holds the head of the collectable 
+ * 		  linked list as well as all game data.
+ * @param new_collectable The collectable to add to the linked list.
+ */
 void	add_collectable_node(t_game *game_object, t_collectables *new_collectable)
 {
 	t_collectables	*curr_collectable;
@@ -53,6 +66,12 @@ void	add_collectable_node(t_game *game_object, t_collectables *new_collectable)
 	}	
 }
 
+/**
+ * @brief Hides a collectable if the player picks it up (standing on it)
+ * 		  Checks the players position and collectables position and the hides
+ * 		  the collectable.
+ * @param game_object The game object that holds all game related data
+ */
 void	remove_collectable(t_game *game_object)
 {
 	t_collectables	*temp;

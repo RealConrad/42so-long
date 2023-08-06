@@ -6,12 +6,16 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:24:15 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:28:37 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:32:45 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Initializes the HUD and assigns/allocates data/memory to hud object.
+ * @param game_object The game object that contains the hud.
+ */
 void	init_hud(t_game *game_object)
 {
 	game_object->hud->is_game_paused = false;
@@ -34,6 +38,10 @@ void	init_hud(t_game *game_object)
 	assign_z_index(game_object->hud->dialogue_img, 5);
 }
 
+/**
+ * @brief Displays the number of moves the player has made.
+ * @param param A void pointer that gets type casted to (t_game *)
+ */
 void	display_player_move_count(void *param)
 {
 	t_game	*game_object;
@@ -59,6 +67,12 @@ void	display_player_move_count(void *param)
 	free(moves);
 }
 
+/**
+ * @brief Ends the game. It also freezes the game displays a relevant message to
+ * 		  the screen depending on if the player won or lost.
+ * @param game_object The game object that holds all game related data.
+ * @param game_over_type The game over type if the player lost or completed the game.
+ */
 void	end_game(t_game *game_object, t_game_over_type game_over_type)
 {
 	game_object->hud->is_game_paused = true;

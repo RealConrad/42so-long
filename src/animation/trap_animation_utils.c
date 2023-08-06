@@ -6,12 +6,19 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:35:36 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:49:02 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 15:26:05 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
+/**
+ * @brief Animates a trap which does not have its spikes active.
+ * 		  Does not kill the player
+ * @param trap The trap to animate
+ * @param idle_time The amount of time (in frames) to have it in its
+ * 		  idle state.
+ */
 void	animate_trap_idle(t_trap *trap, int idle_time)
 {
 	trap->is_active = false;
@@ -23,6 +30,13 @@ void	animate_trap_idle(t_trap *trap, int idle_time)
 	}
 }
 
+/**
+ * @brief Animates through a traps active sprites.
+ * 		  This will kill the player if stood on.
+ * @param trap The trap to animate
+ * @param active_time The time (in frames) to have the trap in its active
+ * 		  state.
+ */
 void	animate_trap_active(t_trap *trap, int active_time)
 {
 	if (++(trap->spike->frame_skip_counter) >= active_time)
@@ -49,6 +63,10 @@ void	animate_trap_active(t_trap *trap, int active_time)
 	}
 }
 
+/**
+ * @brief Updates the mimic sprite if the player stands on the mimic
+ * @param game_object The game_object which holds a linked list of mimics.
+ */
 void	update_mimic_sprite(t_game *game_object)
 {
 	t_mimic	*temp;

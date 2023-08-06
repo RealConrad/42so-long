@@ -6,23 +6,19 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 16:34:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 14:31:28 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-/*
-1 = Wall
-0 = Floor
-P = Player
-C = Collectable
-E = Exit
-T = Trap
-M = Mimic
-D = Demon
-*/
+
 static void	draw_map(t_game *game_object, char map_tile, int y, int x);
 
+/**
+ * @brief Initalizes the map. Loops through the entire map plan and
+ * 		  draws each tile.
+ * @param game_object The game object that holds the map data.
+ */
 void	init_map(t_game *game_object)
 {
 	int		x;
@@ -41,6 +37,13 @@ void	init_map(t_game *game_object)
 	}
 }
 
+/**
+ * @brief Draws each tile at the given y and x position
+ * @param game_object The game object that holds game related data
+ * @param map_tile The map tile to draw
+ * @param y The y position to draw at
+ * @param x The x position to draw at
+ */
 static void	draw_map(t_game *game_object, char map_tile, int y, int x)
 {
 	if (map_tile == WALL)

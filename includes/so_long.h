@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/04 14:22:50 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:19:46 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct s_mimic {
 }	t_mimic;
 
 typedef struct s_map {
-	char			**map_plan; // Contains the map provided by command line
+	char			**map_plan; // Copy of the map provided by command line
 	mlx_image_t		*exit;
 	mlx_image_t		*map_img; // Used to draw each tile to the window
 	t_collectables	*collectables;

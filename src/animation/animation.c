@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/03 16:38:04 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/04 15:21:22 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 static void	animate_collectables(t_collectables *collectable);
 static void	animate_traps(t_game *game_object);
 
+/**
+ * @brief Initializes all animations for the game.
+ * @param param A void pointer which will be type casted to t_game *
+ */
 void	init_animation(void	*param)
 {
 	t_game			*game_object;
@@ -42,6 +46,10 @@ void	init_animation(void	*param)
 		animate_sprite(game_object->enemy);
 }
 
+/**
+ * @brief Loops through a linked list of collectables and animates each node
+ * @param collectable The head of the linked list of collectables
+ */
 static void	animate_collectables(t_collectables *collectable)
 {
 	bool			first_iteration;
@@ -59,6 +67,10 @@ static void	animate_collectables(t_collectables *collectable)
 	}
 }
 
+/**
+ * @brief Loops through a linked list of traps an animates each node
+ * @param game_object The game_object which holds the linked list of traps
+ */
 static void	animate_traps(t_game *game_object)
 {
 	bool	first_iteration;

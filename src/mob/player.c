@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 18:00:20 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 15:14:28 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static void	assign_player_object(t_game *game_object, int y, int x);
 
+/**
+ * @brief Initializes and creates the player at x and y position
+ * @param game_object Holds all game related data
+ * @param y The y position (in PX) of the player
+ * @param x The x position (in PX) of the player
+ */
 void	init_player(t_game *game_object, int y, int x)
 {
 	game_object->player = ft_calloc(sizeof(t_animated_mob), 1);
@@ -28,6 +34,12 @@ void	init_player(t_game *game_object, int y, int x)
 	assign_player_object(game_object, y, x);
 }
 
+/**
+ * @brief Assigns data to the player object
+ * @param game_object Holds all game related data
+ * @param y The y position (in PX) of the player
+ * @param x The x position (in PX) of the player
+ */
 static void	assign_player_object(t_game *game_object, int y, int x)
 {
 	game_object->player->sprite_path = PLAYER_SPRITE_PATH;

@@ -6,12 +6,17 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:55:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 13:23:03 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:40:35 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief Checks if the key pressed is WASD.
+ * @param keydata Contains information about the key that is pressed.
+ * @return Returns true if the key pressed is WASD, else false.
+ */
 bool	is_movement(mlx_key_data_t keydata)
 {
 	if (keydata.key == MLX_KEY_W

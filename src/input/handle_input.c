@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 17:48:15 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:39:54 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static void	handle_movement(t_game *game_object);
 
+/**
+ * @brief Checks for specific key strokes (WASD for movement), and
+ * 		  ESC for quitting the game and handles each appropriately
+ * @param keydata Contains information about the key that was pressed.
+ * @param param A void poiner that gets typecasted to (t_game *).
+ */
 void	handle_input(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game_object;
@@ -28,6 +34,10 @@ void	handle_input(mlx_key_data_t keydata, void *param)
 		cleanup_and_exit(game_object, SUCCESS, "");
 }
 
+/**
+ * @brief Updatest the players position based on the key pressed (WASD)
+ * @param game_object The game_object that holds the player object.
+ */
 static void	handle_movement(t_game *game_object)
 {
 	int delta_x;

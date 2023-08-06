@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:44:28 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 18:00:17 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 15:04:41 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 static void	assign_enemy_object(t_game *game_object, int y, int x);
 static void	update_enemy_pos(t_game *game_object, int direction);
 
+/**
+ * @brief Initializes the enemy at the given position.
+ * @param game_object The game object which holds all game related data.
+ * @param y The y position (in PX) of the enemy.
+ * @param x The x position (in PX) of the enemy.
+ */
 void	init_enemy(t_game *game_object, int y, int x)
 {
 	game_object->enemy = ft_calloc(1, sizeof(t_animated_mob));
@@ -29,6 +35,10 @@ void	init_enemy(t_game *game_object, int y, int x)
 	assign_z_index(game_object->enemy, 4);
 }
 
+/**
+ * @brief Moves the enemy in random directions
+ * @param param A void pointer that gets type casted to (t_game *)
+ */
 void	move_enemy(void *param)
 {
 	t_game 		*game_object;
@@ -57,6 +67,12 @@ void	move_enemy(void *param)
 
 }
 
+/**
+ * @brief Assigns data tot he enemy object
+ * @param game_object The game object which holds the enemy
+ * @param y The y position (in PX) of the enemy
+ * @param x The x position (in PX) of the enemy
+ */
 static void	assign_enemy_object(t_game *game_object, int y, int x)
 {
 	game_object->enemy->sprite_path = ENEMY_SPRITE_PATH;
@@ -73,6 +89,12 @@ static void	assign_enemy_object(t_game *game_object, int y, int x)
 	assign_z_index(game_object->enemy, 4);
 }
 
+/**
+ * @brief Updates the enemy position on the map. Also checks
+ * 		  if the tile the enemy is going to move to is valid.
+ * @param game_object The game object which holds all game related data.
+ * @param direction The direction in which the enemy should move.
+ */
 static void	update_enemy_pos(t_game *game_object, int direction)
 {
 	int	delta_x;

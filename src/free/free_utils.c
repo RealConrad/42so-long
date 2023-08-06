@@ -6,12 +6,16 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:01:47 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 12:24:10 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:21:40 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
+/**
+ * @brief Loops through an array of textures and frees them.
+ * @param sprite_textures The array of textures that will be freed.
+ */
 void	free_textures(mlx_texture_t **sprite_textures)
 {
 	int	i;
@@ -25,6 +29,12 @@ void	free_textures(mlx_texture_t **sprite_textures)
 	free(sprite_textures);
 }
 
+/**
+ * @brief Loops through an array of images and frees them
+ * @param game_object The game object that holds all game related data,
+ * 		  including the images.
+ * @param sprite_images The array of images that will be freed.
+ */
 void	free_images(t_game *game_object, mlx_image_t **sprite_images)
 {
 	int	i;
@@ -38,6 +48,11 @@ void	free_images(t_game *game_object, mlx_image_t **sprite_images)
 	free(sprite_images);
 }
 
+/**
+ * @brief Frees the memory allocated for the hud
+ * @param game_object The game object that holds all game related data,
+ * 		  including the hud.
+ */
 void	free_hud(t_game *game_object)
 {
 	(void)game_object;
