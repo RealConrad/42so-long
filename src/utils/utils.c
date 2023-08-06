@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 17:37:05 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 18:01:39 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 15:22:08 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ char	*get_sprites(int sprite_index, t_animated_mob *animation_config)
 	return (filename);
 }
 
+/**
+ * @brief Assigns textures to the given mob.
+ * @param mob The mob to assign textures to.
+ */
 void	assign_sprite_textures(t_animated_mob *mob)
 {
 	char	*filename;
@@ -60,6 +64,11 @@ void	assign_sprite_textures(t_animated_mob *mob)
 	mob->sprites[i] = NULL;
 }
 
+/**
+ * @brief Assigns images to the given mob.
+ * @param game_object Holds all game related data.
+ * @param mob The mob to assign images to
+ */
 void	assign_sprite_images(t_game *game_object, t_animated_mob *mob)
 {
 	int	i;
@@ -76,6 +85,11 @@ void	assign_sprite_images(t_game *game_object, t_animated_mob *mob)
 	mob->animated_sprite[i] = NULL;
 }
 
+/**
+ * @brief Loops through all image instances and assigns a z index
+ * @param mob The mob which contains the images
+ * @param z_index The z index to set to the image instances
+ */
 void	assign_z_index(t_animated_mob *mob, int z_index)
 {
 	int	i;
