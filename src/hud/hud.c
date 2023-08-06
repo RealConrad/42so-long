@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:24:15 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:32:45 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 16:41:30 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_hud(t_game *game_object)
 {
 	game_object->hud->is_game_paused = false;
 	game_object->hud->dialogue_img = ft_calloc(1, sizeof(t_animated_mob));
+	if (!game_object->hud->dialogue_img)
+		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for dialogue image.");
 	
 	game_object->hud->dialogue_img->num_sprites = DIALOGUE_SPRITE_COUNT;
 	if (allocate_mob_object(game_object->hud->dialogue_img) == FAIL)
