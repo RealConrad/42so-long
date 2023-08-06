@@ -6,12 +6,17 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:58:00 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/01 17:04:32 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:18:00 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
+/**
+ * @brief Frees the memory allocated for the enemy.
+ * @param game_object The game object that holds all game related data,
+ * 		  including the enemy.
+ */
 void	free_enemy(t_game *game_object)
 {
 	free_textures(game_object->enemy->sprites);
@@ -19,6 +24,11 @@ void	free_enemy(t_game *game_object)
 	free(game_object->enemy);
 }
 
+/**
+ * @brief Frees the memory allocated for all traps;
+ * @param game_object The game object that holds all game related data,
+ * 		  including the traps.
+ */
 void	free_traps(t_game *game_object)
 {
 	bool	first_iteration;
@@ -37,6 +47,11 @@ void	free_traps(t_game *game_object)
 	free(temp);
 }
 
+/**
+ * @brief Frees the memory allocated for all the mimics
+ * @param game_object The game object that holds all game related data,
+ * 		  including the mimics.
+ */
 void	free_mimics(t_game *game_object)
 {
 	bool	first_iteration;
