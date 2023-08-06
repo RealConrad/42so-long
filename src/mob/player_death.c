@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:45:09 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 15:55:37 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 15:12:24 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 static void	is_standing_on_trap(t_game *game_object);
 static void	is_standing_on_mimic(t_game *game_object);
 
+/**
+ * @brief Checks if the player should die
+ * @param param A void pointer that is type casted to (t_game *)
+ */
 void	check_if_player_should_die(void *param)
 {
 	t_game	*game_object;
@@ -37,6 +41,10 @@ void	check_if_player_should_die(void *param)
 		}
 }
 
+/**
+ * @brief Checks if the player is standing on a trap
+ * @param game_object Holds all game related data, including player + trap
+ */
 static void	is_standing_on_trap(t_game *game_object)
 {
 	bool	first_iteration;
@@ -56,6 +64,10 @@ static void	is_standing_on_trap(t_game *game_object)
 	}
 }
 
+/**
+ * @brief Checks if the player is standing on a mimic
+ * @param game_object Holds all game related data, including player + mimics
+ */
 static void	is_standing_on_mimic(t_game *game_object)
 {
 	bool	first_iteration;
