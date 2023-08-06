@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:50:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/04 14:27:58 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:49:08 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	check_map(t_game *game_object, char *map_name)
 	close(fd);
 }
 
+/**
+ * @brief Reads the file passed via the file descriptor (fd) and makes
+ * 		  a copy of the data in the file.
+ * @param game_object The game object which holds the map data.
+ * @param fd The file desciptor to be read.
+ */
 static void	read_map(t_game *game_object, int fd)
 {
 	char	*map_row_str;

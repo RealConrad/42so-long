@@ -6,14 +6,20 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 11:58:25 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/04 14:15:56 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/06 13:47:24 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static bool				is_valid_tile(char tile);
+static bool	is_valid_tile(char tile);
 
+/**
+ * @brief Checks to see if the map contains any invalid characters
+ * 		  that are not recorganized.
+ * @param game_object The game object that holds the map data,
+ * @param y The row of the map to check for,
+ */
 void	check_map_chars(t_game *game_object, int y)
 {
 	int	x;
@@ -28,6 +34,11 @@ void	check_map_chars(t_game *game_object, int y)
 
 }
 
+/**
+ * @brief checks if the given tile is valid.
+ * @param tile The tile to check for.
+ * @return Returns true if the tile is valid or false if invalid.
+ */
 static bool	is_valid_tile(char tile)
 {
 	if (tile == WALL || tile == GROUND || tile == ENEMY 
