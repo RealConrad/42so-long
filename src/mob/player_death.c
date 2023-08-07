@@ -6,14 +6,14 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:45:09 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 15:12:24 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 19:30:57 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	is_standing_on_trap(t_game *game_object);
-static void	is_standing_on_mimic(t_game *game_object);
+static void	find_trap(t_game *game_object);
+static void	find_mimic(t_game *game_object);
 
 /**
  * @brief Checks if the player should die
@@ -27,25 +27,26 @@ void	check_if_player_should_die(void *param)
 	game_object = (t_game *)param;
 	if (game_object->hud->is_game_paused)
 		return ;
-	current_player_tile = game_object->map->map_plan[game_object->player->y][game_object->player->x];
+	current_player_tile = game_object->map->map_plan
+	[game_object->player->y][game_object->player->x];
 	if (current_player_tile == TRAP)
-		is_standing_on_trap(game_object);
+		find_trap(game_object);
 	else if (current_player_tile == MIMIC)
-		is_standing_on_mimic(game_object);
+		find_mimic(game_object);
 	else if (game_object->enemy
 		&& game_object->player->x == game_object->enemy->x
 		&& game_object->player->y == game_object->enemy->y)
-		{
-			game_object->hud->is_player_dead = true;
-			end_game(game_object, DIED);
-		}
+	{
+		game_object->hud->is_player_dead = true;
+		end_game(game_object, DIED);
+	}
 }
 
 /**
  * @brief Checks if the player is standing on a trap
  * @param game_object Holds all game related data, including player + trap
  */
-static void	is_standing_on_trap(t_game *game_object)
+static void	find_trap(t_game *game_object)
 {
 	bool	first_iteration;
 	t_trap	*temp;
@@ -55,7 +56,9 @@ static void	is_standing_on_trap(t_game *game_object)
 	while (first_iteration || temp != game_object->map->traps)
 	{
 		first_iteration = false;
-		if (temp->spike->x == game_object->player->x && temp->spike->y == game_object->player->y && temp->is_active)
+		if (temp->spike->x == game_object->player->x
+			&& temp->spike->y == game_object->player->y
+			&& temp->is_active)
 		{
 			game_object->hud->is_player_dead = true;
 			end_game(game_object, DIED);
@@ -68,7 +71,7 @@ static void	is_standing_on_trap(t_game *game_object)
  * @brief Checks if the player is standing on a mimic
  * @param game_object Holds all game related data, including player + mimics
  */
-static void	is_standing_on_mimic(t_game *game_object)
+static void	find_mimic(t_game *game_object)
 {
 	bool	first_iteration;
 	t_mimic	*temp;
@@ -78,7 +81,8 @@ static void	is_standing_on_mimic(t_game *game_object)
 	while (first_iteration || temp != game_object->map->mimics)
 	{
 		first_iteration = false;
-		if (temp->chest->x == game_object->player->x && temp->chest->y == game_object->player->y)
+		if (temp->chest->x == game_object->player->x
+			&& temp->chest->y == game_object->player->y)
 		{
 			game_object->hud->is_player_dead = true;
 			end_game(game_object, DIED);

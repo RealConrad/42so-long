@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:21:48 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 14:31:28 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 18:59:57 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_map(t_game *game_object)
 {
 	int		x;
 	int		y;
-	
+
 	y = 0;
 	while (y < game_object->map->height)
 	{
@@ -50,7 +50,6 @@ static void	draw_map(t_game *game_object, char map_tile, int y, int x)
 		draw_tile(game_object, y * TILE_PX, x * TILE_PX, WALL_PATH);
 	else if (map_tile != WALL && map_tile != EXIT && map_tile != TRAP)
 		draw_tile(game_object, y * TILE_PX, x * TILE_PX, GROUND_PATH);
-
 	if (map_tile == PLAYER)
 		init_player(game_object, y * TILE_PX, x * TILE_PX);
 	else if (map_tile == COLLECTABLE)

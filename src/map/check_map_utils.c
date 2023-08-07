@@ -6,11 +6,11 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:43:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:44:56 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 19:12:12 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 /**
  * @brief Checks if the given map name is valid.
@@ -29,11 +29,13 @@ void	check_map_name(t_game *game_object, char *map_name)
 	while (map_name[i])
 	{
 		if (map_name[i] != file_type[j])
-			cleanup_and_exit(game_object, FAIL, "Map is not a .ber file.");
+			cleanup_and_exit(game_object, FAIL,
+				"Map is not a .ber file.");
 		i++;
 		j++;
 	}
 }
+
 /**
  * @brief Counts the number of map elemnts there are.
  * @param map The map to count the number of elements.
@@ -44,7 +46,7 @@ void	count_map_row_items(t_map *map, int y)
 	int	x;
 
 	x = 0;
-	while(map->map_plan[y][x] && map->map_plan[y][x] != '\n')
+	while (map->map_plan[y][x] && map->map_plan[y][x] != '\n')
 	{
 		if (map->map_plan[y][x] == COLLECTABLE)
 			map->num_collectables++;
@@ -73,7 +75,8 @@ void	validate_map_items(t_game *game_object)
 	else if (game_object->map->num_exits != 1)
 		cleanup_and_exit(game_object, FAIL, "The map must contain 1 exit.");
 	else if (game_object->map->num_collectables < 1)
-		cleanup_and_exit(game_object, FAIL, "The map must contain at least 1 collectable.");
+		cleanup_and_exit(game_object, FAIL,
+			"The map must contain at least 1 collectable.");
 	else if (game_object->map->num_enemies > 1)
 		cleanup_and_exit(game_object, FAIL, "The game can only have 1 enemy.");
 }
@@ -91,10 +94,12 @@ void	check_map_width(t_game *game_object)
 	while (y < game_object->map->height)
 	{
 		x = 0;
-		while (game_object->map->map_plan[y][x] != '\n' && game_object->map->map_plan[y][x] != '\0')
+		while (game_object->map->map_plan[y][x] != '\n'
+			&& game_object->map->map_plan[y][x] != '\0')
 			x++;
 		if (x != game_object->map->width)
-			cleanup_and_exit(game_object, FAIL, "The map has an inconsistent width.");
-		y++;		
+			cleanup_and_exit(game_object, FAIL,
+				"The map has an inconsistent width.");
+		y++;
 	}
 }

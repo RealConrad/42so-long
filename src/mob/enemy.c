@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:44:28 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 15:04:41 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 19:31:11 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	init_enemy(t_game *game_object, int y, int x)
 {
 	game_object->enemy = ft_calloc(1, sizeof(t_animated_mob));
 	if (!game_object->enemy)
-		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for enemy.");
-	
+		cleanup_and_exit(game_object, FAIL,
+			"Failed to allocate memory for enemy.");
 	game_object->enemy->num_sprites = ENEMY_SPRITE_COUNT;
-	// Allocate memory for enemy
 	if (allocate_mob_object(game_object->enemy) == FAIL)
-		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for enemy object.");
+		cleanup_and_exit(game_object, FAIL,
+			"Failed to allocate memory for enemy object.");
 	assign_enemy_object(game_object, y, x);
 	assign_z_index(game_object->enemy, 4);
 }
@@ -41,7 +41,7 @@ void	init_enemy(t_game *game_object, int y, int x)
  */
 void	move_enemy(void *param)
 {
-	t_game 		*game_object;
+	t_game		*game_object;
 	int			rand_num;
 	static int	frame_counter = 0;
 	int			frame_skip_amount;
@@ -50,7 +50,6 @@ void	move_enemy(void *param)
 	game_object = (t_game *)param;
 	if (game_object->hud->is_game_paused)
 		return ;
-
 	rand_num = (rand() % 4) + 1;
 	if (++frame_counter >= frame_skip_amount)
 	{
@@ -64,7 +63,6 @@ void	move_enemy(void *param)
 		else if (rand_num == 4)
 			update_enemy_pos(game_object, 4);
 	}
-
 }
 
 /**
@@ -112,7 +110,6 @@ static void	update_enemy_pos(t_game *game_object, int direction)
 		delta_x = RIGHT;
 	else if (direction == 4)
 		delta_x = LEFT;
-
 	tile_x = game_object->enemy->x + delta_x;
 	tile_y = game_object->enemy->y + delta_y;
 	if (game_object->map->map_plan[tile_y][tile_x] == GROUND
