@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:34:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:39:54 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 18:57:13 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	handle_input(mlx_key_data_t keydata, void *param)
  */
 static void	handle_movement(t_game *game_object)
 {
-	int delta_x;
+	int	delta_x;
 	int	delta_y;
 
 	delta_x = 0;
@@ -53,8 +53,8 @@ static void	handle_movement(t_game *game_object)
 		delta_x = LEFT;
 	else if (mlx_is_key_down(game_object->mlx, MLX_KEY_D))
 		delta_x = RIGHT;
-
-	if (game_object->map->map_plan[game_object->player->y + delta_y][game_object->player->x + delta_x] != WALL)
+	if (game_object->map->map_plan[game_object->player->y
+			+ delta_y][game_object->player->x + delta_x] != WALL)
 	{
 		game_object->player->x += delta_x;
 		game_object->player->y += delta_y;
