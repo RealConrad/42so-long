@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:20 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/02 13:21:11 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 14:54:45 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 /*
 TODO: Fix makefile when installing library/mlx
 TODO: Install glfw properly etc...
-TODO: CHECK IF MAP IS COMPLETABLE
-TODO: Add enemy patrol (make enemy move)
-TODO: Add player text ("For the Queen!", "For the Empire!", "For honour and glory!", "For Britiannia!")
-TODO: Check map for invalid tile (e.g. X)
 */
 
 int	main(int argc, char **argv)

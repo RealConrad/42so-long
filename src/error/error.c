@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:31:49 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:13:03 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 14:57:29 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_ms
 	free_game_memory(game_object);
 	if (exit_type == FAIL)
 		ft_printf("Error:\n%s\n", error_msg);
+	system("leaks so_long");
 	exit(exit_type);
 }

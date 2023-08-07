@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 14:26:54 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 13:33:59 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void				flood_fill(t_game *game_object, int y, int x,
 void	check_map_solvable(t_game *game_object)
 {
 	t_map_position	player_pos;
-	int				has_visited[MAX_LINES][MAX_LINES];
+	static int		has_visited[MAX_LINES][MAX_LINES] = {0};
 	int				x;
 	int				y;
 	

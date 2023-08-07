@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:01:47 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:21:40 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 15:07:11 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	free_images(t_game *game_object, mlx_image_t **sprite_images)
 	while (sprite_images[i])
 	{
 		mlx_delete_image(game_object->mlx, sprite_images[i]);
+		sprite_images[i] = NULL;
 		i++;
 	}
 	free(sprite_images);
@@ -55,5 +56,11 @@ void	free_images(t_game *game_object, mlx_image_t **sprite_images)
  */
 void	free_hud(t_game *game_object)
 {
-	(void)game_object;
+	if (game_object->hud->dialogue_img)
+	{
+		free_textures(game_object->hud->dialogue_img->sprites);
+		free_images(game_object, game_object->hud->dialogue_img->animated_sprite);
+		free(game_object->hud->dialogue_img);
+	}
+	free(game_object->hud);
 }

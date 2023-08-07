@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:28:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:23:33 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 15:22:21 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,24 @@ void	free_game_memory(t_game *game_object)
 static void	free_collectables(t_game *game_object)
 {
 	t_collectables	*temp;
-	bool			first_iteration;
+	t_collectables	*curr_temp;
 
 	temp = game_object->map->collectables;
-	first_iteration = true;
-	while(first_iteration || temp != game_object->map->collectables)
+	temp->prev->next = NULL;
+	while(temp->next)
 	{
-		first_iteration = false;
 		free_textures(temp->coin->sprites);
 		free_images(game_object, temp->coin->animated_sprite);
 		free(temp->coin);
+		// Make copy of current node and free current node
+		curr_temp = temp;
 		temp = temp->next;
+		free(curr_temp);
 	}
+	// Free last node
+	free_textures(temp->coin->sprites);
+	free_images(game_object, temp->coin->animated_sprite);
+	free(temp->coin);
 	free(temp);
 }
 
@@ -95,9 +101,12 @@ static void free_map(t_game *game_object)
 		while(game_object->map->map_plan[y])
 		{
 			free(game_object->map->map_plan[y]);
+			game_object->map->map_plan[y] = NULL;
 			y++;
 		}
 		free(game_object->map->map_plan);
+		game_object->map->map_plan = NULL;
 	}
 	free(game_object->map);
+	game_object->map = NULL;
 }

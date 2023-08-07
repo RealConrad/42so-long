@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/04 14:23:00 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/07 15:30:06 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ C_LIBRARY_FCLEAN	:= make fclean -C libraries/42c-library
 # MLX
 MLX_PATH			:= libraries/MLX42
 MLX					:= $(MLX_PATH)/build/libmlx42.a
-MLX_FLAGS			:= ./$(MLX_PATH)/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/$(BREW)/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+MLX_FLAGS			:= ./$(MLX) -Iinclude -lglfw -L"/Users/$(USER)/$(BREW)/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 
 # Command to remove files
 RM					:= rm -f

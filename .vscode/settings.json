@@ -4,6 +4,7 @@
 		"unistd.h": "c",
 		"so_long.h": "c",
 		"bitset": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"locale": "c"
 	}
 }
