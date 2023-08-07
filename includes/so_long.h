@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:57:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:19:46 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 19:37:33 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ void	check_map_solvable(t_game *game_object);
 
 /* Animation */
 void	init_animation(void	*param);
-char	*get_sprites(int	sprite_index, t_animated_mob *animation_config);
+char	*get_sprites(int sprite_index, t_animated_mob *animation_config);
 void	animate_sprite(t_animated_mob *animation_config);
 void	update_sprite_position(t_animated_mob *animation_config);
 void	animate_trap_idle(t_trap *trap, int idle_time);
@@ -205,14 +205,17 @@ void	move_enemy(void *param);
 
 /* Collectables */
 void	init_collectable(t_game *game_object, int y, int x);
-void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x);
-void	add_collectable_node(t_game *game_object, t_collectables *new_collectable);
+void	assign_collectable_object(t_game *game_object,
+			t_animated_mob *collectable, int y, int x);
+void	add_collectable_node(t_game *game_object,
+			t_collectables *new_collectable);
 void	check_if_pickup_collectable(void *param);
 void	remove_collectable(t_game *game_object);
 
 /* Trap */
 void	init_trap(t_game *game_object, int y, int x);
-void	assign_trap_object(t_game *game_object, t_animated_mob *spike, int y, int x);
+void	assign_trap_object(t_game *game_object,
+			t_animated_mob *spike, int y, int x);
 void	add_spike_node(t_game *game_object, t_trap *trap);
 
 /* Mimic */
@@ -241,7 +244,8 @@ void	assign_z_index(t_animated_mob *mob, int z_index);
 bool	allocate_mob_object(t_animated_mob *mob);
 
 /* Handle errors */
-void	cleanup_and_exit(t_game *game_object, t_exit_type exit_type, char *error_msg);
+void	cleanup_and_exit(t_game *game_object,
+			t_exit_type exit_type, char *error_msg);
 
 /* Free */
 void	free_game_memory(t_game *game_object);
