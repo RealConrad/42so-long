@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:24:15 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 16:41:30 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 18:49:58 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_hud(t_game *game_object)
 	game_object->hud->is_game_paused = false;
 	game_object->hud->dialogue_img = ft_calloc(1, sizeof(t_animated_mob));
 	if (!game_object->hud->dialogue_img)
-		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for dialogue image.");
-	
+		cleanup_and_exit(game_object, FAIL,
+			"Failed to allocate memory for dialogue image.");
 	game_object->hud->dialogue_img->num_sprites = DIALOGUE_SPRITE_COUNT;
 	if (allocate_mob_object(game_object->hud->dialogue_img) == FAIL)
-		cleanup_and_exit(game_object, FAIL, "Failed to allocate memory for dialogue image.");
-
+		cleanup_and_exit(game_object, FAIL,
+			"Failed to allocate memory for dialogue image.");
 	game_object->hud->is_dialogue_displayed = false;
 	game_object->hud->dialogue_img->frame_skip_counter = 0;
 	game_object->hud->dialogue_img->frame_skip_amount = 500;
@@ -49,7 +49,7 @@ void	display_player_move_count(void *param)
 	t_game	*game_object;
 	char	*str;
 	char	*moves;
-	
+
 	game_object = (t_game *)param;
 	if (game_object->hud->is_game_paused)
 		return ;
@@ -62,7 +62,8 @@ void	display_player_move_count(void *param)
 		game_object->hud->has_player_moved = false;
 		ft_printf("%s\n", str);
 	}
-	game_object->hud->player_moves_img = mlx_put_string(game_object->mlx, str, 0, 0);
+	game_object->hud->player_moves_img = mlx_put_string(
+			game_object->mlx, str, 0, 0);
 	game_object->hud->player_moves_img->instances->y += 10;
 	game_object->hud->player_moves_img->instances->x += 10;
 	free(str);
@@ -70,16 +71,19 @@ void	display_player_move_count(void *param)
 }
 
 /**
- * @brief Ends the game. It also freezes the game displays a relevant message to
- * 		  the screen depending on if the player won or lost.
+ * @brief Ends the game. It also freezes the game displays a relevant
+ * 		  message to the screen depending on if the player won or lost.
  * @param game_object The game object that holds all game related data.
- * @param game_over_type The game over type if the player lost or completed the game.
+ * @param game_over_type The game over type if the player lost or
+ * 		  completed the game.
  */
 void	end_game(t_game *game_object, t_game_over_type game_over_type)
 {
 	game_object->hud->is_game_paused = true;
 	if (game_over_type == DIED)
-		render_game_over_screen(game_object, "You Died! Game Over!");
+		render_game_over_screen(game_object,
+			"You Died! Game Over!");
 	else if (game_over_type == COMPLETED)
-		render_game_over_screen(game_object, "For the Queen, we have claimed victory!");
+		render_game_over_screen(game_object,
+			"For the Queen, we have claimed victory!");
 }
