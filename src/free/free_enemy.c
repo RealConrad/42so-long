@@ -6,16 +6,16 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:58:00 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/07 15:27:52 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 18:45:26 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 /**
  * @brief Frees the memory allocated for the enemy.
- * @param game_object The game object that holds all game related data,
- * 		  including the enemy.
+ * @param game_object The game object that holds all game
+ * 		  related data, including the enemy.
  */
 void	free_enemy(t_game *game_object)
 {
@@ -41,12 +41,10 @@ void	free_traps(t_game *game_object)
 		free_textures(temp->spike->sprites);
 		free_images(game_object, temp->spike->animated_sprite);
 		free(temp->spike);
-		// Make copy of current node and free current node
 		curr_temp = temp;
 		temp = temp->next;
 		free(curr_temp);
 	}
-	// Free last node
 	free_textures(temp->spike->sprites);
 	free_images(game_object, temp->spike->animated_sprite);
 	free(temp->spike);
@@ -70,12 +68,10 @@ void	free_mimics(t_game *game_object)
 		free_textures(temp->chest->sprites);
 		free_images(game_object, temp->chest->animated_sprite);
 		free(temp->chest);
-		// Make copy of current node and free current node
 		curr_temp = temp;
 		temp = temp->next;
 		free(curr_temp);
 	}
-	// Free last node
 	free_textures(temp->chest->sprites);
 	free_images(game_object, temp->chest->animated_sprite);
 	free(temp->chest);

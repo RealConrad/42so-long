@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:55:12 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:40:35 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 18:58:12 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 bool	is_movement(mlx_key_data_t keydata)
 {
 	if (keydata.key == MLX_KEY_W
-			|| keydata.key == MLX_KEY_A
-			|| keydata.key == MLX_KEY_S
-			|| keydata.key == MLX_KEY_D
-		)
+		|| keydata.key == MLX_KEY_A
+		|| keydata.key == MLX_KEY_S
+		|| keydata.key == MLX_KEY_D
+	)
 		return (true);
 	return (false);
 }

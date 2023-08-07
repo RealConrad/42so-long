@@ -6,11 +6,11 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:01:47 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/07 15:07:11 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 17:10:23 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 /**
  * @brief Loops through an array of textures and frees them.
@@ -59,7 +59,8 @@ void	free_hud(t_game *game_object)
 	if (game_object->hud->dialogue_img)
 	{
 		free_textures(game_object->hud->dialogue_img->sprites);
-		free_images(game_object, game_object->hud->dialogue_img->animated_sprite);
+		free_images(game_object,
+			game_object->hud->dialogue_img->animated_sprite);
 		free(game_object->hud->dialogue_img);
 	}
 	free(game_object->hud);

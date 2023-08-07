@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:12:40 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/04 15:32:29 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 17:05:51 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
  * @param y The y-position (in PX) of the collectable.
  * @param x The x-position (in PX) of the collectable.
  */
-void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable, int y, int x)
+void	assign_collectable_object(t_game *game_object,
+			t_animated_mob *collectable, int y, int x)
 {
 	collectable->sprite_path = COLLECTABLE_PATH;
 	collectable->width = COLLECTABLE_WIDTH_PX;
@@ -40,14 +41,14 @@ void	assign_collectable_object(t_game *game_object, t_animated_mob *collectable,
  * 		  linked list as well as all game data.
  * @param new_collectable The collectable to add to the linked list.
  */
-void	add_collectable_node(t_game *game_object, t_collectables *new_collectable)
+void	add_collectable_node(t_game *game_object,
+		t_collectables *new_collectable)
 {
 	t_collectables	*curr_collectable;
 
 	new_collectable->next = NULL;
 	new_collectable->prev = NULL;
 	new_collectable->is_collected = false;
-	// If linked list has not been initialized yet
 	if (!game_object->map->collectables)
 	{
 		game_object->map->collectables = new_collectable;
@@ -82,10 +83,12 @@ void	remove_collectable(t_game *game_object)
 	while (first_iteration || temp != game_object->map->collectables)
 	{
 		first_iteration = false;
-		if (!temp->is_collected && temp->coin->x == game_object->player->x && temp->coin->y == game_object->player->y)
+		if (!temp->is_collected && temp->coin->x == game_object->player->x
+			&& temp->coin->y == game_object->player->y)
 		{
 			temp->is_collected = true;
-			temp->coin->animated_sprite[temp->coin->curr_frame]->enabled = false;
+			temp->coin->animated_sprite[temp->coin->curr_frame]->enabled
+				= false;
 			game_object->map->num_collectables--;
 			break ;
 		}

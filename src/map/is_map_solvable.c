@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:14:32 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/07 13:33:59 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 19:02:47 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	check_map_solvable(t_game *game_object)
 	static int		has_visited[MAX_LINES][MAX_LINES] = {0};
 	int				x;
 	int				y;
-	
+
 	y = 0;
 	player_pos = find_position(game_object, PLAYER);
 	flood_fill(game_object, player_pos.y, player_pos.x, has_visited);
-
 	while (y < game_object->map->height)
 	{
 		x = 0;
 		while (x < game_object->map->width)
 		{
-			if ((game_object->map->map_plan[y][x] == COLLECTABLE || game_object->map->map_plan[y][x] == EXIT) 
+			if ((game_object->map->map_plan[y][x] == COLLECTABLE
+				|| game_object->map->map_plan[y][x] == EXIT)
 				&& !has_visited[y][x])
 				cleanup_and_exit(game_object, FAIL, "Map is not solvable.");
 			x++;
@@ -52,9 +52,11 @@ void	check_map_solvable(t_game *game_object)
  * @param game_object The game object that contains the map
  * @param y The current y position
  * @param x The current x position
- * @param has_visited An array that contains data if the tile (y,x) has been visited
+ * @param has_visited An array that contains data if the
+ * 		  tile (y,x) has been visited
  */
-static void	flood_fill(t_game *game_object, int y, int x, int has_visited[MAX_LINES][MAX_LINES])
+static void	flood_fill(t_game *game_object, int y, int x,
+		int has_visited[MAX_LINES][MAX_LINES])
 {
 	int					i;
 	static int			direction_x[] = {-1, 0, 0, 1};
@@ -64,7 +66,6 @@ static void	flood_fill(t_game *game_object, int y, int x, int has_visited[MAX_LI
 
 	i = 0;
 	has_visited[y][x] = 1; // Mark current tile as visited;
-	
 	// Check all four directions (top, left, right, bottom)
 	while (i < 4)
 	{
@@ -107,10 +108,12 @@ static t_map_position	find_position(t_game *game_object, char tile)
  * @param game_object The game object that holds the map plan
  * @param y The y position in the map plan
  * @param x The x position in the map plan
- * @param has_visited An array that contains if the tile has been visited already or not
+ * @param has_visited An array that contains if the tile has
+ * 		  been visited already or not
  * @return Returns true if the tile is valid, else false
  */
-static bool	is_move_valid(t_game *game_object, int y, int x, int has_visited[MAX_LINES][MAX_LINES])
+static bool	is_move_valid(t_game *game_object, int y, int x,
+		int has_visited[MAX_LINES][MAX_LINES])
 {
 	if (game_object->map->map_plan[y][x] == WALL || has_visited[y][x])
 		return (false);
