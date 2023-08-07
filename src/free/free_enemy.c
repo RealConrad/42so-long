@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:58:00 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/06 13:18:00 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 15:27:52 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,25 @@ void	free_enemy(t_game *game_object)
  */
 void	free_traps(t_game *game_object)
 {
-	bool	first_iteration;
 	t_trap	*temp;
+	t_trap	*curr_temp;
 
 	temp = game_object->map->traps;
-	first_iteration = true;
-	while (first_iteration || temp != game_object->map->traps)
+	temp->prev->next = NULL;
+	while (temp->next)
 	{
-		first_iteration = false;
 		free_textures(temp->spike->sprites);
 		free_images(game_object, temp->spike->animated_sprite);
 		free(temp->spike);
+		// Make copy of current node and free current node
+		curr_temp = temp;
 		temp = temp->next;
+		free(curr_temp);
 	}
+	// Free last node
+	free_textures(temp->spike->sprites);
+	free_images(game_object, temp->spike->animated_sprite);
+	free(temp->spike);
 	free(temp);
 }
 
@@ -54,18 +60,24 @@ void	free_traps(t_game *game_object)
  */
 void	free_mimics(t_game *game_object)
 {
-	bool	first_iteration;
 	t_mimic	*temp;
+	t_mimic	*curr_temp;
 
-	first_iteration = true;
 	temp = game_object->map->mimics;
-	while (first_iteration || temp != game_object->map->mimics)
+	temp->prev->next = NULL;
+	while (temp->next)
 	{
-		first_iteration = false;
 		free_textures(temp->chest->sprites);
 		free_images(game_object, temp->chest->animated_sprite);
 		free(temp->chest);
+		// Make copy of current node and free current node
+		curr_temp = temp;
 		temp = temp->next;
+		free(curr_temp);
 	}
+	// Free last node
+	free_textures(temp->chest->sprites);
+	free_images(game_object, temp->chest->animated_sprite);
+	free(temp->chest);
 	free(temp);
 }
