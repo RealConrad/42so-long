@@ -6,11 +6,11 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:35:36 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/04 15:26:05 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 16:58:37 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 /**
  * @brief Animates a trap which does not have its spikes active.
@@ -76,13 +76,16 @@ void	update_mimic_sprite(t_game *game_object)
 	first_iteration = true;
 	while (first_iteration || temp != game_object->map->mimics)
 	{
-		if (temp->chest->y == game_object->player->y && temp->chest->x == game_object->player->x)
+		if (temp->chest->y == game_object->player->y
+			&& temp->chest->x == game_object->player->x)
 		{
 			temp->chest->animated_sprite[0]->enabled = false;
-			temp->chest->animated_sprite[1]->instances->x = temp->chest->x * TILE_PX + (TILE_PX / 2) - (temp->chest->width / 2);
-			temp->chest->animated_sprite[1]->instances->y = temp->chest->y * TILE_PX + (TILE_PX / 2) - (temp->chest->height / 2);
+			temp->chest->animated_sprite[1]->instances->x = temp->chest->x
+				* TILE_PX + (TILE_PX / 2) - (temp->chest->width / 2);
+			temp->chest->animated_sprite[1]->instances->y = temp->chest->y
+				* TILE_PX + (TILE_PX / 2) - (temp->chest->height / 2);
 			temp->chest->animated_sprite[1]->enabled = true;
-			return ;	
+			return ;
 		}
 		first_iteration = false;
 		temp = temp->next;

@@ -6,11 +6,11 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:02:57 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/04 15:21:22 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 16:53:24 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 static void	animate_collectables(t_collectables *collectable);
 static void	animate_traps(t_game *game_object);
@@ -27,7 +27,7 @@ void	init_animation(void	*param)
 	game_object = (t_game *)param;
 	time -= game_object->mlx->delta_time;
 	if (time > 0)
-		return;
+		return ;
 	time = TIME_FOR_FRAME;
 	if (game_object->hud->is_game_paused)
 	{
@@ -77,7 +77,7 @@ static void	animate_traps(t_game *game_object)
 	t_trap	*temp;
 	int		idle_time;
 	int		active_time;
-	
+
 	idle_time = 10;
 	active_time = 4;
 	temp = game_object->map->traps;
