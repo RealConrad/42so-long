@@ -6,15 +6,15 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:28:22 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/07 15:22:21 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/07 18:45:08 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 static void	free_collectables(t_game *game_object);
 static void	free_player(t_game *game_object);
-static void free_map(t_game *game_object);
+static void	free_map(t_game *game_object);
 
 /**
  * @brief Frees the entire game object.
@@ -59,17 +59,15 @@ static void	free_collectables(t_game *game_object)
 
 	temp = game_object->map->collectables;
 	temp->prev->next = NULL;
-	while(temp->next)
+	while (temp->next)
 	{
 		free_textures(temp->coin->sprites);
 		free_images(game_object, temp->coin->animated_sprite);
 		free(temp->coin);
-		// Make copy of current node and free current node
 		curr_temp = temp;
 		temp = temp->next;
 		free(curr_temp);
 	}
-	// Free last node
 	free_textures(temp->coin->sprites);
 	free_images(game_object, temp->coin->animated_sprite);
 	free(temp->coin);
@@ -91,14 +89,14 @@ static void	free_player(t_game *game_object)
  * @brief Frees the map.
  * @param game_object The game object that holds the map.
  */
-static void free_map(t_game *game_object)
+static void	free_map(t_game *game_object)
 {
 	int	y;
 
 	y = 0;
 	if (game_object->map->map_plan)
 	{
-		while(game_object->map->map_plan[y])
+		while (game_object->map->map_plan[y])
 		{
 			free(game_object->map->map_plan[y]);
 			game_object->map->map_plan[y] = NULL;
