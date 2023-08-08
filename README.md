@@ -36,4 +36,28 @@
 ## Game Mechanics
 - **Movement:** Move with W, A, S, and D keys.
 - **Movement count:** Displays the total number of moves the player has done on screen.
-- **Enviroment:** The 
+- **Enviroment:** The map may contain 1 enemy, multiple mimics and traps.
+
+## Graphics Management
+- The game opens in a new window.
+- Fluid window operations like minimizing, transitioning to another window, etc.
+- Quick exit the game by pressing **ESC** or the close button. 
+
+## Map Design
+- The game supports the current map elements:
+  - `1` for walls.
+  - `0` for empty space (ground).
+  - `D` for enemy patrol.
+  - `P` for starting player position.
+  - `M` for mimic enemy.
+  - `C` for collectable.
+  - `E` for exit.
+  - `T` for trap.
+- For the map to be "valid". The following have to be true:
+    - There must be 1 player (`P`).
+    - There must be atleast 1 collectable (`C`).
+    - There must be 1 exit (`E`).
+    - The map must be rectangular.
+    - The map must be surrounded by walls.
+    - The map must be solvable (e.g. The player (`P`) cannot be surrounded by walls).
+    - The map must end with `.ber`.
