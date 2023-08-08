@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/08 13:11:48 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 13:14:55 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ all: init-submodules $(NAME)
 $(NAME): $(OBJ) $(MLX)
 	@$(C_LIBRARY_MAKE)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
-	@echo $(GREEN)"Linking $(NAME)";$(DEFAULT)
+	@echo -e $(GREEN)"Linking $(NAME)";$(DEFAULT)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -100,18 +100,18 @@ $(MLX):
 	@cd $(MLX_PATH) && cmake -B build && cmake --build build -j4
 
 # Init submodules
+#		@echo -e $(GREEN)"Initializing and updating MLX submodule..."$(DEFAULT);
 init-submodules:
 	@if [ -z "$(shell ls -A $(MLX_PATH))" ]; then \
-		@echo -e $(GREEN)"Initializing and updating MLX submodule..."$(DEFAULT); \
 		git submodule init $(MLX_PATH); \
 		git submodule update $(MLX_PATH); \
 	fi
 	@if [ -z "$(shell ls -A $(LIBFT_PATH))" ]; then \
-		@echo -e $(GREEN)"Initializing and updating LIBFT submodule..."$(DEFAULT); \
 		git submodule init $(LIBFT_PATH); \
 		git submodule update $(LIBFT_PATH); \
 	fi
 
+#		@echo -e $(GREEN)"Initializing and updating LIBFT submodule..."$(DEFAULT); \
 # Remove all object files
 clean:
 	@$(RM) $(OBJ)
