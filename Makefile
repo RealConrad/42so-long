@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/08 12:14:38 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 12:50:24 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ CFLAGS				:= -Wall -Werror -Wextra
 INCLUDES			:= -I./includes
 
 # Libft (C Library)
-LIBFT_REPO			:= https://github.com/RealConrad/42c-library.git
 LIBFT				:= libraries/42c-library/libft.a
 C_LIBRARY_MAKE		:= make -C libraries/42c-library
 C_LIBRARY_FCLEAN	:= make fclean -C libraries/42c-library
@@ -85,7 +84,7 @@ SRC					+= $(addprefix $(UTILS_DIR), $(UTIL_FILES))
 OBJ					:= $(SRC:.c=.o)
 
 # Default target
-all: clone $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ) $(MLX)
 	@$(C_LIBRARY_MAKE)
@@ -98,18 +97,6 @@ $(NAME): $(OBJ) $(MLX)
 # Build MLX library
 $(MLX):
 	@cd $(MLX_PATH) && cmake -B build && cmake --build build -j4
-
-clone:
-	@if [ ! -d "libraries/42c-library" ]; then \
-		cd libraries && git clone $(LIBFT_REPO); \
-	fi
-
-pull:
-	@if [ -d "libraries/42c-library" ]; then \
-		cd libraries/42c-library && git pull; \
-	else \
-		make clone; \
-	fi
 
 # Remove all object files
 clean:
