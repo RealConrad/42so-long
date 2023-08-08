@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/08 13:10:13 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 13:11:48 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,12 +102,12 @@ $(MLX):
 # Init submodules
 init-submodules:
 	@if [ -z "$(shell ls -A $(MLX_PATH))" ]; then \
-		@echo $(GREEN)"Initializing and updating MLX submodule..."$(DEFAULT); \
+		@echo -e $(GREEN)"Initializing and updating MLX submodule..."$(DEFAULT); \
 		git submodule init $(MLX_PATH); \
 		git submodule update $(MLX_PATH); \
 	fi
 	@if [ -z "$(shell ls -A $(LIBFT_PATH))" ]; then \
-		@echo $(GREEN)"Initializing and updating LIBFT submodule..."$(DEFAULT); \
+		@echo -e $(GREEN)"Initializing and updating LIBFT submodule..."$(DEFAULT); \
 		git submodule init $(LIBFT_PATH); \
 		git submodule update $(LIBFT_PATH); \
 	fi
