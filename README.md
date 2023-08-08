@@ -61,3 +61,20 @@
     - The map must be surrounded by walls.
     - The map must be solvable (e.g. The player (`P`) cannot be surrounded by walls).
     - The map must end with `.ber`.
+Here is an example of a vaild map:
+```
+1111111111111
+1C010T000T0C1
+1000011111001
+1P0011ET00001
+1111111111111
+```
+
+## Installation
+1. Ensure you have cmake installed. You can check via: `cmake --version`. If there is a version number, you good to go. \
+  1.1) For macOS: `brew install cmake` \
+  1.2) For Lunix (Debian, Ubuntu etc.): 
+```
+sudo apt update
+sudo apt install -y cmake
+```
