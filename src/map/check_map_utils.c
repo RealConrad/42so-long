@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:43:59 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/07 19:12:12 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/08 14:39:09 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ void	check_map_width(t_game *game_object)
 	int	x;
 
 	y = 0;
+	if (game_object->map->width > 39)
+		cleanup_and_exit(game_object, FAIL,
+		"Map is to wide.");
 	while (y < game_object->map->height)
 	{
 		x = 0;

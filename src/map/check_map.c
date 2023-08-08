@@ -6,7 +6,7 @@
 /*   By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:50:51 by cwenz             #+#    #+#             */
-/*   Updated: 2023/08/07 19:20:19 by cwenz            ###   ########.fr       */
+/*   Updated: 2023/08/08 14:38:09 by cwenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_map(t_game *game_object, char *map_name)
 	read_map(game_object, fd);
 	// Null terminate the 2D array for the map plan
 	game_object->map->map_plan[game_object->map->height + 1] = NULL;
-	if (game_object->map->height <= 2)
+	if (game_object->map->height <= 2 || game_object->map->height > 21)
 		cleanup_and_exit(game_object, FAIL, "Invlid map height.");
 	validate_map_items(game_object);
 	check_map_width(game_object);
