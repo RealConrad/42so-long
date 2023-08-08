@@ -93,7 +93,7 @@ void	check_map_width(t_game *game_object)
 	y = 0;
 	if (game_object->map->width > 39)
 		cleanup_and_exit(game_object, FAIL,
-		"Map is to wide.");
+			"Map is to wide.");
 	while (y < game_object->map->height)
 	{
 		x = 0;
