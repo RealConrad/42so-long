@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/08 12:50:24 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 13:05:19 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,13 @@ CC					:= cc
 CFLAGS				:= -Wall -Werror -Wextra
 INCLUDES			:= -I./includes
 
-# Libft (C Library)
+# Submodules:
+## Libft
+LIBFT_PATH			:= libraries/42c-library
 LIBFT				:= libraries/42c-library/libft.a
 C_LIBRARY_MAKE		:= make -C libraries/42c-library
 C_LIBRARY_FCLEAN	:= make fclean -C libraries/42c-library
-
-# MLX
+## MLX
 MLX_PATH			:= libraries/MLX42
 MLX					:= $(MLX_PATH)/build/libmlx42.a
 MLX_FLAGS			:= ./$(MLX) -Iinclude -lglfw -L"/Users/$(USER)/$(BREW)/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
@@ -84,12 +85,12 @@ SRC					+= $(addprefix $(UTILS_DIR), $(UTIL_FILES))
 OBJ					:= $(SRC:.c=.o)
 
 # Default target
-all: $(NAME)
+all: init-submodules $(NAME)
 
 $(NAME): $(OBJ) $(MLX)
 	@$(C_LIBRARY_MAKE)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
-	@echo $(GREEN)"Linking $(NAME)"$(DEFAULT)
+	@echo $(GREEN)"Linking $(NAME)";$(DEFAULT)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -97,6 +98,19 @@ $(NAME): $(OBJ) $(MLX)
 # Build MLX library
 $(MLX):
 	@cd $(MLX_PATH) && cmake -B build && cmake --build build -j4
+
+# Init submodules
+init-submodules:
+	@if [ -z "$(shell ls -A $(MLX_PATH))" ]; then \
+		echo $(GREEN)"Initializing and updating MLX submodule...";$(DEFAULT) \
+		git submodule init $(MLX_PATH); \
+		git submodule update $(MLX_PATH); \
+	fi
+	@if [ -z "$(shell ls -A $(LIBFT_PATH))" ] then \
+		echo $(GREEN)"Initializing and updating LIBFT submodule...";$(DEFAULT) \
+		git submodule init $(LIBFT_PATH); \
+		git submodule update $(LIBFT_PATH); \
+	fi
 
 # Remove all object files
 clean:
