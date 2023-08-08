@@ -5,3 +5,4 @@ so_long.dsYM
 so_long
 a.out
 test.c
+*.o
