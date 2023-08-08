@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/08 13:16:54 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 13:17:57 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,12 +104,10 @@ init-submodules:
 	@if [ -z "$(shell ls -A $(MLX_PATH))" ]; then \
 		git submodule init $(MLX_PATH); \
 		git submodule update $(MLX_PATH); \
-#		@echo $(GREEN)"Initializing and updating MLX submodule..."$(DEFAULT);
 	fi
 	@if [ -z "$(shell ls -A $(LIBFT_PATH))" ]; then \
 		git submodule init $(LIBFT_PATH); \
 		git submodule update $(LIBFT_PATH); \
-		@echo $(GREEN)"Initializing and updating LIBFT submodule..."$(DEFAULT);
 	fi
 
 # Remove all object files
