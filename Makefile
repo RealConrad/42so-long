@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/07 15:30:06 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 12:14:38 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,9 +87,13 @@ OBJ					:= $(SRC:.c=.o)
 # Default target
 all: clone $(NAME)
 
-$(NAME): $(SRC) $(MLX)
+$(NAME): $(OBJ) $(MLX)
 	@$(C_LIBRARY_MAKE)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(SRC) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
+	@echo $(GREEN)"Linking $(NAME)"$(DEFAULT)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Build MLX library
 $(MLX):
@@ -122,5 +126,5 @@ re: fclean all
 .PHONY: all clone clean fclean re
 
 # Colours to make it look nice :)
-Default	= "\033[39m"
+DEFAULT	= "\033[39m"
 GREEN	= "\033[32m"
