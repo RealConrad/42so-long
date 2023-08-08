@@ -1,3 +1,6 @@
 [submodule "libraries/MLX42"]
 	path = libraries/MLX42
 	url = https://github.com/codam-coding-college/MLX42.git
+[submodule "libraries/42c-library"]
+	path = libraries/42c-library
+	url = https://github.com/RealConrad/42c-library.git
