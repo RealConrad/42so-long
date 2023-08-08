@@ -60,7 +60,8 @@
     - The map must be rectangular.
     - The map must be surrounded by walls.
     - The map must be solvable (e.g. The player (`P`) cannot be surrounded by walls).
-    - The map must end with `.ber`.
+    - The map must end with `.ber`. \
+
 Here is an example of a vaild map:
 ```
 1111111111111
