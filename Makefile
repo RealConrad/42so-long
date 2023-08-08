@@ -6,7 +6,7 @@
 #    By: cwenz <cwenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 13:02:34 by cwenz             #+#    #+#              #
-#    Updated: 2023/08/08 13:17:57 by cwenz            ###   ########.fr        #
+#    Updated: 2023/08/08 14:49:43 by cwenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@
 NAME				:= so_long
 
 # Username and brew location
-USER				:= cwenz
 BREW				:= .brew
 
 # Compiler and flags
