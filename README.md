@@ -24,6 +24,11 @@
 - [Tools](#tools)
 - [Credits](#credits)
 
+<div align="center">
+  <img width="765" alt="Screenshot of game" src="https://github.com/RealConrad/42so-long/assets/79513076/7acc4254-f4e2-4ce8-afc0-28158ef7f7e7" /> 
+</div>
+<br />
+
 ## Features
 - **2D Gameplay:** Embark on a journey in the world of 'So Long' where the player's objective is to collect all the items scattered throughout the map and then find the exit to escape. Beware of traps and enemies!
 - **Sprite Animation:** All sprites in the game are animated.
@@ -72,10 +77,23 @@ Here is an example of a vaild map:
 ```
 
 ## Installation
-1. Ensure you have cmake installed. You can check via: `cmake --version`. If there is a version number, you good to go. \
-  1.1) For macOS: `brew install cmake` \
-  1.2) For Lunix (Debian, Ubuntu etc.): 
+1. Ensure you have cmake installed. You can check via: `cmake --version`. If there is a version number, you good to go.
+  - For macOS:
+```bash
+brew install cmake
 ```
+  - For Lunix (Debian, Ubuntu etc.): 
+```bash
 sudo apt update
 sudo apt install -y cmake
+```
+2. Clone the repository:
+```bash
+git clone https://github.com/RealConrad/42so-long.git
+```
+3. Enter the directory and build everything:
+> NOTE: this project has git sub-modules of [MLX42](https://github.com/codam-coding-college/MLX42.git) and [42c-library](https://github.com/RealConrad/42c-library.git). Running `make` will clone these repositories.
+```bash
+cd 42so-long
+make
 ```
