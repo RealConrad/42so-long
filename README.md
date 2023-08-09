@@ -120,14 +120,14 @@ If you encounter any problems, don't hesitate to open a new <a href="https://git
    ```
    ld: warning: directory not found for option '-L/Users/<user>/.brew/opt/glfw/lib/'
    ```
-Type `which brew` in a terminal, and change the the BREW variable in the Makefile
-  ```
-  BREW = <your-brew-directory>
-  ```
-Also change the Makefile variable (`MLX_FLAGS`) to where your glfw is installed.
-```
--L"/Users/$(USER)/$(BREW)/opt/glfw/lib/"
-```
+   Type `which brew` in a terminal, and change the the BREW variable in the Makefile
+    ```
+     BREW = <your-brew-directory>
+    ```
+   Also change the Makefile variable (`MLX_FLAGS`) to where your glfw is installed.
+     ```
+     -L"/Users/$(USER)/$(BREW)/opt/glfw/lib/"
+     ```
 
 ## Credits
 <h4>1. Game Assets</h4>
