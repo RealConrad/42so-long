@@ -21,8 +21,9 @@
 - [Graphics Management](#graphics-management)
 - [Map Design](#map-design)
 - [Installation](#installation)
-- [Tools](#tools)
+- [Troubleshooting](#troubleshooting)
 - [Credits](#credits)
+- [License](#license)
 
 <div align="center">
   <img width="765" alt="Screenshot of game" src="https://github.com/RealConrad/42so-long/assets/79513076/7acc4254-f4e2-4ce8-afc0-28158ef7f7e7" /> 
@@ -78,7 +79,7 @@ Here is an example of a vaild map:
 
 ## Installation
 ### Installing Dependencies
-Ensure you have cmake installed. You can check via: `cmake --version`. If there is a version number, you good to go.
+Ensure you have *cmake* and *glfw* installed. You can check via: `cmake --version`. If there is a version number, you good to go.
 **<h4>For macOS:</h4>**
   - Install brew if you don't have it:  
 ```bash
@@ -87,21 +88,42 @@ Ensure you have cmake installed. You can check via: `cmake --version`. If there 
   - Install cmake
  ```bash
 brew install cmake
+brew install glfw
 ```
 **<h4>For Lunix (Debian, Ubuntu etc.):</h4>** 
 ```bash
 sudo apt update
 sudo apt install -y cmake
+sudo apt install libglfw3-dev
 ```
 
-
-Clone the repository:
+### Setting Up The Game
+1. Clone the repository
 ```bash
 git clone https://github.com/RealConrad/42so-long.git
 ```
-3. Enter the directory and build everything:
+2. Enter the directory and build everything
 > NOTE: this project has git sub-modules of [MLX42](https://github.com/codam-coding-college/MLX42.git) and [42c-library](https://github.com/RealConrad/42c-library.git). Running `make` will clone these repositories.
 ```bash
 cd 42so-long
 make
+```
+3. Start the game
+> Replace the second argument with the map file path: `./so_long <map-file-path>`
+```bash
+./so_long ./maps/valid/level3.ber
+```
+
+## Troubleshooting
+1. Incorrect brew folder:
+   ```
+   ld: warning: directory not found for option '-L/Users/<user>/.brew/opt/glfw/lib/'
+   ```
+Type `which brew`, and change the the BREW variable in the Makefile
+  ```
+  BREW = <your-brew-directory>
+  ```
+Also change the Makefile variable (`MLX_FLAGS`) to where your glfw is installed.
+```
+-L"/Users/$(USER)/$(BREW)/opt/glfw/lib/"
 ```
