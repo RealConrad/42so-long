@@ -115,6 +115,7 @@ make
 ```
 
 ## Troubleshooting
+If you encounter any problems, don't hesitate to open a new <a href="https://github.com/RealConrad/42so-long/issues">Issue</a> and I will get back to you ASAP.
 1. Incorrect brew folder:
    ```
    ld: warning: directory not found for option '-L/Users/<user>/.brew/opt/glfw/lib/'
@@ -130,10 +131,10 @@ Also change the Makefile variable (`MLX_FLAGS`) to where your glfw is installed.
 
 ## Credits
 <h4>1. Game Assets</h4>
-I DO NOT take any credit for the artwork/assets used in this game. All credit goes to [Robert](https://0x72.itch.io/dungeontileset-ii)
+I DO NOT take any credit for the artwork/assets used in this game. All credit goes to <a href="https://0x72.itch.io/dungeontileset-ii">Robert (0x72)</a>.
 
 <h4>2. Game Engine/Library</h4>
-You can find more information about the MLX42 library [here](https://github.com/codam-coding-college/MLX42/tree/master)
+You can find more information about the MLX42 library <a href="https://github.com/codam-coding-college/MLX42/tree/master">here</a>.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
