@@ -26,7 +26,7 @@
 - [License](#license)
 
 <div align="center">
-  <img width="765" alt="Screenshot of game" src="https://github.com/RealConrad/42so-long/assets/79513076/7acc4254-f4e2-4ce8-afc0-28158ef7f7e7" /> 
+ <img width="764" alt="Screenshot 2023-08-09 at 15 38 38" src="https://github.com/RealConrad/42so-long/assets/79513076/7c14333d-69e2-4f16-ba79-45ef90ca502c">
 </div>
 <br />
 
@@ -119,7 +119,7 @@ make
    ```
    ld: warning: directory not found for option '-L/Users/<user>/.brew/opt/glfw/lib/'
    ```
-Type `which brew`, and change the the BREW variable in the Makefile
+Type `which brew` in a terminal, and change the the BREW variable in the Makefile
   ```
   BREW = <your-brew-directory>
   ```
@@ -129,10 +129,10 @@ Also change the Makefile variable (`MLX_FLAGS`) to where your glfw is installed.
 ```
 
 ## Credits
-<h4>Game Assets</h4>
+<h4>1. Game Assets</h4>
 I DO NOT take any credit for the artwork/assets used in this game. All credit goes to [Robert](https://0x72.itch.io/dungeontileset-ii)
 
-<h4>Game Engine/Library</h4>
+<h4>2. Game Engine/Library</h4>
 You can find more information about the MLX42 library [here](https://github.com/codam-coding-college/MLX42/tree/master)
 
 ## License
