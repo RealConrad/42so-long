@@ -77,17 +77,25 @@ Here is an example of a vaild map:
 ```
 
 ## Installation
-1. Ensure you have cmake installed. You can check via: `cmake --version`. If there is a version number, you good to go.
-  - For macOS:
+### Installing Dependencies
+Ensure you have cmake installed. You can check via: `cmake --version`. If there is a version number, you good to go.
+**<h4>For macOS:</h4>**
+  - Install brew if you don't have it:  
 ```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+  - Install cmake
+ ```bash
 brew install cmake
 ```
-  - For Lunix (Debian, Ubuntu etc.): 
+**<h4>For Lunix (Debian, Ubuntu etc.):</h4>** 
 ```bash
 sudo apt update
 sudo apt install -y cmake
 ```
-2. Clone the repository:
+
+
+Clone the repository:
 ```bash
 git clone https://github.com/RealConrad/42so-long.git
 ```
