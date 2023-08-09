@@ -115,7 +115,7 @@ make
 ```
 
 ## Troubleshooting
-If you encounter any problems, don't hesitate to open a new <a target="_blank" href="https://github.com/RealConrad/42so-long/issues"> Issue </a> and I will get back to you ASAP.
+If you encounter any problems, don't hesitate to open a new <a href="https://github.com/RealConrad/42so-long/issues"> Issue </a> and I will get back to you ASAP.
 1. Incorrect brew folder:
    ```
    ld: warning: directory not found for option '-L/Users/<user>/.brew/opt/glfw/lib/'
@@ -131,10 +131,10 @@ If you encounter any problems, don't hesitate to open a new <a target="_blank" h
 
 ## Credits
 <h4>1. Game Assets</h4>
-I DO NOT take any credit for the artwork/assets used in this game. All credit goes to <a target="_blank" href="https://0x72.itch.io/dungeontileset-ii">Robert (0x72)</a>.
+I DO NOT take any credit for the artwork/assets used in this game. All credit goes to <a href="https://0x72.itch.io/dungeontileset-ii">Robert (0x72)</a>.
 
 <h4>2. Game Engine/Library</h4>
-You can find more information about the MLX42 library <a target="_blank" href="https://github.com/codam-coding-college/MLX42/tree/master">here</a>.
+You can find more information about the MLX42 library <a href="https://github.com/codam-coding-college/MLX42/tree/master">here</a>.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
