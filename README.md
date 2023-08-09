@@ -115,7 +115,7 @@ make
 ```
 
 ## Troubleshooting
-If you encounter any problems, don't hesitate to open a new <a href="https://github.com/RealConrad/42so-long/issues">Issue</a> and I will get back to you ASAP.
+If you encounter any problems, don't hesitate to open a new <a href="https://github.com/RealConrad/42so-long/issues"> Issue </a> and I will get back to you ASAP.
 1. Incorrect brew folder:
    ```
    ld: warning: directory not found for option '-L/Users/<user>/.brew/opt/glfw/lib/'
