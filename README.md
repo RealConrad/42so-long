@@ -127,3 +127,13 @@ Also change the Makefile variable (`MLX_FLAGS`) to where your glfw is installed.
 ```
 -L"/Users/$(USER)/$(BREW)/opt/glfw/lib/"
 ```
+
+## Credits
+<h4>Game Assets</h4>
+I DO NOT take any credit for the artwork/assets used in this game. All credit goes to [Robert](https://0x72.itch.io/dungeontileset-ii)
+
+<h4>Game Engine/Library</h4>
+You can find more information about the MLX42 library [here](https://github.com/codam-coding-college/MLX42/tree/master)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
